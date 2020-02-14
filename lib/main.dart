@@ -4,6 +4,7 @@ import 'dart:math' if (kIsWeb) 'dart:html';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keynote/flutter_keynote.dart';
+import 'package:project_keynote/slide.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 const kBasicTextStyle = TextStyle(
@@ -58,7 +59,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class PackagesSlide extends StatefulWidget {
+abstract class Slide extends StatefulWidget {
+  const Slide({Key key}) : super(key: key);
+}
+
+abstract class SlideState extends State<Slide> implements ISlide {}
+
+class PackagesSlide extends Slide {
   const PackagesSlide({
     Key key,
   }) : super(key: key);
@@ -67,8 +74,7 @@ class PackagesSlide extends StatefulWidget {
   _PackagesSlideState createState() => _PackagesSlideState();
 }
 
-class _PackagesSlideState extends State<PackagesSlide>
-    with TickerProviderStateMixin {
+class _PackagesSlideState extends SlideState with TickerProviderStateMixin {
   AnimationController sizeController, positionController;
   Animation<double> sizeFactor, xPosition;
   bool showText;
@@ -126,18 +132,7 @@ class _PackagesSlideState extends State<PackagesSlide>
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () {
-        if (sizeController.isCompleted && positionController.isCompleted) {
-          if (lastVisiblePart < 3) {
-            setState(() {
-              lastVisiblePart += 1;
-              print(lastVisiblePart);
-            });
-          }
-        } else {
-          sizeController.forward();
-        }
-      },
+      onTap: () => handleTap('next'),
       child: Container(
         color: kSlideBackground,
         height: double.infinity,
@@ -202,6 +197,22 @@ class _PackagesSlideState extends State<PackagesSlide>
         ),
       ),
     );
+  }
+
+  @override
+  bool handleTap(String action) {
+    if (action == kNextAction) {
+      if (sizeController.isCompleted && positionController.isCompleted) {
+        if (lastVisiblePart < 3) {
+          setState(() {
+            lastVisiblePart += 1;
+            print(lastVisiblePart);
+          });
+        }
+      } else {
+        sizeController.forward();
+      }
+    } else if (action == kPreviousAction) {}
   }
 }
 
