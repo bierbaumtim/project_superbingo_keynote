@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slide_interaction_service.dart';
+import 'package:window_utils/window_utils.dart';
 
 typedef OnKeyboardTap = bool Function(String action);
 
@@ -24,6 +26,15 @@ class KeyboardHandler extends StatefulWidget {
 
 class _KeyboardHandlerState extends State<KeyboardHandler> {
   final FocusNode _focusNode = FocusNode();
+  Size windowSize;
+  bool isFullscreen;
+
+  @override
+  void initState() {
+    super.initState();
+    isFullscreen = false;
+    windowSize = Size(0, 0);
+  }
 
   @override
   void didChangeDependencies() {
@@ -35,7 +46,7 @@ class _KeyboardHandlerState extends State<KeyboardHandler> {
   Widget build(BuildContext context) {
     return RawKeyboardListener(
       focusNode: _focusNode,
-      onKey: (event) {
+      onKey: (event) async {
         if (event is RawKeyUpEvent) {
           LogicalKeyboardKey logicalKey;
           bool mapCharsToArrows = false;
@@ -55,6 +66,7 @@ class _KeyboardHandlerState extends State<KeyboardHandler> {
             mapCharsToArrows = true;
           }
 
+          print(logicalKey);
           if (logicalKey != null) {
             if (logicalKey == LogicalKeyboardKey.arrowRight ||
                 (mapCharsToArrows && logicalKey == LogicalKeyboardKey.keyK)) {
@@ -64,6 +76,15 @@ class _KeyboardHandlerState extends State<KeyboardHandler> {
                 (mapCharsToArrows && logicalKey == LogicalKeyboardKey.keyI)) {
               RepositoryProvider.of<SlideInteractionService>(context)
                   .handleAction(kPreviousAction);
+            } else if (logicalKey == LogicalKeyboardKey.f11) {
+              if (!kIsWeb) {
+                if (isFullscreen) {
+                  WindowUtils.setSize(windowSize);
+                } else {
+                  windowSize = await WindowUtils.getScreenSize();
+                  await WindowUtils.maxWindow();
+                }
+              }
             }
           }
         }
