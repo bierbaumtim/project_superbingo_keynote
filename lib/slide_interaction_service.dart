@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_keynote/flutter_keynote.dart';
 
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slide_interaction_service_interface.dart';
@@ -11,6 +12,13 @@ const kDBKeynoteDocumentPath = 'flutter-superbingo';
 class SlideInteractionService implements ISlideInteractionService {
   List<GlobalKey<SlideState>> _slides;
   StreamSubscription _dbSub;
+  KeynoteProvider _keynoteProvider;
+
+  KeynoteProvider get keynoteProvider => _keynoteProvider;
+
+  SlideInteractionService() {
+    _slides = List<GlobalKey<SlideState>>();
+  }
 
   @override
   GlobalKey<SlideState> currentSlideKey;
@@ -25,35 +33,64 @@ class SlideInteractionService implements ISlideInteractionService {
     _dbSub = Firestore.instance
         .document(kDBKeynoteDocumentPath)
         .snapshots()
-        .listen(handleAction);
+        .listen(handleSnapshot);
   }
 
-  void handleAction(DocumentSnapshot document) {
+  @override
+  void startKeynote() {
+    _keynoteProvider = KeynoteProvider(maxLength: _slides.length);
+  }
+
+  void handleSnapshot(DocumentSnapshot document) {
     final json = document.data;
     var key = _slides
         .firstWhere((slide) => slide.toString() == json['current_slide']);
     if (key == null || key.currentState is! SlideState) {
       throw UnsupportedError('Key did not found.');
     } else {
-      final result = key.currentState.handleTap(json['action']);
-      if (result) {
-        var index = _slides.indexOf(key);
+      handleAction(json['action'], key);
+    }
+  }
+
+  void handleAction(String action, [GlobalKey<SlideState> slideKey]) {
+    final key = slideKey ?? _slides.elementAt(_keynoteProvider.getPageIndex());
+    final result = key.currentState.handleTap(action);
+    if (result) {
+      var index = _slides.indexOf(key);
+      if (action == kNextAction) {
         if (index + 1 < _slides.length - 1) {
           index++;
-          final cKey = _slides.elementAt(index);
+          keynoteProvider.nextPage(key.currentContext);
+          // final cKey = _slides.elementAt(index);
 
-          Firestore.instance.document(kDBKeynoteDocumentPath).updateData(
-            <String, dynamic>{
-              'next_slide': '',
-              'current_slide': cKey.toString(),
-              'action': "",
-            },
-          );
+          // Firestore.instance.document(kDBKeynoteDocumentPath).updateData(
+          //   <String, dynamic>{
+          //     'next_slide': '',
+          //     'current_slide': cKey.toString(),
+          //     'action': "",
+          //   },
+          // );
+        }
+      } else if (action == kPreviousAction) {
+        if (index - 1 >= 0) {
+          index--;
+          keynoteProvider.previousPage(key.currentContext);
+          // final cKey = _slides.elementAt(index);
+
+          // Firestore.instance.document(kDBKeynoteDocumentPath).updateData(
+          //   <String, dynamic>{
+          //     'next_slide': '',
+          //     'current_slide': cKey.toString(),
+          //     'action': "",
+          //   },
+          // );
         }
       }
     }
   }
 
   @override
-  void dispose() {}
+  void dispose() {
+    _dbSub.cancel();
+  }
 }

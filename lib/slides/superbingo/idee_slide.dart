@@ -6,6 +6,8 @@ import 'package:project_keynote/widgets/keyboard_handler.dart';
 import 'package:project_keynote/widgets/revealing_text.dart';
 
 class IdeeSlide extends Slide {
+  const IdeeSlide({Key key}) : super(key: key);
+
   @override
   _IdeeSlideState createState() => _IdeeSlideState();
 }

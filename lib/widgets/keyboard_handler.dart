@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:project_keynote/slide.dart';
+import 'package:project_keynote/slide_interaction_service.dart';
 
 typedef OnKeyboardTap = bool Function(String action);
 
@@ -54,16 +58,12 @@ class _KeyboardHandlerState extends State<KeyboardHandler> {
           if (logicalKey != null) {
             if (logicalKey == LogicalKeyboardKey.arrowRight ||
                 (mapCharsToArrows && logicalKey == LogicalKeyboardKey.keyK)) {
-              final result = widget.onKeyboardTap(kNextAction);
-              if (result) {
-                // TODO implement KeynoteProvider
-              }
+              RepositoryProvider.of<SlideInteractionService>(context)
+                  .handleAction(kNextAction);
             } else if (logicalKey == LogicalKeyboardKey.arrowLeft ||
                 (mapCharsToArrows && logicalKey == LogicalKeyboardKey.keyI)) {
-              final result = widget.onKeyboardTap(kPreviousAction);
-              if (result) {
-                // TODO implement KeynoteProvider
-              }
+              RepositoryProvider.of<SlideInteractionService>(context)
+                  .handleAction(kPreviousAction);
             }
           }
         }

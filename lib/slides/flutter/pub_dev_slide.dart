@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:project_keynote/slide.dart';
+import 'package:project_keynote/widgets/keyboard_handler.dart';
 import 'package:project_keynote/widgets/revealing_text.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import '../../main.dart';
 
 class PackagesSlide extends Slide {
-  const PackagesSlide({
-    Key key,
-  }) : super(key: key);
+  const PackagesSlide({Key key}) : super(key: key);
 
   @override
   _PackagesSlideState createState() => _PackagesSlideState();
 }
 
-class _PackagesSlideState extends SlideState with TickerProviderStateMixin {
+class _PackagesSlideState extends SlideState<PackagesSlide>
+    with TickerProviderStateMixin {
+  final FocusNode _focusNode = FocusNode();
   AnimationController sizeController, positionController;
   Animation<double> sizeFactor, xPosition;
-  bool showText;
+  bool showText, reverseText;
   int lastVisiblePart;
-  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
     showText = false;
+    reverseText = false;
     lastVisiblePart = -1;
     sizeController = AnimationController(
       vsync: this,
@@ -81,44 +81,10 @@ class _PackagesSlideState extends SlideState with TickerProviderStateMixin {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => handleTap('next'),
-      child: RawKeyboardListener(
-        focusNode: _focusNode,
-        onKey: (event) {
-          if (event is RawKeyUpEvent) {
-            LogicalKeyboardKey logicalKey;
-            bool mapCharsToArrows = false;
-
-            if (event.data.runtimeType == RawKeyEventDataWeb) {
-              final data = event.data as RawKeyEventDataWeb;
-              logicalKey = data.logicalKey;
-            } else if (event.data.runtimeType == RawKeyEventDataFuchsia) {
-              final data = event.data as RawKeyEventDataFuchsia;
-              logicalKey = data.logicalKey;
-            } else if (event.data.runtimeType == RawKeyEventDataLinux) {
-              final data = event.data as RawKeyEventDataFuchsia;
-              logicalKey = data.logicalKey;
-            } else if (event.data.runtimeType == RawKeyEventDataAndroid) {
-              final data = event.data as RawKeyEventDataAndroid;
-              logicalKey = data.logicalKey;
-              mapCharsToArrows = true;
-            }
-
-            // print(logicalKey);
-            if (logicalKey != null) {
-              if (logicalKey == LogicalKeyboardKey.arrowRight ||
-                  (mapCharsToArrows && logicalKey == LogicalKeyboardKey.keyK)) {
-                handleTap(kNextAction);
-              } else if (logicalKey == LogicalKeyboardKey.arrowLeft ||
-                  (mapCharsToArrows && logicalKey == LogicalKeyboardKey.keyI)) {
-                handleTap(kPreviousAction);
-              }
-            }
-          }
-        },
-        child: Container(
+      child: KeyboardHandler(
+        onKeyboardTap: handleTap,
+        child: Material(
           color: kSlideBackground,
-          height: double.infinity,
-          width: double.infinity,
           child: Stack(
             children: <Widget>[
               FractionalTranslation(
@@ -147,6 +113,7 @@ class _PackagesSlideState extends SlideState with TickerProviderStateMixin {
                           child: Center(
                             child: RevealingText(
                               lastVisiblePart: lastVisiblePart,
+                              reverse: reverseText,
                               mainAxisAligment: MainAxisAlignment.start,
                               parts: <Text>[
                                 Text(
@@ -186,12 +153,14 @@ class _PackagesSlideState extends SlideState with TickerProviderStateMixin {
   bool handleTap(String action) {
     if (action == kNextAction) {
       if (sizeController.isCompleted && positionController.isCompleted) {
-        if (lastVisiblePart < 3) {
+        if (lastVisiblePart < 2) {
           setState(() {
+            reverseText = false;
             lastVisiblePart += 1;
             print(lastVisiblePart);
           });
         } else {
+          debugPrint('PubDevSlide nextAction called - completed');
           return true;
         }
       } else if (sizeController.isCompleted &&
@@ -203,13 +172,18 @@ class _PackagesSlideState extends SlideState with TickerProviderStateMixin {
     } else if (action == kPreviousAction) {
       if (lastVisiblePart != -1) {
         setState(() {
+          reverseText = true;
           lastVisiblePart -= 1;
           print(lastVisiblePart);
         });
       } else if (sizeController.isCompleted && positionController.isCompleted) {
         positionController.reverse();
+      } else if (sizeController.isDismissed && positionController.isDismissed) {
+        debugPrint('PubDevSlide previousAction called - completed');
+        return true;
       }
     }
+    debugPrint('PubDevSlide nextAction called - Not completed');
     return false;
   }
 }

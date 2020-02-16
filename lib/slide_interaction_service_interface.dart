@@ -5,5 +5,6 @@ abstract class ISlideInteractionService {
   void registerSlideKey(GlobalKey<SlideState> slideKey);
   void setupDatabaseListener();
   void dispose();
+  void startKeynote();
   GlobalKey<SlideState> currentSlideKey;
 }

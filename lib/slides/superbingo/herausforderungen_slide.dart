@@ -5,6 +5,8 @@ import 'package:project_keynote/widgets/keyboard_handler.dart';
 import 'package:project_keynote/widgets/revealing_text.dart';
 
 class HerausforderungenSlide extends Slide {
+  const HerausforderungenSlide({Key key}) : super(key: key);
+
   @override
   _HerausforderungenSlideState createState() => _HerausforderungenSlideState();
 }
@@ -35,7 +37,6 @@ class _HerausforderungenSlideState extends SlideState<HerausforderungenSlide> {
   @override
   Widget build(BuildContext context) {
     return KeyboardHandler(
-      key: UniqueKey(),
       onKeyboardTap: handleTap,
       child: SimpleComparisonSlide(
         title: Text('Herausforderungen'),
@@ -78,7 +79,7 @@ class _HerausforderungenSlideState extends SlideState<HerausforderungenSlide> {
         showLeftComparableTitle: showLeftText,
         showLeftComparableContent: showLeftParts,
         showRightComparableTitle: showRightText,
-        showRightComparableContent: showRightText,
+        showRightComparableContent: showRightParts,
       ),
     );
   }
@@ -96,7 +97,7 @@ class _HerausforderungenSlideState extends SlideState<HerausforderungenSlide> {
         return false;
       }
 
-      if (showLeftParts && lastVisibleLeftPart < 4) {
+      if (showLeftParts && lastVisibleLeftPart < 3) {
         setState(() {
           reverseLeftParts = false;
           lastVisibleLeftPart += 1;
@@ -109,12 +110,14 @@ class _HerausforderungenSlideState extends SlideState<HerausforderungenSlide> {
         return false;
       }
 
-      if (!showRightText) {
-        setState(() => showRightText = true);
+      if (!showRightParts) {
+        setState(() {
+          showRightParts = true;
+        });
         return false;
       }
 
-      if (showRightText && lastVisibleRightPart > 3) {
+      if (showRightParts && lastVisibleRightPart < 2) {
         setState(() {
           reverseRightParts = false;
           lastVisibleRightPart += 1;

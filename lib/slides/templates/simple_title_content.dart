@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
@@ -11,6 +9,7 @@ class TitleContentSlide extends Slide {
   final CrossAxisAlignment titleAlignment;
   final MainAxisAlignment contentMainAxisAligment;
   final CrossAxisAlignment contentCrossAxisAlignment;
+  final Map<int, int> partsLayer;
 
   const TitleContentSlide({
     Key key,
@@ -19,6 +18,7 @@ class TitleContentSlide extends Slide {
     this.contentMainAxisAligment = MainAxisAlignment.center,
     this.contentCrossAxisAlignment = CrossAxisAlignment.stretch,
     this.titleAlignment = CrossAxisAlignment.center,
+    this.partsLayer = const <int, int>{},
   }) : super(key: key);
 
   @override
@@ -78,6 +78,7 @@ class _TitleContentSlideState extends SlideState<TitleContentSlide> {
                     crossAxisAlignment: widget.contentCrossAxisAlignment,
                     mainAxisAligment: widget.contentMainAxisAligment,
                     reverse: reverseContent,
+                    partsLayer: widget.partsLayer,
                   ),
                 ),
               ],

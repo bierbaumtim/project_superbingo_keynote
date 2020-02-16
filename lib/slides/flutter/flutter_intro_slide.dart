@@ -4,6 +4,8 @@ import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slides/templates/topic_slide.dart';
 
 class FlutterIntroSlide extends Slide {
+  const FlutterIntroSlide({Key key}) : super(key: key);
+
   @override
   _FlutterIntroSlideState createState() => _FlutterIntroSlideState();
 }
@@ -29,7 +31,7 @@ class _FlutterIntroSlideState extends SlideState<FlutterIntroSlide> {
 
   @override
   bool handleTap(String action) {
-    // TODO: implement handleTap
-    throw UnimplementedError();
+    debugPrint('FlutterIntroSlide completed');
+    return true;
   }
 }

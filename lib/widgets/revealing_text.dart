@@ -8,6 +8,7 @@ class RevealingText extends StatefulWidget {
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisAlignment mainAxisAligment;
   final bool reverse;
+  final Map<int, int> partsLayer;
 
   const RevealingText({
     Key key,
@@ -16,6 +17,7 @@ class RevealingText extends StatefulWidget {
     this.crossAxisAlignment = CrossAxisAlignment.stretch,
     this.mainAxisAligment = MainAxisAlignment.center,
     this.reverse = false,
+    this.partsLayer = const <int, int>{},
   }) : super(key: key);
 
   @override
@@ -35,15 +37,19 @@ class _RevealingTextState extends State<RevealingText> {
         if (index == -1 || widget.lastVisiblePart < 0) {
           return Container();
         } else {
+          final layer = widget.partsLayer.containsKey(index)
+              ? widget.partsLayer[index]
+              : 0;
+
           if (widget.reverse) {
             if (index <= widget.lastVisiblePart) {
-              return buildStaticPart(part);
+              return buildStaticPart(part, layer);
             }
           } else {
             if (index < widget.lastVisiblePart) {
-              return buildStaticPart(part);
+              return buildStaticPart(part, layer);
             } else if (index == widget.lastVisiblePart) {
-              return buildAnimatedPart(part);
+              return buildAnimatedPart(part, layer);
             }
           }
           return Container(
@@ -55,14 +61,23 @@ class _RevealingTextState extends State<RevealingText> {
     );
   }
 
-  Widget buildStaticPart(Text part) {
+  String buildLayer(int layer) {
+    final blanks = List.generate(
+      layer * 2,
+      (_) => ' ',
+    );
+
+    return blanks.join();
+  }
+
+  Widget buildStaticPart(Text part, [int layer = 0]) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            '• ',
+            '${buildLayer(layer)}• ',
             style: part.style,
           ),
           Expanded(
@@ -73,7 +88,7 @@ class _RevealingTextState extends State<RevealingText> {
     );
   }
 
-  Widget buildAnimatedPart(Text part) {
+  Widget buildAnimatedPart(Text part, [int layer = 0]) {
     return ControlledAnimation<double>(
       tween: Tween(begin: 0.0, end: 1.0),
       duration: const Duration(milliseconds: 550),
@@ -86,7 +101,7 @@ class _RevealingTextState extends State<RevealingText> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                '• ',
+                '${buildLayer(layer)}• ',
                 style: part.style,
               ),
               Expanded(

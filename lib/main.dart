@@ -2,16 +2,22 @@ import 'dart:io' as io;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_keynote/flutter_keynote.dart';
 import 'package:project_keynote/slide.dart';
+import 'package:project_keynote/slide_interaction_service.dart';
 import 'package:project_keynote/slides/flutter/flutter_intro_slide.dart';
 import 'package:project_keynote/slides/superbingo/herausforderungen_slide.dart';
 import 'package:project_keynote/slides/superbingo/idee_slide.dart';
 import 'package:project_keynote/slides/superbingo/superbingo_intro_slide.dart';
 import 'package:project_keynote/text_styles.dart';
 
+import 'keys.dart';
+import 'slides/flutter/everything_is_a_widget_slide.dart';
+import 'slides/flutter/flutter_cross_platform_slide.dart';
 import 'slides/flutter/pub_dev_slide.dart';
+import 'slides/flutter/stateless_vs_stateful_slide.dart';
 import 'slides/intro_slide.dart';
 import 'slides/superbingo/ziele_slide.dart';
 
@@ -22,7 +28,28 @@ void main() {
     }
   }
 
-  runApp(MyApp());
+  final interactionService = SlideInteractionService();
+  interactionService.registerSlideKey(kIntroSlideKey);
+  // Flutter
+  interactionService.registerSlideKey(kFlutterIntroSlideKey);
+  interactionService.registerSlideKey(kEverythingIsAWidgetSlideKey);
+  interactionService.registerSlideKey(kStatelessVSStatefulSlideKey);
+  interactionService.registerSlideKey(kFlutterCrossPlatformSlideKey);
+  interactionService.registerSlideKey(kPubDevSlideKey);
+  // Superbingo
+  interactionService.registerSlideKey(kFSuperbingoIntroSlideKey);
+  interactionService.registerSlideKey(kIdeeSlideKey);
+  interactionService.registerSlideKey(kHerausforderungenSlideKey);
+  interactionService.registerSlideKey(kZielSlideKey);
+
+  interactionService.startKeynote();
+
+  runApp(
+    RepositoryProvider<SlideInteractionService>(
+      create: (context) => interactionService,
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,20 +57,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return KeynoteApp(
       slides: <Widget>[
-        IntroSlide(),
-        FlutterIntroSlide(),
-        FirstSlide(),
-        SecondSlide(),
-        PackagesSlide(),
-        SuperbingoIntroSlide(),
-        IdeeSlide(),
-        HerausforderungenSlide(),
-        ZielSlide(),
-        Container(
-          color: kSlideBackground,
-          height: double.infinity,
-          width: double.infinity,
-        ),
+        IntroSlide(key: kIntroSlideKey),
+        FlutterIntroSlide(key: kFlutterIntroSlideKey),
+        EverythingIsAWidgetSlide(key: kEverythingIsAWidgetSlideKey),
+        StatelessVSStafulSlide(key: kStatelessVSStatefulSlideKey),
+        FlutterCrossPlatformSlide(key: kFlutterCrossPlatformSlideKey),
+        PackagesSlide(key: kPubDevSlideKey),
+        SuperbingoIntroSlide(key: kFSuperbingoIntroSlideKey),
+        IdeeSlide(key: kIdeeSlideKey),
+        HerausforderungenSlide(key: kHerausforderungenSlideKey),
+        ZielSlide(key: kZielSlideKey),
       ],
       swipeGesture: true,
       transition: KeynoteTransition.fade,
@@ -54,7 +77,8 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark().copyWith(
         textTheme: kBasicTextTheme,
       ),
-      keynoteProvider: KeynoteProvider(maxLength: 10),
+      keynoteProvider: RepositoryProvider.of<SlideInteractionService>(context)
+          .keynoteProvider,
     );
   }
 }
