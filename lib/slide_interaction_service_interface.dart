@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:project_keynote/main.dart';
+import 'package:project_keynote/slide.dart';
 
 abstract class ISlideInteractionService {
   void registerSlideKey(GlobalKey<SlideState> slideKey);

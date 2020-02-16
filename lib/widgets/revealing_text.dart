@@ -62,7 +62,7 @@ class _RevealingTextState extends State<RevealingText> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            '- ',
+            '• ',
             style: part.style,
           ),
           Expanded(
@@ -86,7 +86,7 @@ class _RevealingTextState extends State<RevealingText> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                '- ',
+                '• ',
                 style: part.style,
               ),
               Expanded(

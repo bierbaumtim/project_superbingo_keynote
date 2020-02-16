@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import 'package:project_keynote/main.dart';
 import 'package:project_keynote/slide.dart';
+import 'package:project_keynote/text_styles.dart';
+import 'package:project_keynote/widgets/keyboard_handler.dart';
 import 'package:project_keynote/widgets/revealing_text.dart';
 
 class TitleContentSlide extends Slide {
   final Widget title;
   final List<Text> content;
-  final CrossAxisAlignment titleMainAxisAlignment;
+  final CrossAxisAlignment titleAlignment;
   final MainAxisAlignment contentMainAxisAligment;
   final CrossAxisAlignment contentCrossAxisAlignment;
 
@@ -18,7 +18,7 @@ class TitleContentSlide extends Slide {
     this.content,
     this.contentMainAxisAligment = MainAxisAlignment.center,
     this.contentCrossAxisAlignment = CrossAxisAlignment.stretch,
-    this.titleMainAxisAlignment = CrossAxisAlignment.center,
+    this.titleAlignment = CrossAxisAlignment.center,
   }) : super(key: key);
 
   @override
@@ -47,41 +47,9 @@ class _TitleContentSlideState extends SlideState<TitleContentSlide> {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () => handleTap('next'),
-      child: RawKeyboardListener(
-        focusNode: _focusNode,
-        onKey: (event) {
-          if (event is RawKeyUpEvent) {
-            LogicalKeyboardKey logicalKey;
-            bool mapCharsToArrows = false;
-
-            if (event.data.runtimeType == RawKeyEventDataWeb) {
-              final data = event.data as RawKeyEventDataWeb;
-              logicalKey = data.logicalKey;
-            } else if (event.data.runtimeType == RawKeyEventDataFuchsia) {
-              final data = event.data as RawKeyEventDataFuchsia;
-              logicalKey = data.logicalKey;
-            } else if (event.data.runtimeType == RawKeyEventDataLinux) {
-              final data = event.data as RawKeyEventDataFuchsia;
-              logicalKey = data.logicalKey;
-            } else if (event.data.runtimeType == RawKeyEventDataAndroid) {
-              final data = event.data as RawKeyEventDataAndroid;
-              logicalKey = data.logicalKey;
-              mapCharsToArrows = true;
-            }
-
-            // print(logicalKey);
-            if (logicalKey != null) {
-              if (logicalKey == LogicalKeyboardKey.arrowRight ||
-                  (mapCharsToArrows && logicalKey == LogicalKeyboardKey.keyK)) {
-                handleTap(kNextAction);
-              } else if (logicalKey == LogicalKeyboardKey.arrowLeft ||
-                  (mapCharsToArrows && logicalKey == LogicalKeyboardKey.keyI)) {
-                handleTap(kPreviousAction);
-              }
-            }
-          }
-        },
+      onTap: () => handleTap(kNextAction),
+      child: KeyboardHandler(
+        onKeyboardTap: handleTap,
         child: Material(
           color: kSlideBackground,
           child: Padding(
@@ -90,21 +58,15 @@ class _TitleContentSlideState extends SlideState<TitleContentSlide> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    if (widget.titleMainAxisAlignment ==
-                            CrossAxisAlignment.center ||
-                        widget.titleMainAxisAlignment == CrossAxisAlignment.end)
+                    if (widget.titleAlignment == CrossAxisAlignment.center ||
+                        widget.titleAlignment == CrossAxisAlignment.end)
                       Spacer(),
                     DefaultTextStyle(
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1
-                          .copyWith(color: Colors.black),
+                      style: kTitleContentTitleTextStyle,
                       child: widget.title,
                     ),
-                    if (widget.titleMainAxisAlignment ==
-                            CrossAxisAlignment.center ||
-                        widget.titleMainAxisAlignment ==
-                            CrossAxisAlignment.start)
+                    if (widget.titleAlignment == CrossAxisAlignment.center ||
+                        widget.titleAlignment == CrossAxisAlignment.start)
                       Spacer(),
                   ],
                 ),
