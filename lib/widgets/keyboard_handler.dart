@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slide_interaction_service.dart';
-import 'package:window_utils/window_utils.dart';
+// import 'package:window_utils/window_utils.dart';
 
 typedef OnKeyboardTap = bool Function(String action);
 
@@ -77,14 +77,14 @@ class _KeyboardHandlerState extends State<KeyboardHandler> {
               RepositoryProvider.of<SlideInteractionService>(context)
                   .handleAction(kPreviousAction);
             } else if (logicalKey == LogicalKeyboardKey.f11) {
-              if (!kIsWeb) {
-                if (isFullscreen) {
-                  WindowUtils.setSize(windowSize);
-                } else {
-                  windowSize = await WindowUtils.getScreenSize();
-                  await WindowUtils.maxWindow();
-                }
-              }
+              // if (!kIsWeb) {
+              //   if (isFullscreen) {
+              //     WindowUtils.setSize(windowSize);
+              //   } else {
+              //     windowSize = await WindowUtils.getScreenSize();
+              //     await WindowUtils.maxWindow();
+              //   }
+              // }
             }
           }
         }

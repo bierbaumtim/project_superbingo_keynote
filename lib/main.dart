@@ -2,24 +2,24 @@ import 'dart:io' as io;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_keynote/flutter_keynote.dart';
-import 'package:project_keynote/slide.dart';
-import 'package:project_keynote/slide_interaction_service.dart';
-import 'package:project_keynote/slides/flutter/flutter_intro_slide.dart';
-import 'package:project_keynote/slides/superbingo/herausforderungen_slide.dart';
-import 'package:project_keynote/slides/superbingo/idee_slide.dart';
-import 'package:project_keynote/slides/superbingo/superbingo_intro_slide.dart';
-import 'package:project_keynote/text_styles.dart';
-
 import 'keys.dart';
+import 'slide.dart';
+import 'slide_interaction_service.dart';
+import 'slides/intro_slide.dart';
+import 'slides/flutter/flutter_intro_slide.dart';
 import 'slides/flutter/everything_is_a_widget_slide.dart';
+import 'slides/flutter/stateless_vs_stateful_slide.dart';
 import 'slides/flutter/flutter_cross_platform_slide.dart';
 import 'slides/flutter/pub_dev_slide.dart';
-import 'slides/flutter/stateless_vs_stateful_slide.dart';
-import 'slides/intro_slide.dart';
+import 'slides/superbingo/superbingo_intro_slide.dart';
+import 'slides/superbingo/idee_slide.dart';
 import 'slides/superbingo/ziele_slide.dart';
+import 'slides/superbingo/herausforderungen_slide.dart';
+import 'text_styles.dart';
 
 void main() {
   if (!kIsWeb) {

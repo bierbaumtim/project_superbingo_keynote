@@ -88,6 +88,7 @@ bool Win32Window::CreateAndShow(const std::wstring &title, const Point &origin,
                                 const Size &size)
 {
   Destroy();
+  // MSG msg;
 
   WNDCLASS window_class = RegisterWindowClass();
 
@@ -103,6 +104,11 @@ bool Win32Window::CreateAndShow(const std::wstring &title, const Point &origin,
       Scale(origin.y, scale_factor), Scale(size.width, scale_factor),
       Scale(size.height, scale_factor), nullptr, nullptr,
       window_class.hInstance, this);
+
+  // while (GetMessage(&msg, NULL, 0, 0))
+  // {
+  //    DispatchMessage(&msg);
+  // }
 
   return window != nullptr;
 }
@@ -143,14 +149,15 @@ LRESULT CALLBACK Win32Window::WndProc(HWND const window, UINT const message,
   {
     if (wparam == VK_F11)
     {
-      if (isWindowFullscreen(window))
-      {
-        ExitFullscreen(window);
-      }
-      else
-      {
-        EnterFullscreen(window);
-      }
+      EnterFullscreen(window);
+      // if (isWindowFullscreen(window))
+      // {
+      //   ExitFullscreen(window);
+      // }
+      // else
+      // {
+      //   EnterFullscreen(window);
+      // }
     }
   }
   else if (Win32Window *that = GetThisFromHandle(window))
@@ -217,14 +224,16 @@ Win32Window::MessageHandler(HWND hwnd, UINT const message, WPARAM const wparam,
   case WM_SYSKEYUP:
     if (wparam == VK_F11)
     {
-      if (isWindowFullscreen(hwnd))
-      {
-        ExitFullscreen(hwnd);
-      }
-      else
-      {
-        EnterFullscreen(hwnd);
-      }
+      EnterFullscreen(hwnd);
+      return 0;
+      // if (isWindowFullscreen(hwnd))
+      // {
+      //   ExitFullscreen(hwnd);
+      // }
+      // else
+      // {
+      //   EnterFullscreen(hwnd);
+      // }
     }
     return 0;
   }

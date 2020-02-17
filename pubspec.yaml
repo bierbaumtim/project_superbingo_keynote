@@ -35,8 +35,8 @@ dependencies:
   cloud_firestore: ^0.13.2
 
   # desktop
-  window_utils:
-    path: plugins/window-utils
+  # window_utils:
+  #   path: plugins/window-utils
   # window_size:
   #   path: plugins/window_size
 
