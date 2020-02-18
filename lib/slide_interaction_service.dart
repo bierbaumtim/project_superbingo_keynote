@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_keynote/flutter_keynote.dart';
 
@@ -30,10 +30,10 @@ class SlideInteractionService implements ISlideInteractionService {
 
   @override
   void setupDatabaseListener() {
-    _dbSub = Firestore.instance
-        .document(kDBKeynoteDocumentPath)
-        .snapshots()
-        .listen(handleSnapshot);
+    //   _dbSub = Firestore.instance
+    //       .document(kDBKeynoteDocumentPath)
+    //       .snapshots()
+    //       .listen(handleSnapshot);
   }
 
   @override
@@ -41,25 +41,29 @@ class SlideInteractionService implements ISlideInteractionService {
     _keynoteProvider = KeynoteProvider(maxLength: _slides.length);
   }
 
-  void handleSnapshot(DocumentSnapshot document) {
-    final json = document.data;
-    var key = _slides
-        .firstWhere((slide) => slide.toString() == json['current_slide']);
-    if (key == null || key.currentState is! SlideState) {
-      throw UnsupportedError('Key did not found.');
-    } else {
-      handleAction(json['action'], key);
-    }
-  }
+  // void handleSnapshot(DocumentSnapshot document) {
+  //   final json = document.data;
+  //   var key = _slides
+  //       .firstWhere((slide) => slide.toString() == json['current_slide']);
+  //   if (key == null || key.currentState is! SlideState) {
+  //     throw UnsupportedError('Key did not found.');
+  //   } else {
+  //     handleAction(json['action'], key);
+  //   }
+  // }
 
   void handleAction(String action, [GlobalKey<SlideState> slideKey]) {
     final key = slideKey ?? _slides.elementAt(_keynoteProvider.getPageIndex());
-    final result = key.currentState.handleTap(action);
+    if (key == null) {
+      print('Key Error');
+      return;
+    }
+    print('CurrentState: ${key.currentState}');
+    final result = key.currentState?.handleTap(action) ?? false;
     if (result) {
-      var index = _slides.indexOf(key);
+      final index = _slides.indexOf(key);
       if (action == kNextAction) {
         if (index + 1 < _slides.length - 1) {
-          index++;
           keynoteProvider.nextPage(key.currentContext);
           // final cKey = _slides.elementAt(index);
 
@@ -73,7 +77,6 @@ class SlideInteractionService implements ISlideInteractionService {
         }
       } else if (action == kPreviousAction) {
         if (index - 1 >= 0) {
-          index--;
           keynoteProvider.previousPage(key.currentContext);
           // final cKey = _slides.elementAt(index);
 
