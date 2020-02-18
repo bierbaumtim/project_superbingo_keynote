@@ -4,7 +4,7 @@ import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slides/templates/simple_title_content.dart';
 
 class ZielSlide extends Slide {
-  const ZielSlide({Key key}) : super(key: key);
+  const ZielSlide({GlobalKey<SlideState> key}) : super(key: key);
 
   @override
   _ZielSlideState createState() => _ZielSlideState();

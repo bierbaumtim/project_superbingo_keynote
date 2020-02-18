@@ -27,7 +27,7 @@ final kTitleContentTitleTextStyle = kBasicTextStyle.copyWith(
 
 // Topic Slide Styles
 final kTopicTitleTextStyle = kBasicTextStyle.copyWith(
-  fontSize: 120,
+  fontSize: 140,
 );
 
 final kTopicSubtitleTextStyle = kBasicTextStyle.copyWith(

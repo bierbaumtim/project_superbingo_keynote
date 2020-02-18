@@ -20,22 +20,36 @@ class _TopicSlideState extends State<TopicSlide> {
   Widget build(BuildContext context) {
     return Material(
       color: kSlideBackground,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          DefaultTextStyle(
-            style: kTopicTitleTextStyle,
-            child: widget.title,
-          ),
-          SizedBox(height: 40),
-          if (widget.subtitle != null)
-            DefaultTextStyle(
-              style: kTopicSubtitleTextStyle,
-              child: widget.subtitle,
-            ),
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final titleFontsize = constraints.maxWidth / 14;
+          final subtitleFontsize = titleFontsize / 2.75;
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              DefaultTextStyle(
+                style: kBasicTextStyle.copyWith(
+                  fontSize: titleFontsize,
+                ),
+                child: widget.title,
+              ),
+              const SizedBox(height: 40),
+              if (widget.subtitle != null)
+                DefaultTextStyle(
+                  style: kBasicTextStyle.copyWith(
+                    fontSize: subtitleFontsize,
+                  ),
+                  child: IconTheme(
+                    data: IconThemeData(size: subtitleFontsize),
+                    child: widget.subtitle,
+                  ),
+                ),
+            ],
+          );
+        },
       ),
     );
   }

@@ -25,7 +25,7 @@ class KeyboardHandler extends StatefulWidget {
 }
 
 class _KeyboardHandlerState extends State<KeyboardHandler> {
-  final FocusNode _focusNode = FocusNode();
+  final _focusNode = FocusNode();
   Size windowSize;
   bool isFullscreen;
 
@@ -46,7 +46,7 @@ class _KeyboardHandlerState extends State<KeyboardHandler> {
   Widget build(BuildContext context) {
     return RawKeyboardListener(
       focusNode: _focusNode,
-      onKey: (event) async {
+      onKey: (event) {
         if (event is RawKeyUpEvent) {
           LogicalKeyboardKey logicalKey;
           bool mapCharsToArrows = false;
@@ -54,13 +54,16 @@ class _KeyboardHandlerState extends State<KeyboardHandler> {
           if (event.data.runtimeType == RawKeyEventDataWeb) {
             final data = event.data as RawKeyEventDataWeb;
             logicalKey = data.logicalKey;
-          } else if (event.data.runtimeType == RawKeyEventDataFuchsia) {
-            final data = event.data as RawKeyEventDataFuchsia;
-            logicalKey = data.logicalKey;
-          } else if (event.data.runtimeType == RawKeyEventDataLinux) {
-            final data = event.data as RawKeyEventDataFuchsia;
-            logicalKey = data.logicalKey;
-          } else if (event.data.runtimeType == RawKeyEventDataAndroid) {
+            print('isWeb');
+          }
+          //  else if (event.data.runtimeType == RawKeyEventDataFuchsia) {
+          //   final data = event.data as RawKeyEventDataFuchsia;
+          //   logicalKey = data.logicalKey;
+          // } else if (event.data.runtimeType == RawKeyEventDataLinux) {
+          //   final data = event.data as RawKeyEventDataFuchsia;
+          //   logicalKey = data.logicalKey;
+          // }
+          else if (event.data.runtimeType == RawKeyEventDataAndroid) {
             final data = event.data as RawKeyEventDataAndroid;
             logicalKey = data.logicalKey;
             mapCharsToArrows = true;
@@ -76,20 +79,14 @@ class _KeyboardHandlerState extends State<KeyboardHandler> {
                 (mapCharsToArrows && logicalKey == LogicalKeyboardKey.keyI)) {
               RepositoryProvider.of<SlideInteractionService>(context)
                   .handleAction(kPreviousAction);
-            } else if (logicalKey == LogicalKeyboardKey.f11) {
-              // if (!kIsWeb) {
-              //   if (isFullscreen) {
-              //     WindowUtils.setSize(windowSize);
-              //   } else {
-              //     windowSize = await WindowUtils.getScreenSize();
-              //     await WindowUtils.maxWindow();
-              //   }
-              // }
             }
           }
         }
       },
-      child: widget.child,
+      child: Material(
+        color: Colors.transparent,
+        child: widget.child,
+      ),
     );
   }
 }

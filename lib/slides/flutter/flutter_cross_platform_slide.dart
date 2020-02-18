@@ -18,20 +18,32 @@ class _FlutterCrossPlatformSlideState
   Widget build(BuildContext context) {
     return AnimatedTitleContentSlide(
       key: _innerTemplateKey,
-      title: Text.rich(
-        TextSpan(
-          children: <InlineSpan>[
-            TextSpan(text: 'Flutter '),
-            WidgetSpan(
-              child: Icon(
-                Icons.favorite_border,
-                color: Colors.red,
-                size: 80,
-              ),
-            ),
-            TextSpan(text: ' Cross Platform'),
-          ],
-        ),
+      // title: Text.rich(
+      //   TextSpan(
+      //     children: <InlineSpan>[
+      //       TextSpan(text: 'Flutter '),
+      //       WidgetSpan(
+      //         child: Icon(
+      //           Icons.favorite_border,
+      //           color: Colors.red,
+      //           size: 80,
+      //         ),
+      //       ),
+      //       TextSpan(text: ' Cross Platform'),
+      //     ],
+      //   ),
+      // ),
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Text('Flutter '),
+          Icon(
+            Icons.favorite_border,
+            color: Colors.red,
+            size: 80,
+          ),
+          Text(' Cross Platform'),
+        ],
       ),
       content: <Text>[
         Text('Mobile - iOS und Android'),

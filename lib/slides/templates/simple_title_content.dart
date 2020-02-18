@@ -1,6 +1,5 @@
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
-import 'package:project_keynote/widgets/keyboard_handler.dart';
 import 'package:project_keynote/widgets/revealing_text.dart';
 
 class TitleContentSlide extends Slide {
@@ -45,48 +44,51 @@ class _TitleContentSlideState extends SlideState<TitleContentSlide> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => handleTap(kNextAction),
-      child: KeyboardHandler(
-        onKeyboardTap: handleTap,
-        child: Material(
-          color: kSlideBackground,
-          child: Padding(
-            padding: const EdgeInsets.all(kToolbarHeight),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    if (widget.titleAlignment == CrossAxisAlignment.center ||
-                        widget.titleAlignment == CrossAxisAlignment.end)
-                      Spacer(),
-                    DefaultTextStyle(
-                      style: kTitleContentTitleTextStyle,
-                      child: widget.title,
-                    ),
-                    if (widget.titleAlignment == CrossAxisAlignment.center ||
-                        widget.titleAlignment == CrossAxisAlignment.start)
-                      Spacer(),
-                  ],
-                ),
-                SizedBox(height: 32),
-                Expanded(
-                  child: RevealingText(
-                    parts: widget.content,
-                    lastVisiblePart: lastVisiblePart,
-                    crossAxisAlignment: widget.contentCrossAxisAlignment,
-                    mainAxisAligment: widget.contentMainAxisAligment,
-                    reverse: reverseContent,
-                    partsLayer: widget.partsLayer,
+    return Material(
+        color: kSlideBackground,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final titleFontsize = (constraints.maxWidth / 14) * 0.6;
+
+            return Padding(
+              padding: const EdgeInsets.all(1.5 * kToolbarHeight),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      if (widget.titleAlignment == CrossAxisAlignment.center ||
+                          widget.titleAlignment == CrossAxisAlignment.end)
+                        Spacer(),
+                      DefaultTextStyle(
+                        style: kBasicTextStyle.copyWith(
+                          fontSize: titleFontsize,
+                        ),
+                        child: widget.title,
+                      ),
+                      if (widget.titleAlignment == CrossAxisAlignment.center ||
+                          widget.titleAlignment == CrossAxisAlignment.start)
+                        Spacer(),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+                  SizedBox(height: 32),
+                  Expanded(
+                    child: RevealingText(
+                      parts: widget.content,
+                      lastVisiblePart: lastVisiblePart,
+                      crossAxisAlignment: widget.contentCrossAxisAlignment,
+                      mainAxisAligment: widget.contentMainAxisAligment,
+                      reverse: reverseContent,
+                      partsLayer: widget.partsLayer,
+                      defaultTextStyle: kBasicTextStyle.copyWith(
+                        fontSize: titleFontsize * 0.75,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ));
   }
 
   @override

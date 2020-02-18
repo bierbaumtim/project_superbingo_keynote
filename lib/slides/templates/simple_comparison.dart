@@ -38,106 +38,135 @@ class _SimpleComparisonSlideState extends State<SimpleComparisonSlide> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: kSlideBackground,
-      child: Padding(
-        padding: const EdgeInsets.all(kToolbarHeight),
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                if (widget.titleAlignment == CrossAxisAlignment.center ||
-                    widget.titleAlignment == CrossAxisAlignment.end)
-                  Spacer(),
-                DefaultTextStyle(
-                  style: kTitleContentTitleTextStyle,
-                  child: widget.title,
-                ),
-                if (widget.titleAlignment == CrossAxisAlignment.center ||
-                    widget.titleAlignment == CrossAxisAlignment.start)
-                  Spacer(),
-              ],
-            ),
-            SizedBox(height: 1.5 * kToolbarHeight),
-            Expanded(
-              child: Row(
+        color: kSlideBackground,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final titleFontsize = (constraints.maxWidth / 14) * 0.6;
+            final subtitleFontsize = (constraints.maxWidth / 14) / 2.75;
+            final contentFontsize = titleFontsize * 0.65;
+
+            return Padding(
+              padding: const EdgeInsets.all(1.5 * kToolbarHeight),
+              child: Column(
                 children: <Widget>[
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        if (widget.leftComparableTitle != null &&
-                            widget.showLeftComparableTitle)
-                          DefaultTextStyle(
-                            style: kComparisonComparableTitleTextStyle,
-                            child: ControlledAnimation(
-                              tween: Tween(begin: 0.0, end: 1.0),
-                              duration: const Duration(milliseconds: 550),
-                              delay: const Duration(milliseconds: 250),
-                              builder: (buildContext, animatedValue) => Opacity(
-                                opacity: animatedValue,
-                                child: widget.leftComparableTitle,
-                              ),
-                            ),
-                          ),
-                        if (widget.leftComparableContent != null &&
-                            widget.showLeftComparableContent)
-                          Expanded(
-                            child: ControlledAnimation(
-                              tween: Tween(begin: 0.0, end: 1.0),
-                              duration: const Duration(milliseconds: 550),
-                              delay: const Duration(milliseconds: 250),
-                              builder: (buildContext, animatedValue) => Opacity(
-                                opacity: animatedValue,
-                                child: widget.leftComparableContent,
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
+                  Row(
+                    children: <Widget>[
+                      if (widget.titleAlignment == CrossAxisAlignment.center ||
+                          widget.titleAlignment == CrossAxisAlignment.end)
+                        Spacer(),
+                      DefaultTextStyle(
+                        style: kBasicTextStyle.copyWith(
+                          fontSize: titleFontsize,
+                        ),
+                        child: widget.title,
+                      ),
+                      if (widget.titleAlignment == CrossAxisAlignment.center ||
+                          widget.titleAlignment == CrossAxisAlignment.start)
+                        Spacer(),
+                    ],
                   ),
-                  SizedBox(width: kToolbarHeight),
+                  SizedBox(height: 1.5 * kToolbarHeight),
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
                       children: <Widget>[
-                        if (widget.rightComparableTitle != null &&
-                            widget.showRightComparableTitle)
-                          DefaultTextStyle(
-                            style: kComparisonComparableTitleTextStyle,
-                            child: ControlledAnimation(
-                              tween: Tween(begin: 0.0, end: 1.0),
-                              duration: const Duration(milliseconds: 550),
-                              delay: const Duration(milliseconds: 250),
-                              builder: (buildContext, animatedValue) => Opacity(
-                                opacity: animatedValue,
-                                child: widget.rightComparableTitle,
-                              ),
-                            ),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              if (widget.leftComparableTitle != null &&
+                                  widget.showLeftComparableTitle)
+                                DefaultTextStyle(
+                                  style: kBasicTextStyle.copyWith(
+                                    fontSize: subtitleFontsize,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  child: ControlledAnimation(
+                                    tween: Tween(begin: 0.0, end: 1.0),
+                                    duration: const Duration(milliseconds: 550),
+                                    delay: const Duration(milliseconds: 250),
+                                    builder: (buildContext, animatedValue) =>
+                                        Opacity(
+                                      opacity: animatedValue,
+                                      child: widget.leftComparableTitle,
+                                    ),
+                                  ),
+                                ),
+                              if (widget.leftComparableContent != null &&
+                                  widget.showLeftComparableContent)
+                                Expanded(
+                                  child: ControlledAnimation(
+                                    tween: Tween(begin: 0.0, end: 1.0),
+                                    duration: const Duration(milliseconds: 550),
+                                    delay: const Duration(milliseconds: 250),
+                                    builder: (buildContext, animatedValue) =>
+                                        Opacity(
+                                      opacity: animatedValue,
+                                      child: DefaultTextStyle(
+                                        style: kBasicTextStyle.copyWith(
+                                          fontSize: contentFontsize,
+                                        ),
+                                        child: widget.leftComparableContent,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
-                        if (widget.rightComparableContent != null &&
-                            widget.showRightComparableContent)
-                          Expanded(
-                            child: ControlledAnimation(
-                              tween: Tween(begin: 0.0, end: 1.0),
-                              duration: const Duration(milliseconds: 550),
-                              delay: const Duration(milliseconds: 250),
-                              builder: (buildContext, animatedValue) => Opacity(
-                                opacity: animatedValue,
-                                child: widget.rightComparableContent,
-                              ),
-                            ),
+                        ),
+                        SizedBox(width: kToolbarHeight),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              if (widget.rightComparableTitle != null &&
+                                  widget.showRightComparableTitle)
+                                DefaultTextStyle(
+                                  style: kBasicTextStyle.copyWith(
+                                    fontSize: subtitleFontsize,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  child: ControlledAnimation(
+                                    tween: Tween(begin: 0.0, end: 1.0),
+                                    duration: const Duration(milliseconds: 550),
+                                    delay: const Duration(milliseconds: 250),
+                                    builder: (buildContext, animatedValue) =>
+                                        Opacity(
+                                      opacity: animatedValue,
+                                      child: widget.rightComparableTitle,
+                                    ),
+                                  ),
+                                ),
+                              if (widget.rightComparableContent != null &&
+                                  widget.showRightComparableContent)
+                                Expanded(
+                                  child: ControlledAnimation(
+                                    tween: Tween(begin: 0.0, end: 1.0),
+                                    duration: const Duration(milliseconds: 550),
+                                    delay: const Duration(milliseconds: 250),
+                                    builder: (buildContext, animatedValue) =>
+                                        Opacity(
+                                      opacity: animatedValue,
+                                      child: DefaultTextStyle(
+                                        style: kBasicTextStyle.copyWith(
+                                          fontSize: contentFontsize,
+                                        ),
+                                        child: widget.rightComparableContent,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
+                        ),
                       ],
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
-      ),
-    );
+            );
+          },
+        ));
   }
 }

@@ -9,6 +9,7 @@ class RevealingText extends StatefulWidget {
   final MainAxisAlignment mainAxisAligment;
   final bool reverse;
   final Map<int, int> partsLayer;
+  final TextStyle defaultTextStyle;
 
   const RevealingText({
     Key key,
@@ -18,6 +19,7 @@ class RevealingText extends StatefulWidget {
     this.mainAxisAligment = MainAxisAlignment.center,
     this.reverse = false,
     this.partsLayer = const <int, int>{},
+    this.defaultTextStyle,
   }) : super(key: key);
 
   @override
@@ -27,7 +29,9 @@ class RevealingText extends StatefulWidget {
 class _RevealingTextState extends State<RevealingText> {
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.bodyText2;
+    final textStyle = widget.defaultTextStyle ??
+        DefaultTextStyle.of(context).style ??
+        Theme.of(context).textTheme.bodyText2;
 
     return Column(
       crossAxisAlignment: widget.crossAxisAlignment,
@@ -43,13 +47,25 @@ class _RevealingTextState extends State<RevealingText> {
 
           if (widget.reverse) {
             if (index <= widget.lastVisiblePart) {
-              return buildStaticPart(part, layer);
+              return buildStaticPart(
+                part,
+                textStyle,
+                layer,
+              );
             }
           } else {
             if (index < widget.lastVisiblePart) {
-              return buildStaticPart(part, layer);
+              return buildStaticPart(
+                part,
+                textStyle,
+                layer,
+              );
             } else if (index == widget.lastVisiblePart) {
-              return buildAnimatedPart(part, layer);
+              return buildAnimatedPart(
+                part,
+                textStyle,
+                layer,
+              );
             }
           }
           return Container(
@@ -70,25 +86,28 @@ class _RevealingTextState extends State<RevealingText> {
     return blanks.join();
   }
 
-  Widget buildStaticPart(Text part, [int layer = 0]) {
+  Widget buildStaticPart(Text part, TextStyle textStyle, [int layer = 0]) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            '${buildLayer(layer)}• ',
-            style: part.style,
-          ),
-          Expanded(
-            child: part,
-          ),
-        ],
+      child: DefaultTextStyle(
+        style: textStyle,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              '${buildLayer(layer)}• ',
+              style: part.style,
+            ),
+            Expanded(
+              child: part,
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget buildAnimatedPart(Text part, [int layer = 0]) {
+  Widget buildAnimatedPart(Text part, TextStyle textStyle, [int layer = 0]) {
     return ControlledAnimation<double>(
       tween: Tween(begin: 0.0, end: 1.0),
       duration: const Duration(milliseconds: 550),
@@ -97,17 +116,20 @@ class _RevealingTextState extends State<RevealingText> {
         opacity: animation,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                '${buildLayer(layer)}• ',
-                style: part.style,
-              ),
-              Expanded(
-                child: part,
-              ),
-            ],
+          child: DefaultTextStyle(
+            style: textStyle,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  '${buildLayer(layer)}• ',
+                  style: part.style,
+                ),
+                Expanded(
+                  child: part,
+                ),
+              ],
+            ),
           ),
         ),
       ),

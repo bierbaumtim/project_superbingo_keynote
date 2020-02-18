@@ -55,30 +55,44 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return KeynoteApp(
-      slides: <Widget>[
-        IntroSlide(key: kIntroSlideKey),
-        FlutterIntroSlide(key: kFlutterIntroSlideKey),
-        EverythingIsAWidgetSlide(key: kEverythingIsAWidgetSlideKey),
-        StatelessVSStafulSlide(key: kStatelessVSStatefulSlideKey),
-        FlutterCrossPlatformSlide(key: kFlutterCrossPlatformSlideKey),
-        PackagesSlide(key: kPubDevSlideKey),
-        SuperbingoIntroSlide(key: kFSuperbingoIntroSlideKey),
-        IdeeSlide(key: kIdeeSlideKey),
-        HerausforderungenSlide(key: kHerausforderungenSlideKey),
-        ZielSlide(key: kZielSlideKey),
-      ],
-      swipeGesture: true,
-      transition: KeynoteTransition.fade,
-      theme: ThemeData.dark().copyWith(
-        textTheme: kBasicTextTheme,
+    return Container(
+      color: kSlideBackground,
+      // color: Colors.green,
+      constraints: BoxConstraints(
+        maxHeight: 1080,
+        maxWidth: 1920,
       ),
-      title: 'Flutter',
-      darkTheme: ThemeData.dark().copyWith(
-        textTheme: kBasicTextTheme,
+      alignment: Alignment.center,
+      child: AspectRatio(
+        aspectRatio: 16.0 / 9.0,
+        child: KeynoteApp(
+          slides: <Widget>[
+            IntroSlide(key: kIntroSlideKey),
+            FlutterIntroSlide(key: kFlutterIntroSlideKey),
+            EverythingIsAWidgetSlide(key: kEverythingIsAWidgetSlideKey),
+            StatelessVSStafulSlide(key: kStatelessVSStatefulSlideKey),
+            FlutterCrossPlatformSlide(key: kFlutterCrossPlatformSlideKey),
+            PackagesSlide(key: kPubDevSlideKey),
+            SuperbingoIntroSlide(key: kFSuperbingoIntroSlideKey),
+            IdeeSlide(key: kIdeeSlideKey),
+            HerausforderungenSlide(key: kHerausforderungenSlideKey),
+            ZielSlide(key: kZielSlideKey),
+          ],
+          swipeGesture: true,
+          handleKeyboardInputs: false,
+          transition: KeynoteTransition.fade,
+          theme: ThemeData.dark().copyWith(
+            textTheme: kBasicTextTheme,
+          ),
+          title: 'Flutter',
+          darkTheme: ThemeData.dark().copyWith(
+            textTheme: kBasicTextTheme,
+          ),
+          keynoteProvider:
+              RepositoryProvider.of<SlideInteractionService>(context)
+                  .keynoteProvider,
+        ),
       ),
-      keynoteProvider: RepositoryProvider.of<SlideInteractionService>(context)
-          .keynoteProvider,
     );
   }
 }

@@ -28,7 +28,7 @@ class _IntroSlideState extends SlideState<IntroSlide> {
                 Hero(
                   tag: kFlutterLogoHeroTag,
                   child: FlutterLogo(
-                    size: 48,
+                    // size: 48,
                   ),
                 ),
                 Text('Flutter'),
