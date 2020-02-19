@@ -15,7 +15,6 @@ class PackagesSlide extends Slide {
 
 class _PackagesSlideState extends SlideState<PackagesSlide>
     with TickerProviderStateMixin {
-  final FocusNode _focusNode = FocusNode();
   AnimationController sizeController, positionController;
   Animation<double> sizeFactor, xPosition;
   bool showText, reverseText;
@@ -59,12 +58,6 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
     xPosition = Tween<double>(begin: 0, end: -.2).animate(
       positionController,
     );
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    FocusScope.of(context).requestFocus(_focusNode);
   }
 
   @override

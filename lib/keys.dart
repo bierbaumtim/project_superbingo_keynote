@@ -7,6 +7,7 @@ final kPubDevSlideKey = GlobalKey<SlideState>();
 final kStatelessVSStatefulSlideKey = GlobalKey<SlideState>();
 final kEverythingIsAWidgetSlideKey = GlobalKey<SlideState>();
 final kFlutterCrossPlatformSlideKey = GlobalKey<SlideState>();
+final kFlutterCrossPlatformLayerSlideKey = GlobalKey<SlideState>();
 // Superbingo Keys
 final kFSuperbingoIntroSlideKey = GlobalKey<SlideState>();
 final kIdeeSlideKey = GlobalKey<SlideState>();

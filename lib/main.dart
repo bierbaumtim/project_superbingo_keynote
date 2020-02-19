@@ -9,6 +9,7 @@ import 'package:flutter_keynote/flutter_keynote.dart';
 import 'keys.dart';
 import 'slide.dart';
 import 'slide_interaction_service.dart';
+import 'slides/flutter/flutter_cross_platform_layer_slide.dart';
 import 'slides/intro_slide.dart';
 import 'slides/flutter/flutter_intro_slide.dart';
 import 'slides/flutter/everything_is_a_widget_slide.dart';
@@ -35,6 +36,7 @@ void main() {
   interactionService.registerSlideKey(kEverythingIsAWidgetSlideKey);
   interactionService.registerSlideKey(kStatelessVSStatefulSlideKey);
   interactionService.registerSlideKey(kFlutterCrossPlatformSlideKey);
+  interactionService.registerSlideKey(kFlutterCrossPlatformLayerSlideKey);
   interactionService.registerSlideKey(kPubDevSlideKey);
   // Superbingo
   interactionService.registerSlideKey(kFSuperbingoIntroSlideKey);
@@ -72,6 +74,9 @@ class MyApp extends StatelessWidget {
             EverythingIsAWidgetSlide(key: kEverythingIsAWidgetSlideKey),
             StatelessVSStafulSlide(key: kStatelessVSStatefulSlideKey),
             FlutterCrossPlatformSlide(key: kFlutterCrossPlatformSlideKey),
+            FlutterCrossPlatformLayerSlide(
+              key: kFlutterCrossPlatformLayerSlideKey,
+            ),
             PackagesSlide(key: kPubDevSlideKey),
             SuperbingoIntroSlide(key: kFSuperbingoIntroSlideKey),
             IdeeSlide(key: kIdeeSlideKey),

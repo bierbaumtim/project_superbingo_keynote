@@ -39,3 +39,14 @@ final kComparisonComparableTitleTextStyle = kBasicTextStyle.copyWith(
   fontSize: 36,
   fontWeight: FontWeight.bold,
 );
+
+/// Berechnet die Kontrastfarbe zur `color`
+Color getContrastColor(Color color) {
+  // Calculate the perceptive luminance - human eye favors green color...
+  final luma =
+      ((0.299 * color.red) + (0.587 * color.green) + (0.114 * color.blue)) /
+          255;
+
+  // Return black for bright colors, white for dark colors
+  return luma > 0.5 ? const Color(0xFF000000) : const Color(0xFFFFFFFF);
+}
