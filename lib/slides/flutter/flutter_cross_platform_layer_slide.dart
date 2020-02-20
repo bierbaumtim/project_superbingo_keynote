@@ -1,7 +1,8 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 
 class FlutterCrossPlatformLayerSlide extends Slide {

@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:project_keynote/slide.dart';
+import 'package:project_keynote/text_styles.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
 import 'package:project_keynote/widgets/revealing_text.dart';
+
 import 'package:simple_animations/simple_animations.dart';
 
 import '../../main.dart';
@@ -69,8 +70,6 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => handleTap('next'),
@@ -78,64 +77,69 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
         onKeyboardTap: handleTap,
         child: Material(
           color: kSlideBackground,
-          child: Stack(
-            children: <Widget>[
-              FractionalTranslation(
-                translation: Offset(xPosition?.value ?? 0, 0),
-                child: ChromeMockupContainer(
-                  // child: WebViewContainer(),
-                  sizeFactor: sizeFactor?.value ?? 0.8,
-                  child: Container(),
-                ),
-              ),
-              if (showText)
-                Positioned(
-                  top: MediaQuery.of(context).size.height * .4,
-                  bottom: kToolbarHeight,
-                  right: kToolbarHeight,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: ControlledAnimation<double>(
-                      tween: Tween<double>(begin: 0, end: 1),
-                      duration: const Duration(milliseconds: 750),
-                      delay: const Duration(milliseconds: 250),
-                      builder: (context, animation) => Opacity(
-                        opacity: animation,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.35,
-                          child: Center(
-                            child: RevealingText(
-                              lastVisiblePart: lastVisiblePart,
-                              reverse: reverseText,
-                              mainAxisAligment: MainAxisAlignment.start,
-                              parts: <Text>[
-                                Text(
-                                  'OpenSource Packages und Plugins',
-                                  style: theme.textTheme.bodyText2.copyWith(
-                                    fontSize: 45,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final contentFontsize =
+                  calculateContentFontsize(constraints.maxWidth);
+
+              return Stack(
+                children: <Widget>[
+                  FractionalTranslation(
+                    translation: Offset(xPosition?.value ?? 0, 0),
+                    child: ChromeMockupContainer(
+                      // child: WebViewContainer(),
+                      sizeFactor: sizeFactor?.value ?? 0.8,
+                      child: Container(),
+                    ),
+                  ),
+                  if (showText)
+                    Positioned(
+                      top: kToolbarHeight,
+                      bottom: kToolbarHeight,
+                      right: kToolbarHeight,
+                      child: ControlledAnimation<double>(
+                        tween: Tween<double>(begin: 0, end: 1),
+                        duration: const Duration(milliseconds: 750),
+                        delay: const Duration(milliseconds: 250),
+                        builder: (context, animation) => Opacity(
+                          opacity: animation,
+                          child: Container(
+                            width:
+                                (constraints.maxWidth - (2 * kToolbarHeight)) *
+                                    0.35,
+                            child: Center(
+                              child: RevealingText(
+                                lastVisiblePart: lastVisiblePart,
+                                reverse: reverseText,
+                                parts: <Text>[
+                                  Text(
+                                    'OpenSource Packages und Plugins',
+                                    style: kBasicTextStyle.copyWith(
+                                      fontSize: contentFontsize,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  'Flutter Team & Community',
-                                  style: theme.textTheme.bodyText2.copyWith(
-                                    fontSize: 45,
+                                  Text(
+                                    'Flutter Team & Community',
+                                    style: kBasicTextStyle.copyWith(
+                                      fontSize: contentFontsize,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  'Constributing',
-                                  style: theme.textTheme.bodyText2.copyWith(
-                                    fontSize: 45,
+                                  Text(
+                                    'Constributing',
+                                    style: kBasicTextStyle.copyWith(
+                                      fontSize: contentFontsize,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-            ],
+                ],
+              );
+            },
           ),
         ),
       ),
