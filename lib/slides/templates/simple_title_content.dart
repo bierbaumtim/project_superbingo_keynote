@@ -25,7 +25,6 @@ class TitleContentSlide extends Slide {
 }
 
 class _TitleContentSlideState extends SlideState<TitleContentSlide> {
-  final FocusNode _focusNode = FocusNode();
   int lastVisiblePart;
   bool reverseContent;
 
@@ -37,18 +36,12 @@ class _TitleContentSlideState extends SlideState<TitleContentSlide> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    FocusScope.of(context).requestFocus(_focusNode);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Material(
         color: kSlideBackground,
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final titleFontsize = (constraints.maxWidth / 14) * 0.6;
+            final titleFontsize = calculateTitleFontsize(constraints.maxWidth);
 
             return Padding(
               padding: const EdgeInsets.all(1.5 * kToolbarHeight),

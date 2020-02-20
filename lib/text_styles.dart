@@ -22,7 +22,6 @@ const kBasicTextTheme = TextTheme(
 // Title Slide Styles
 final kTitleContentTitleTextStyle = kBasicTextStyle.copyWith(
   fontSize: 72,
-
 );
 
 // Topic Slide Styles
@@ -50,3 +49,10 @@ Color getContrastColor(Color color) {
   // Return black for bright colors, white for dark colors
   return luma > 0.5 ? const Color(0xFF000000) : const Color(0xFFFFFFFF);
 }
+
+double calculateTitleFontsize(double width) => (width / 14) * 0.6;
+
+double calculateSubtitleFontsize(double width) => (width / 14) / 2.75;
+
+double calculateContentFontsize(double width) =>
+    calculateTitleFontsize(width) * 0.65;

@@ -94,7 +94,8 @@ class _TitleContentSlideState extends SlideState<AnimatedTitleContentSlide>
           color: kSlideBackground,
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final titleFontsize = (constraints.maxWidth / 14) * 0.6;
+              final titleFontsize =
+                  calculateTitleFontsize(constraints.maxWidth);
 
               return Padding(
                 padding: const EdgeInsets.all(1.5 * kToolbarHeight),
