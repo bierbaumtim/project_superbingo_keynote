@@ -36,6 +36,8 @@ void main() {
   interactionService.registerSlideKey(kEverythingIsAWidgetSlideKey);
   interactionService.registerSlideKey(kStatelessVSStatefulSlideKey);
   interactionService.registerSlideKey(kFlutterCrossPlatformSlideKey);
+  // TODO: check WidgetTreeSlide postion
+  // interactionService.registerSlideKey(kFlutterWidgetTreeSlideKey);
   interactionService.registerSlideKey(kFlutterCrossPlatformLayerSlideKey);
   interactionService.registerSlideKey(kPubDevSlideKey);
   // Superbingo

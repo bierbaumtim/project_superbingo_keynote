@@ -57,87 +57,118 @@ class _FlutterCrossPlatformLayerSlideState
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    _LayerContainer(
-                      content: 'Your code',
-                      background: Color.fromARGB(255, 180, 199, 231),
-                      height: smallLayerHeight,
-                      // TODO:padding nur bottom
-                    ),
-                    _LayerContainer(
-                      content: 'Flutter Framework',
-                      background: Color.fromARGB(255, 68, 114, 196),
-                      height: 2 * smallLayerHeight,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: _LayerContainer(
-                            content: 'C++ Flutter engine',
-                            background: Color.fromARGB(255, 0, 176, 80),
-                            height: 2 * smallLayerHeight,
-                          ),
-                          flex: 2,
-                        ),
-                        SizedBox(width: 16),
-                        Expanded(
-                          child: _LayerContainer(
-                            content: 'Flutter web engine',
-                            background: Color.fromARGB(255, 0, 176, 80),
-                            height: 2 * smallLayerHeight,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: _LayerContainer(
-                                  content: 'iOS/Android runner',
-                                  background: Color.fromARGB(255, 255, 192, 0),
-                                  height: smallLayerHeight,
-                                ),
-                                flex: 2,
+                    if (showLayer1)
+                      _LayerContainer(
+                        content: 'Your code',
+                        background: Color.fromARGB(255, 180, 199, 231),
+                        height: smallLayerHeight,
+                        padding: const EdgeInsets.only(bottom: 8),
+                      ),
+                    if (showLayer2)
+                      _LayerContainer(
+                        content: 'Flutter Framework',
+                        background: Color.fromARGB(255, 68, 114, 196),
+                        height: 2 * smallLayerHeight,
+                      ),
+                    if (showLayer3_1 || showLayer3_2)
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Visibility(
+                              visible: showLayer3_1,
+                              child: _LayerContainer(
+                                content: 'C++ Flutter engine',
+                                background: Color.fromARGB(255, 0, 176, 80),
+                                height: 2 * smallLayerHeight,
                               ),
-                              SizedBox(width: 16),
-                              Expanded(
-                                child: _LayerContainer(
-                                  content: 'Platform-specific embedder',
-                                  background: Color.fromARGB(255, 255, 192, 0),
-                                  height: smallLayerHeight,
-                                ),
-                                flex: 3,
+                            ),
+                            flex: 2,
+                          ),
+                          SizedBox(width: 16),
+                          Expanded(
+                            child: Visibility(
+                              visible: showLayer3_2,
+                              child: _LayerContainer(
+                                content: 'Flutter web engine',
+                                background: Color.fromARGB(255, 0, 176, 80),
+                                height: 2 * smallLayerHeight,
                               ),
-                            ],
+                            ),
                           ),
-                          flex: 2,
-                        ),
-                        SizedBox(width: 16),
-                        Expanded(
-                          child: // TODO: Layer 4 1/3 outline
-                              _LayerContainer(
-                            content: 'Dart2js compiler',
-                            background: Color.fromARGB(255, 0, 176, 80),
-                            height: smallLayerHeight,
+                        ],
+                      ),
+                    if (showLayer4_1 || showLayer4_2 || showLayer4_3)
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: Visibility(
+                                    visible: showLayer4_1,
+                                    child: _LayerContainer(
+                                      content: 'iOS/Android runner',
+                                      background:
+                                          Color.fromARGB(255, 255, 192, 0),
+                                      height: smallLayerHeight,
+                                    ),
+                                  ),
+                                  flex: 2,
+                                ),
+                                SizedBox(width: 16),
+                                Expanded(
+                                  child: Visibility(
+                                    visible: showLayer4_2,
+                                    child: _LayerContainer(
+                                      content: 'Platform-specific embedder',
+                                      background:
+                                          Color.fromARGB(255, 255, 192, 0),
+                                      height: smallLayerHeight,
+                                    ),
+                                  ),
+                                  flex: 3,
+                                ),
+                              ],
+                            ),
+                            flex: 2,
                           ),
-                        ),
-                      ],
-                    ),
-
-                    // TODO: Layer 5 1/3 outline
-                    _LayerContainer(
-                      content: 'Browser',
-                      background: Color.fromARGB(255, 255, 192, 0),
-                      height: smallLayerHeight,
-                    ),
-                    _LayerContainer(
-                      content: 'Hardware',
-                      background: Color.fromARGB(255, 255, 0, 0),
-                      height: 2 * smallLayerHeight,
-                      //TODO: padding nur top
-                    ),
+                          SizedBox(width: 16),
+                          Expanded(
+                            child: Visibility(
+                              visible: showLayer4_3,
+                              child: _LayerContainer(
+                                content: 'Dart2js compiler',
+                                background: Color.fromARGB(255, 0, 176, 80),
+                                height: smallLayerHeight,
+                                isOutline: true,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    if (showLayer5)
+                      Row(
+                        children: <Widget>[
+                          Spacer(
+                            flex: 2,
+                          ),
+                          Expanded(
+                            child: _LayerContainer(
+                              content: 'Browser',
+                              background: Color.fromARGB(255, 255, 192, 0),
+                              height: smallLayerHeight,
+                              isOutline: true,
+                            ),
+                          ),
+                        ],
+                      ),
+                    if (showLayer6)
+                      _LayerContainer(
+                        content: 'Hardware',
+                        background: Color.fromARGB(255, 255, 0, 0),
+                        height: 2 * smallLayerHeight,
+                        padding: const EdgeInsets.only(top: 8),
+                      ),
                   ],
                 );
               },
@@ -151,7 +182,80 @@ class _FlutterCrossPlatformLayerSlideState
   @override
   bool handleTap(String action) {
     if (action == kNextAction) {
-    } else if (action == kPreviousAction) {}
+      if (!showLayer1) {
+        setState(() => showLayer1 = true);
+        return false;
+      }
+      if (!showLayer2) {
+        setState(() => showLayer2 = true);
+        return false;
+      }
+      if (!showLayer3_1) {
+        setState(() => showLayer3_1 = true);
+        return false;
+      }
+      if (!showLayer3_2) {
+        setState(() => showLayer3_2 = true);
+        return false;
+      }
+      if (!showLayer4_1) {
+        setState(() => showLayer4_1 = true);
+        return false;
+      }
+      if (!showLayer4_2) {
+        setState(() => showLayer4_2 = true);
+        return false;
+      }
+      if (!showLayer4_3) {
+        setState(() => showLayer4_3 = true);
+        return false;
+      }
+      if (!showLayer5) {
+        setState(() => showLayer5 = true);
+        return false;
+      }
+      if (!showLayer6) {
+        setState(() => showLayer6 = true);
+        return false;
+      }
+    } else if (action == kPreviousAction) {
+      if (showLayer6) {
+        setState(() => showLayer6 = false);
+        return false;
+      }
+      if (showLayer5) {
+        setState(() => showLayer5 = false);
+        return false;
+      }
+      if (showLayer4_3) {
+        setState(() => showLayer4_3 = false);
+        return false;
+      }
+      if (showLayer4_2) {
+        setState(() => showLayer4_2 = false);
+        return false;
+      }
+      if (showLayer4_1) {
+        setState(() => showLayer4_1 = false);
+        return false;
+      }
+      if (showLayer3_2) {
+        setState(() => showLayer3_2 = false);
+        return false;
+      }
+      if (showLayer3_1) {
+        setState(() => showLayer3_1 = false);
+        return false;
+      }
+      if (showLayer2) {
+        setState(() => showLayer2 = false);
+        return false;
+      }
+      if (showLayer1) {
+        setState(() => showLayer1 = false);
+        return false;
+      }
+    }
     return true;
   }
 }
@@ -161,6 +265,7 @@ class _LayerContainer extends StatelessWidget {
   final Color background;
   final double height;
   final EdgeInsetsGeometry padding;
+  final bool isOutline;
 
   const _LayerContainer({
     Key key,
@@ -168,9 +273,11 @@ class _LayerContainer extends StatelessWidget {
     @required this.background,
     @required this.height,
     this.padding,
+    this.isOutline = false,
   })  : assert(content != null),
         assert(background != null),
         assert(height != null),
+        assert(isOutline != null),
         super(key: key);
 
   @override
@@ -183,7 +290,15 @@ class _LayerContainer extends StatelessWidget {
         child: Padding(
           padding: padding ?? const EdgeInsets.symmetric(vertical: 8),
           child: Container(
-            color: background,
+            decoration: BoxDecoration(
+              color: isOutline ? Colors.transparent : background,
+              border: isOutline
+                  ? Border.all(
+                      width: 3,
+                      color: background,
+                    )
+                  : Border(),
+            ),
             constraints: BoxConstraints(
               minHeight: height,
               maxHeight: height,
