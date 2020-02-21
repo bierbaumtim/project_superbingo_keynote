@@ -19,6 +19,7 @@ import 'slides/flutter/flutter_cross_platform_slide.dart';
 import 'slides/flutter/pub_dev_slide.dart';
 import 'slides/superbingo/superbingo_intro_slide.dart';
 import 'slides/superbingo/idee_slide.dart';
+import 'slides/superbingo/superbingo_struktur_slide.dart';
 import 'slides/superbingo/ziele_slide.dart';
 import 'slides/superbingo/herausforderungen_slide.dart';
 import 'text_styles.dart';
@@ -43,8 +44,9 @@ void main() {
   // Superbingo
   interactionService.registerSlideKey(kFSuperbingoIntroSlideKey);
   interactionService.registerSlideKey(kIdeeSlideKey);
-  interactionService.registerSlideKey(kHerausforderungenSlideKey);
   interactionService.registerSlideKey(kZielSlideKey);
+  interactionService.registerSlideKey(kHerausforderungenSlideKey);
+  interactionService.registerSlideKey(kSuperbingoStrukturSlideKey);
 
   interactionService.startKeynote();
 
@@ -82,8 +84,9 @@ class MyApp extends StatelessWidget {
             PackagesSlide(key: kPubDevSlideKey),
             SuperbingoIntroSlide(key: kFSuperbingoIntroSlideKey),
             IdeeSlide(key: kIdeeSlideKey),
-            HerausforderungenSlide(key: kHerausforderungenSlideKey),
             ZielSlide(key: kZielSlideKey),
+            HerausforderungenSlide(key: kHerausforderungenSlideKey),
+            SuperbingoStrukturSlide(key: kSuperbingoStrukturSlideKey),
           ],
           swipeGesture: true,
           handleKeyboardInputs: false,
