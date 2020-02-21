@@ -61,6 +61,8 @@ flutter:
   assets:
    - assets/chrome_mockup_dark.svg
    - assets/chrome_mockup_dark.png
+   - assets/chrome_dartpad_dev.svg
+   - assets/chrome_dartpad_dev.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

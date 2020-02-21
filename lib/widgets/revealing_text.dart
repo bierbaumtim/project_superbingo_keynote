@@ -70,7 +70,8 @@ class _RevealingTextState extends State<RevealingText> {
           }
           return Container(
             height: (part.style?.height ?? textStyle.height ?? 1.0) *
-                (part.style?.fontSize ?? textStyle.fontSize),
+                    (part.style?.fontSize ?? textStyle.fontSize) +
+                32,
           );
         }
       }).toList(),

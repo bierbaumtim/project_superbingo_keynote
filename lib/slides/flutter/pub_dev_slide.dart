@@ -1,11 +1,10 @@
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
+import 'package:project_keynote/widgets/chrome_mock_container.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
 import 'package:project_keynote/widgets/revealing_text.dart';
 
 import 'package:simple_animations/simple_animations.dart';
-
-import '../../main.dart';
 
 class PackagesSlide extends Slide {
   const PackagesSlide({Key key}) : super(key: key);
@@ -17,7 +16,8 @@ class PackagesSlide extends Slide {
 class _PackagesSlideState extends SlideState<PackagesSlide>
     with TickerProviderStateMixin {
   AnimationController sizeController, positionController;
-  Animation<double> sizeFactor, xPosition;
+  Animation<double> sizeFactor;
+  Animation<Alignment> mockAligment;
   bool showText, reverseText;
   int lastVisiblePart;
 
@@ -50,13 +50,17 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
       if (status == AnimationStatus.completed) {
         setState(() => showText = true);
       } else if (status == AnimationStatus.dismissed) {
+        setState(() => showText = false);
         sizeController.reverse();
       }
     });
     sizeFactor = Tween<double>(begin: 0.8, end: 0.5).animate(
       sizeController,
     );
-    xPosition = Tween<double>(begin: 0, end: -.2).animate(
+    mockAligment = Tween<Alignment>(
+      begin: Alignment.center,
+      end: Alignment(-0.8, 0),
+    ).animate(
       positionController,
     );
   }
@@ -84,12 +88,12 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
 
               return Stack(
                 children: <Widget>[
-                  FractionalTranslation(
-                    translation: Offset(xPosition?.value ?? 0, 0),
+                  Align(
+                    alignment: mockAligment.value,
                     child: ChromeMockupContainer(
                       // child: WebViewContainer(),
                       sizeFactor: sizeFactor?.value ?? 0.8,
-                      child: Container(),
+                      imageAssetsUrl: 'assets/chrome_mockup_dark.png',
                     ),
                   ),
                   if (showText)
@@ -157,7 +161,6 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
             print(lastVisiblePart);
           });
         } else {
-          debugPrint('PubDevSlide nextAction called - completed');
           return true;
         }
       } else if (sizeController.isCompleted &&
@@ -176,11 +179,9 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
       } else if (sizeController.isCompleted && positionController.isCompleted) {
         positionController.reverse();
       } else if (sizeController.isDismissed && positionController.isDismissed) {
-        debugPrint('PubDevSlide previousAction called - completed');
         return true;
       }
     }
-    debugPrint('PubDevSlide nextAction called - Not completed');
     return false;
   }
 }
