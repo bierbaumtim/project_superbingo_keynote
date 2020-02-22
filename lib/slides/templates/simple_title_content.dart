@@ -87,7 +87,7 @@ class _TitleContentSlideState extends SlideState<TitleContentSlide> {
   @override
   bool handleTap(String action) {
     if (action == kNextAction) {
-      if (lastVisiblePart < widget.content.length) {
+      if (lastVisiblePart < widget.content.length - 1) {
         setState(() {
           reverseContent = false;
           lastVisiblePart += 1;

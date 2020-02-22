@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_keynote/flutter_keynote.dart';
+import 'package:project_keynote/slides/dart/dart_intro_slide.dart';
 import 'keys.dart';
 import 'slide.dart';
 import 'slide_interaction_service.dart';
+import 'slides/dart/dart_features_slide.dart';
 import 'slides/flutter/flutter_cross_platform_layer_slide.dart';
 import 'slides/flutter/flutter_widget_tree_slide.dart';
 import 'slides/intro_slide.dart';
@@ -35,6 +37,10 @@ void main() {
   interactionService.registerSlideKey(kIntroSlideKey);
   // Flutter
   interactionService.registerSlideKey(kFlutterIntroSlideKey);
+  // Dart
+  interactionService.registerSlideKey(kDartIntroKey);
+  interactionService.registerSlideKey(kDartFeaturesKey);
+  // Flutter
   interactionService.registerSlideKey(kEverythingIsAWidgetSlideKey);
   interactionService.registerSlideKey(kStatelessVSStatefulSlideKey);
   interactionService.registerSlideKey(kFlutterWidgetTreeSlideKey);
@@ -74,6 +80,8 @@ class MyApp extends StatelessWidget {
           slides: <Widget>[
             IntroSlide(key: kIntroSlideKey),
             FlutterIntroSlide(key: kFlutterIntroSlideKey),
+            DartIntroSlide(key: kDartIntroKey),
+            DartFeaturesSlide(key: kDartFeaturesKey),
             EverythingIsAWidgetSlide(key: kEverythingIsAWidgetSlideKey),
             StatelessVSStafulSlide(key: kStatelessVSStatefulSlideKey),
             FlutterWidgetTreeSlide(key: kFlutterWidgetTreeSlideKey),

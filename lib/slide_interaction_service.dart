@@ -63,7 +63,7 @@ class SlideInteractionService implements ISlideInteractionService {
     if (result) {
       final index = _slides.indexOf(key);
       if (action == kNextAction) {
-        if (index + 1 < _slides.length - 1) {
+        if (index + 1 <= _slides.length - 1) {
           keynoteProvider.nextPage(key.currentContext);
           // final cKey = _slides.elementAt(index);
 

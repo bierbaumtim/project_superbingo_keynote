@@ -9,6 +9,11 @@ final kEverythingIsAWidgetSlideKey = GlobalKey<SlideState>();
 final kFlutterCrossPlatformSlideKey = GlobalKey<SlideState>();
 final kFlutterCrossPlatformLayerSlideKey = GlobalKey<SlideState>();
 final kFlutterWidgetTreeSlideKey = GlobalKey<SlideState>();
+
+// Dart Keys
+final kDartIntroKey = GlobalKey<SlideState>();
+final kDartFeaturesKey = GlobalKey<SlideState>();
+
 // Superbingo Keys
 final kFSuperbingoIntroSlideKey = GlobalKey<SlideState>();
 final kIdeeSlideKey = GlobalKey<SlideState>();
