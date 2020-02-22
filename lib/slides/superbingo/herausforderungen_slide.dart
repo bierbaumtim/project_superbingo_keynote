@@ -126,15 +126,7 @@ class _HerausforderungenSlideState extends SlideState<HerausforderungenSlide> {
       }
       return true;
     } else if (action == kPreviousAction) {
-      if (showRightText) {
-        setState(() {
-          showRightText = false;
-          lastVisibleRightPart = 0;
-        });
-        return false;
-      }
-
-      if (showRightText && lastVisibleRightPart > 0) {
+      if (showRightText && lastVisibleRightPart >= 0) {
         setState(() {
           reverseRightParts = true;
           lastVisibleRightPart -= 1;
@@ -147,7 +139,7 @@ class _HerausforderungenSlideState extends SlideState<HerausforderungenSlide> {
 
       if (showLeftParts && lastVisibleLeftPart > 0) {
         setState(() {
-          reverseRightParts = true;
+          reverseLeftParts = true;
           lastVisibleLeftPart -= 1;
         });
         return false;

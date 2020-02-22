@@ -11,6 +11,7 @@ import 'keys.dart';
 import 'slide.dart';
 import 'slide_interaction_service.dart';
 import 'slides/dart/dart_features_slide.dart';
+import 'slides/end_slide.dart';
 import 'slides/flutter/flutter_cross_platform_layer_slide.dart';
 import 'slides/flutter/flutter_widget_tree_slide.dart';
 import 'slides/intro_slide.dart';
@@ -53,6 +54,7 @@ void main() {
   interactionService.registerSlideKey(kZielSlideKey);
   interactionService.registerSlideKey(kHerausforderungenSlideKey);
   interactionService.registerSlideKey(kSuperbingoStrukturSlideKey);
+  interactionService.registerSlideKey(kEndSlideKey);
 
   interactionService.startKeynote();
 
@@ -95,6 +97,7 @@ class MyApp extends StatelessWidget {
             ZielSlide(key: kZielSlideKey),
             HerausforderungenSlide(key: kHerausforderungenSlideKey),
             SuperbingoStrukturSlide(key: kSuperbingoStrukturSlideKey),
+            EndSlide(key: kEndSlideKey),
           ],
           swipeGesture: true,
           handleKeyboardInputs: false,

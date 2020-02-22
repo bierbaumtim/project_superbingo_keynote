@@ -268,7 +268,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
   @override
   bool handleTap(String action) {
     if (action == kNextAction) {
-      if (lastVisiblePart < 8) {
+      if (lastVisiblePart < 4) {
         setState(() => lastVisiblePart++);
         return false;
       }
@@ -276,6 +276,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
       if (lastVisiblePart >= 0) {
         setState(() => lastVisiblePart--);
       }
+      return false;
     }
     return true;
   }

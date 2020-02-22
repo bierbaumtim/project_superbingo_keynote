@@ -21,4 +21,6 @@ final kZielSlideKey = GlobalKey<SlideState>();
 final kHerausforderungenSlideKey = GlobalKey<SlideState>();
 final kSuperbingoStrukturSlideKey = GlobalKey<SlideState>();
 // final kFlutterIntroSlideKey = GlobalKey<SlideState>();
-// final kFlutterIntroSlideKey = GlobalKey<SlideState>();
+
+// Ende
+final kEndSlideKey = GlobalKey<SlideState>();

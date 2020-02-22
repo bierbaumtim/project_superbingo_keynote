@@ -1,11 +1,10 @@
-// TODO: TreeElementWidget erstellen
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
 import 'package:project_keynote/widgets/image_view.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class FlutterWidgetTreeSlide extends Slide {
