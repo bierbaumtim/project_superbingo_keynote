@@ -64,6 +64,10 @@ flutter:
    - assets/chrome_dartpad_dev.svg
    - assets/chrome_dartpad_dev.png
    - assets/dart_logo.png
+   - assets/iphone_x_public_games_page.png
+   - assets/iphone_x_player_page.png
+   - assets/iphone_x_game_page.png
+   - assets/iphone_x_game_config_page.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

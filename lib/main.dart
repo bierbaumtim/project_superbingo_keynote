@@ -23,6 +23,7 @@ import 'slides/flutter/pub_dev_slide.dart';
 import 'slides/superbingo/superbingo_intro_slide.dart';
 import 'slides/superbingo/idee_slide.dart';
 import 'slides/superbingo/superbingo_struktur_slide.dart';
+import 'slides/superbingo/superbingo_ui_slide.dart';
 import 'slides/superbingo/ziele_slide.dart';
 import 'slides/superbingo/herausforderungen_slide.dart';
 import 'text_styles.dart';
@@ -54,6 +55,7 @@ void main() {
   interactionService.registerSlideKey(kZielSlideKey);
   interactionService.registerSlideKey(kHerausforderungenSlideKey);
   interactionService.registerSlideKey(kSuperbingoStrukturSlideKey);
+  interactionService.registerSlideKey(kSuperbingoUISlideKey);
   interactionService.registerSlideKey(kEndSlideKey);
 
   interactionService.startKeynote();
@@ -97,6 +99,7 @@ class MyApp extends StatelessWidget {
             ZielSlide(key: kZielSlideKey),
             HerausforderungenSlide(key: kHerausforderungenSlideKey),
             SuperbingoStrukturSlide(key: kSuperbingoStrukturSlideKey),
+            SuperBingoSlide(key: kSuperbingoUISlideKey),
             EndSlide(key: kEndSlideKey),
           ],
           swipeGesture: true,

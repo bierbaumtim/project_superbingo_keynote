@@ -275,8 +275,8 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
     } else if (action == kPreviousAction) {
       if (lastVisiblePart >= 0) {
         setState(() => lastVisiblePart--);
+        return false;
       }
-      return false;
     }
     return true;
   }
