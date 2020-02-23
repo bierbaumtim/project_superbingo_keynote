@@ -13,21 +13,24 @@ class ImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.grey,
-            blurRadius: 20,
-            spreadRadius: 5,
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 20,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: FractionallySizedBox(
+          heightFactor: sizeFactor,
+          child: Image.asset(
+            imageAssetsUrl,
+            fit: BoxFit.contain,
           ),
-        ],
-      ),
-      child: FractionallySizedBox(
-        heightFactor: sizeFactor,
-        child: Image.asset(
-          imageAssetsUrl,
-          fit: BoxFit.contain,
         ),
       ),
     );
