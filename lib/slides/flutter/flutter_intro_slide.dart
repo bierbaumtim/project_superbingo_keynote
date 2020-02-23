@@ -30,8 +30,5 @@ class _FlutterIntroSlideState extends SlideState<FlutterIntroSlide> {
   }
 
   @override
-  bool handleTap(String action) {
-    debugPrint('FlutterIntroSlide completed');
-    return true;
-  }
+  bool handleTap(String action) => true;
 }

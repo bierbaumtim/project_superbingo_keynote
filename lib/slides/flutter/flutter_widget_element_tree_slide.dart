@@ -6,7 +6,6 @@ import 'package:project_keynote/text_styles.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
 import 'package:project_keynote/widgets/mobil_container.dart';
 import 'package:project_keynote/widgets/tree_item_widget.dart';
-import 'package:simple_animations/simple_animations/controlled_animation.dart';
 
 class FlutterWidgetElementTreeSlide extends Slide {
   const FlutterWidgetElementTreeSlide({Key key}) : super(key: key);

@@ -27,9 +27,7 @@ class _IntroSlideState extends SlideState<IntroSlide> {
               children: <Widget>[
                 Hero(
                   tag: kFlutterLogoHeroTag,
-                  child: FlutterLogo(
-                    // size: 48,
-                  ),
+                  child: FlutterLogo(),
                 ),
                 Text('Flutter'),
               ],
@@ -41,8 +39,5 @@ class _IntroSlideState extends SlideState<IntroSlide> {
   }
 
   @override
-  bool handleTap(String action) {
-    debugPrint('IntroSlide completed');
-    return true;
-  }
+  bool handleTap(String action) => true;
 }
