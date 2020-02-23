@@ -211,11 +211,22 @@ Scaffold(
                                       ),
                                       Expanded(
                                         child: TreeItemWidget(
+                                          content: '...',
+                                          textStyle: kBasicTextStyle.copyWith(
+                                            fontSize: contentFontsize,
+                                          ),
+                                          layer: 1,
+                                          visible: lastVisiblePart >= 1,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: TreeItemWidget(
                                           content: 'Center',
                                           textStyle: kBasicTextStyle.copyWith(
                                             fontSize: contentFontsize,
                                           ),
-                                          visible: lastVisiblePart >= 1,
+                                          layer: 1,
+                                          visible: lastVisiblePart >= 2,
                                         ),
                                       ),
                                       Expanded(
@@ -224,23 +235,14 @@ Scaffold(
                                           textStyle: kBasicTextStyle.copyWith(
                                             fontSize: contentFontsize,
                                           ),
-                                          visible: lastVisiblePart >= 2,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: TreeItemWidget(
-                                          content: 'FlutterLogo',
                                           layer: 1,
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
                                           visible: lastVisiblePart >= 3,
                                         ),
                                       ),
                                       Expanded(
                                         child: TreeItemWidget(
-                                          content: 'SizedBox',
-                                          layer: 1,
+                                          content: 'FlutterLogo',
+                                          layer: 2,
                                           textStyle: kBasicTextStyle.copyWith(
                                             fontSize: contentFontsize,
                                           ),
@@ -249,12 +251,22 @@ Scaffold(
                                       ),
                                       Expanded(
                                         child: TreeItemWidget(
-                                          content: 'Text',
-                                          layer: 1,
+                                          content: 'SizedBox',
+                                          layer: 2,
                                           textStyle: kBasicTextStyle.copyWith(
                                             fontSize: contentFontsize,
                                           ),
                                           visible: lastVisiblePart >= 5,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: TreeItemWidget(
+                                          content: 'Text',
+                                          layer: 2,
+                                          textStyle: kBasicTextStyle.copyWith(
+                                            fontSize: contentFontsize,
+                                          ),
+                                          visible: lastVisiblePart >= 6,
                                         ),
                                       ),
                                     ],
@@ -279,7 +291,7 @@ Scaffold(
   bool handleTap(String action) {
     if (action == kNextAction) {
       if (positionController.isCompleted) {
-        if (lastVisiblePart < 5) {
+        if (lastVisiblePart < 6) {
           setState(() {
             reverseText = false;
             lastVisiblePart += 1;

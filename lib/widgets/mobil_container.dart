@@ -35,7 +35,10 @@ class MobileContainer extends StatelessWidget {
             constraints: topChildConstraints,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(40),
-              child: topChild,
+              child: AspectRatio(
+                aspectRatio: 9 / 18,
+                child: topChild,
+              ),
             ),
             margin: const EdgeInsets.all(10),
           ),

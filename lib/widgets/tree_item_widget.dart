@@ -50,7 +50,7 @@ class TreeItemWidget extends StatelessWidget {
             ),
             padding: EdgeInsets.all(textStyle.fontSize / 6),
             margin: EdgeInsets.fromLTRB(
-              layer * 72.0,
+              layer * 20.0,
               textStyle.fontSize / 5,
               0,
               textStyle.fontSize / 5,
