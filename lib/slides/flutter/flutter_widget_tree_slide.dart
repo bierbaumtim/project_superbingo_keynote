@@ -305,7 +305,8 @@ Scaffold(
   @override
   bool handleTap(String action) {
     if (action == kNextAction) {
-      if (sizeController.isCompleted && positionController.isCompleted) {
+      if (positionController.isCompleted) {
+        //sizeController.isCompleted &&
         if (lastVisiblePart < 5) {
           setState(() {
             reverseText = false;
@@ -315,10 +316,12 @@ Scaffold(
         } else {
           return true;
         }
-      } else if (!sizeController.isCompleted) {
-        sizeController.forward();
-      } else if (sizeController.isCompleted &&
-          !positionController.isCompleted) {
+      }
+      //  else if (!sizeController.isCompleted) {
+      //   sizeController.forward();
+      // }
+      else {
+        // sizeController.isCompleted &&
         positionController.forward();
       }
     } else if (action == kPreviousAction) {
@@ -328,9 +331,11 @@ Scaffold(
           lastVisiblePart -= 1;
           print(lastVisiblePart);
         });
-      } else if (sizeController.isCompleted && positionController.isCompleted) {
+      } else if (positionController.isCompleted) {
+        //sizeController.isCompleted &&
         positionController.reverse();
-      } else if (sizeController.isDismissed && positionController.isDismissed) {
+      } else if (positionController.isDismissed) {
+        //sizeController.isDismissed &&
         return true;
       }
     }
