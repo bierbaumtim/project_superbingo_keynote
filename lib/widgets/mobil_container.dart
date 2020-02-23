@@ -4,12 +4,14 @@ class MobileContainer extends StatelessWidget {
   final Widget topChild;
   final Widget backChild;
   final BoxConstraints topChildConstraints;
+  final Alignment alignment;
 
   const MobileContainer({
     Key key,
     this.topChild,
     this.backChild,
     this.topChildConstraints,
+    this.alignment = Alignment.centerLeft,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class MobileContainer extends StatelessWidget {
       children: <Widget>[
         if (backChild != null) backChild,
         Align(
-          alignment: Alignment.centerLeft,
+          alignment: alignment ?? Alignment.centerLeft,
           child: Container(
             decoration: BoxDecoration(
               color: Color(0xFF223044),

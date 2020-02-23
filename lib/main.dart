@@ -13,6 +13,7 @@ import 'slide_interaction_service.dart';
 import 'slides/dart/dart_features_slide.dart';
 import 'slides/end_slide.dart';
 import 'slides/flutter/flutter_cross_platform_layer_slide.dart';
+import 'slides/flutter/flutter_widget_element_tree_slide.dart';
 import 'slides/flutter/flutter_widget_tree_slide.dart';
 import 'slides/intro_slide.dart';
 import 'slides/flutter/flutter_intro_slide.dart';
@@ -46,6 +47,7 @@ void main() {
   interactionService.registerSlideKey(kEverythingIsAWidgetSlideKey);
   interactionService.registerSlideKey(kStatelessVSStatefulSlideKey);
   interactionService.registerSlideKey(kFlutterWidgetTreeSlideKey);
+  interactionService.registerSlideKey(kFlutterWidgetElementTreeSlideKey);
   interactionService.registerSlideKey(kFlutterCrossPlatformSlideKey);
   interactionService.registerSlideKey(kFlutterCrossPlatformLayerSlideKey);
   interactionService.registerSlideKey(kPubDevSlideKey);
@@ -89,6 +91,7 @@ class MyApp extends StatelessWidget {
             EverythingIsAWidgetSlide(key: kEverythingIsAWidgetSlideKey),
             StatelessVSStafulSlide(key: kStatelessVSStatefulSlideKey),
             FlutterWidgetTreeSlide(key: kFlutterWidgetTreeSlideKey),
+            FlutterWidgetElementTreeSlide(key:kFlutterWidgetElementTreeSlideKey),
             FlutterCrossPlatformSlide(key: kFlutterCrossPlatformSlideKey),
             FlutterCrossPlatformLayerSlide(
               key: kFlutterCrossPlatformLayerSlideKey,
