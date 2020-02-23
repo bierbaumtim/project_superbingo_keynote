@@ -1,10 +1,10 @@
-
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
 import 'package:project_keynote/widgets/image_view.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:project_keynote/widgets/mobil_container.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class FlutterWidgetTreeSlide extends Slide {
@@ -60,7 +60,7 @@ class _FlutterWidgetTreeSlideState extends SlideState<FlutterWidgetTreeSlide>
     );
     mockAlignment = Tween<Alignment>(
       begin: Alignment.center,
-      end: Alignment(-0.8, 0),
+      end: Alignment(-1, 0),
     ).animate(
       positionController,
     );
@@ -89,17 +89,16 @@ class _FlutterWidgetTreeSlideState extends SlideState<FlutterWidgetTreeSlide>
               final contentFontsize =
                   calculateContentFontsize(constraints.maxWidth);
 
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                      1.5 * kToolbarHeight,
-                      1.5 * kToolbarHeight,
-                      1.5 * kToolbarHeight,
-                      0,
-                    ),
-                    child: Center(
+              final maxStackWidth =
+                  (constraints.maxWidth - (3 * kToolbarHeight)) / 2;
+              final featureContainerWidth = constraints.maxWidth / 5;
+
+              return Padding(
+                padding: const EdgeInsets.all(1.5 * kToolbarHeight),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Center(
                       child: DefaultTextStyle(
                         style: kBasicTextStyle.copyWith(
                           fontSize: titleFontsize,
@@ -107,103 +106,194 @@ class _FlutterWidgetTreeSlideState extends SlideState<FlutterWidgetTreeSlide>
                         child: Text('Widget Tree'),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: Stack(
-                      children: <Widget>[
-                        Align(
-                          alignment: mockAlignment.value,
-                          child: ImageView(
-                            sizeFactor: sizeFactor?.value ?? 0.8,
-                            imageAssetsUrl: 'assets/chrome_dartpad_dev.png',
-                          ),
-                        ),
-                        if (showText)
-                          Positioned(
-                            right: 1.5 * kToolbarHeight,
-                            bottom: 1.5 * kToolbarHeight,
-                            top: kToolbarHeight,
-                            child: ControlledAnimation<double>(
-                              tween: Tween<double>(begin: 0, end: 1),
-                              duration: const Duration(milliseconds: 750),
-                              delay: const Duration(milliseconds: 250),
-                              builder: (context, animation) => Opacity(
-                                opacity: animation,
-                                child: Container(
-                                  width: (constraints.maxWidth -
-                                          (2 * kToolbarHeight)) *
-                                      0.4,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: _TreeItemWidget(
-                                          content: 'Material',
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
+                    SizedBox(height: kToolbarHeight),
+                    Expanded(
+                      child: Stack(
+                        children: <Widget>[
+                          Align(
+                            alignment: mockAlignment.value,
+                            // child: ImageView(
+                            //   sizeFactor: sizeFactor?.value ?? 0.8,
+                            //   imageAssetsUrl: 'assets/chrome_dartpad_dev.png',
+                            // ),
+                            child: Container(
+                              constraints: BoxConstraints(
+                                maxWidth: maxStackWidth,
+                              ),
+                              child: MobileContainer(
+                                topChildConstraints: BoxConstraints(
+                                  maxWidth: featureContainerWidth,
+                                  minWidth: featureContainerWidth,
+                                ),
+                                topChild: Theme(
+                                  data: ThemeData.light().copyWith(
+                                    scaffoldBackgroundColor: Color(0xFF223044),
+                                    appBarTheme: AppBarTheme(
+                                      color: Color(0xFF152030),
+                                    ),
+                                  ),
+                                  child: Scaffold(
+                                    appBar: AppBar(
+                                      title: Text('Widget Tree'),
+                                    ),
+                                    body: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          FlutterLogo(
+                                            size: contentFontsize,
                                           ),
-                                          visible: lastVisiblePart >= 0,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: _TreeItemWidget(
-                                          content: 'Center',
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
+                                          SizedBox(height: 12),
+                                          Text(
+                                            'Flutter',
+                                            style: kBasicTextStyle.copyWith(
+                                              color: Colors.white,
+                                            ),
                                           ),
-                                          visible: lastVisiblePart >= 1,
-                                        ),
+                                        ],
                                       ),
-                                      Expanded(
-                                        child: _TreeItemWidget(
-                                          content: 'Column',
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
-                                          visible: lastVisiblePart >= 2,
-                                        ),
+                                    ),
+                                  ),
+                                ),
+                                backChild: Positioned(
+                                  bottom: 48,
+                                  left: featureContainerWidth,
+                                  right: 0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        bottomRight: Radius.circular(20),
                                       ),
-                                      Expanded(
-                                        child: _TreeItemWidget(
-                                          content: 'FlutterLogo',
-                                          layer: 1,
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
-                                          visible: lastVisiblePart >= 3,
-                                        ),
+                                      color: Color(0xFF152030),
+                                    ),
+                                    padding: const EdgeInsets.all(24),
+                                    child: AutoSizeText(
+                                      '''
+Scaffold(
+  appbar: AppBar(
+    title: Text('Widget Tree'),
+  ),
+  body: Center(
+    child: Column(
+      children: <Widget>[
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          FlutterLogo(
+            size: contentFontsize,
+          ),
+          SizedBox(height: 12),
+          Text(
+            'Flutter',
+            style: kBasicTextStyle,
+          ),
+        ],
+      ],
+    ),
+  )''',
+                                      style: kBasicTextStyle.copyWith(
+                                        color: Colors.white,
                                       ),
-                                      Expanded(
-                                        child: _TreeItemWidget(
-                                          content: 'SizedBox',
-                                          layer: 1,
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
-                                          visible: lastVisiblePart >= 4,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: _TreeItemWidget(
-                                          content: 'Text',
-                                          layer: 1,
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
-                                          visible: lastVisiblePart >= 5,
-                                        ),
-                                      ),
-                                    ],
+                                      maxLines: 22,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                      ],
+                          if (showText)
+                            Positioned(
+                              left: maxStackWidth + kToolbarHeight,
+                              right: 1.5 * kToolbarHeight,
+                              bottom: 1.5 * kToolbarHeight,
+                              top: kToolbarHeight,
+                              child: ControlledAnimation<double>(
+                                tween: Tween<double>(begin: 0, end: 1),
+                                duration: const Duration(milliseconds: 750),
+                                delay: const Duration(milliseconds: 250),
+                                builder: (context, animation) => Opacity(
+                                  opacity: animation,
+                                  child: Container(
+                                    width: (constraints.maxWidth -
+                                            (2 * kToolbarHeight)) *
+                                        0.4,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: _TreeItemWidget(
+                                            content: 'Scaffold',
+                                            textStyle: kBasicTextStyle.copyWith(
+                                              fontSize: contentFontsize,
+                                            ),
+                                            visible: lastVisiblePart >= 0,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: _TreeItemWidget(
+                                            content: 'Center',
+                                            textStyle: kBasicTextStyle.copyWith(
+                                              fontSize: contentFontsize,
+                                            ),
+                                            visible: lastVisiblePart >= 1,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: _TreeItemWidget(
+                                            content: 'Column',
+                                            textStyle: kBasicTextStyle.copyWith(
+                                              fontSize: contentFontsize,
+                                            ),
+                                            visible: lastVisiblePart >= 2,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: _TreeItemWidget(
+                                            content: 'FlutterLogo',
+                                            layer: 1,
+                                            textStyle: kBasicTextStyle.copyWith(
+                                              fontSize: contentFontsize,
+                                            ),
+                                            visible: lastVisiblePart >= 3,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: _TreeItemWidget(
+                                            content: 'SizedBox',
+                                            layer: 1,
+                                            textStyle: kBasicTextStyle.copyWith(
+                                              fontSize: contentFontsize,
+                                            ),
+                                            visible: lastVisiblePart >= 4,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: _TreeItemWidget(
+                                            content: 'Text',
+                                            layer: 1,
+                                            textStyle: kBasicTextStyle.copyWith(
+                                              fontSize: contentFontsize,
+                                            ),
+                                            visible: lastVisiblePart >= 5,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             },
           ),
@@ -281,6 +371,7 @@ class _TreeItemWidget extends StatelessWidget {
                   82,
                   143,
                 ),
+                // color: Color(0xFF223044),
               ),
             ),
             child: Padding(

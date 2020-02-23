@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
+import 'package:project_keynote/widgets/mobil_container.dart';
 import 'package:project_keynote/widgets/revealing_text.dart';
 
 class DartFeaturesSlide extends StatefulWidget {
@@ -71,7 +73,7 @@ class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Expanded(
-                                child: _MobileContainer(
+                                child: MobileContainer(
                                   topChild: Container(
                                     constraints: BoxConstraints(
                                       maxWidth: featureContainerWidth,
@@ -311,48 +313,5 @@ extension numX on num {
       }
     }
     return true;
-  }
-}
-
-class _MobileContainer extends StatelessWidget {
-  final Widget topChild;
-  final Widget backChild;
-  final BoxConstraints topChildConstraints;
-
-  const _MobileContainer({
-    Key key,
-    this.topChild,
-    this.backChild,
-    this.topChildConstraints,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        if (backChild != null) backChild,
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Color(0xFF223044),
-              borderRadius: BorderRadius.circular(40),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                  color: Colors.grey[850],
-                  blurRadius: 10,
-                ),
-              ],
-            ),
-            constraints: topChildConstraints,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(40),
-              child: topChild,
-            ),
-            margin: const EdgeInsets.all(10),
-          ),
-        ),
-      ],
-    );
   }
 }

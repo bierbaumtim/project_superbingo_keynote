@@ -310,7 +310,7 @@ class _LayerContainer extends StatelessWidget {
               color: isOutline ? Colors.transparent : background,
               border: isOutline
                   ? Border.all(
-                      width: 3,
+                      width: height / 15,
                       color: background,
                     )
                   : Border(),
