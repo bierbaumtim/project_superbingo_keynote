@@ -65,97 +65,108 @@ class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
                     ),
                     SizedBox(height: kToolbarHeight),
                     Expanded(
-                      child: PageView(
-                        controller: pageController,
-                        children: <Widget>[
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Expanded(
-                                child: MobileContainer(
-                                  topChild: Container(
-                                    constraints: BoxConstraints(
-                                      maxWidth: featureContainerWidth,
-                                      minWidth: featureContainerWidth,
-                                    ),
-                                    child: ListView(
-                                      children: <Widget>[
-                                        Placeholder(),
-                                        Padding(
-                                          padding: const EdgeInsets.all(24),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Container(
-                                                margin: const EdgeInsets.all(4),
-                                                height: 30,
-                                                color: Color(0xFF5989F1),
-                                              ),
-                                              for (var i = 0; i <= 4; i++)
+                      child: LayoutBuilder(
+                        builder: (context, innerConstraints) => PageView(
+                          controller: pageController,
+                          children: <Widget>[
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Expanded(
+                                  child: MobileContainer(
+                                    topChild: Container(
+                                      constraints: BoxConstraints(
+                                        maxWidth: featureContainerWidth,
+                                        minWidth: featureContainerWidth,
+                                      ),
+                                      child: ListView(
+                                        children: <Widget>[
+                                          Placeholder(
+                                            fallbackHeight:
+                                                innerConstraints.maxHeight /
+                                                    2.5,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(24),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
                                                 Container(
                                                   margin:
                                                       const EdgeInsets.all(4),
-                                                  height: 10.0 * i,
-                                                  width: 90.0 * i,
+                                                  height: 30,
                                                   color: Color(0xFF5989F1),
                                                 ),
-                                              ...[
-                                                Text(
-                                                  '1',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 18,
+                                                for (var i = 0; i <= 4; i++)
+                                                  Container(
+                                                    margin:
+                                                        const EdgeInsets.all(4),
+                                                    height: 10.0 * i,
+                                                    width: 90.0 * i,
+                                                    color: Color(0xFF5989F1),
                                                   ),
-                                                ),
-                                                Text(
-                                                  '2',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 18,
+                                                ...[
+                                                  Text(
+                                                    '1',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18,
+                                                    ),
                                                   ),
-                                                ),
-                                                Text(
-                                                  '3',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 18,
+                                                  Text(
+                                                    '2',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18,
+                                                    ),
                                                   ),
-                                                ),
-                                                Text(
-                                                  '4',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 18,
+                                                  Text(
+                                                    '3',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18,
+                                                    ),
                                                   ),
-                                                )
-                                              ]
-                                            ],
+                                                  Text(
+                                                    '4',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18,
+                                                    ),
+                                                  )
+                                                ]
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  topChildConstraints: BoxConstraints(
-                                    maxWidth: featureContainerWidth,
-                                    minWidth: featureContainerWidth,
-                                  ),
-                                  backChild: Positioned(
-                                    bottom: 48,
-                                    left: featureContainerWidth,
-                                    right: 0,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(20),
-                                          bottomRight: Radius.circular(20),
-                                        ),
-                                        color: Color(0xFF152030),
+                                        ],
                                       ),
-                                      padding: const EdgeInsets.all(24),
-                                      child: AutoSizeText(
-                                        '''
+                                    ),
+                                    topChildConstraints: BoxConstraints(
+                                      maxWidth: featureContainerWidth,
+                                      minWidth: featureContainerWidth,
+                                    ),
+                                    backChild: Positioned(
+                                      bottom: 48,
+                                      left: featureContainerWidth,
+                                      right: 0,
+                                      top: innerConstraints.maxHeight / 2.5,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20),
+                                            bottomRight: Radius.circular(20),
+                                          ),
+                                          color: Color(0xFF152030),
+                                        ),
+                                        constraints: BoxConstraints(
+                                          maxHeight:
+                                              innerConstraints.maxHeight / 2,
+                                        ),
+                                        padding: const EdgeInsets.all(24),
+                                        child: AutoSizeText(
+                                          '''
 Column(
   crossAxisAlignment: 
     CrossAxisAlignment.start,
@@ -172,46 +183,46 @@ Column(
       ],
     ],
   )''',
-                                        style: kBasicTextStyle.copyWith(
-                                          color: Colors.white,
-                                          fontSize: 20,
+                                          style: kBasicTextStyle.copyWith(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                          ),
+                                          maxLines: 16,
                                         ),
-                                        maxLines: 16,
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(width: kToolbarHeight),
-                              Expanded(
-                                child: RevealingText(
-                                  parts: <Text>[
-                                    Text('spread operator'),
-                                    Text('collection if'),
-                                    Text('collection for'),
-                                  ],
-                                  lastVisiblePart: firstPageLastVisiblePart,
-                                  defaultTextStyle: kBasicTextStyle.copyWith(
-                                    fontSize: contentFontsize,
+                                SizedBox(width: kToolbarHeight),
+                                Expanded(
+                                  child: RevealingText(
+                                    parts: <Text>[
+                                      Text('spread operator'),
+                                      Text('collection if'),
+                                      Text('collection for'),
+                                    ],
+                                    lastVisiblePart: firstPageLastVisiblePart,
+                                    defaultTextStyle: kBasicTextStyle.copyWith(
+                                      fontSize: contentFontsize,
+                                    ),
+                                    reverse: firstPageReverseText,
                                   ),
-                                  reverse: firstPageReverseText,
                                 ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Expanded(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Color(0xFF152030),
-                                  ),
-                                  padding: const EdgeInsets.all(24),
-                                  child: Text(
-                                    '''
+                              ],
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Expanded(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Color(0xFF152030),
+                                    ),
+                                    padding: const EdgeInsets.all(24),
+                                    child: AutoSizeText(
+                                      '''
 extension StringParser on String {
 
   int toInt() => int.parse(this);
@@ -224,30 +235,33 @@ extension numX on num {
   num limitTo(num limit) => this <= limit ? this : limit;
 }
 ''',
-                                    style: kBasicTextStyle.copyWith(
-                                      color: Colors.white,
+                                      style: kBasicTextStyle.copyWith(
+                                        color: Colors.white,
+                                        fontSize: contentFontsize,
+                                      ),
+                                      maxLines: 13,
                                     ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(width: kToolbarHeight),
-                              Expanded(
-                                child: RevealingText(
-                                  parts: <Text>[
-                                    Text('statische Erweiterungen'),
-                                    Text('generische Erweiterungen'),
-                                    Text('getter, setter und operatoren'),
-                                  ],
-                                  lastVisiblePart: secondPageLastVisiblePart,
-                                  defaultTextStyle: kBasicTextStyle.copyWith(
-                                    fontSize: contentFontsize,
+                                SizedBox(width: kToolbarHeight),
+                                Expanded(
+                                  child: RevealingText(
+                                    parts: <Text>[
+                                      Text('statische Erweiterungen'),
+                                      Text('generische Erweiterungen'),
+                                      Text('getter, setter und operatoren'),
+                                    ],
+                                    lastVisiblePart: secondPageLastVisiblePart,
+                                    defaultTextStyle: kBasicTextStyle.copyWith(
+                                      fontSize: contentFontsize,
+                                    ),
+                                    reverse: secondPageReverseText,
                                   ),
-                                  reverse: secondPageReverseText,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
