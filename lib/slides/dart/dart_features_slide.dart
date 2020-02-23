@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
@@ -76,64 +77,61 @@ class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
                                       maxWidth: featureContainerWidth,
                                       minWidth: featureContainerWidth,
                                     ),
-                                    child: Column(
+                                    child: ListView(
                                       children: <Widget>[
                                         Placeholder(),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(24),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.all(24),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Container(
+                                                margin: const EdgeInsets.all(4),
+                                                height: 30,
+                                                color: Color(0xFF5989F1),
+                                              ),
+                                              for (var i = 0; i <= 4; i++)
                                                 Container(
                                                   margin:
                                                       const EdgeInsets.all(4),
-                                                  height: 30,
+                                                  height: 10.0 * i,
+                                                  width: 90.0 * i,
                                                   color: Color(0xFF5989F1),
                                                 ),
-                                                for (var i = 0; i <= 4; i++)
-                                                  Container(
-                                                    margin:
-                                                        const EdgeInsets.all(4),
-                                                    height: 10.0 * i,
-                                                    width: 90.0 * i,
-                                                    color: Color(0xFF5989F1),
+                                              ...[
+                                                Text(
+                                                  '1',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18,
                                                   ),
-                                                ...[
-                                                  Text(
-                                                    '1',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 18,
-                                                    ),
+                                                ),
+                                                Text(
+                                                  '2',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18,
                                                   ),
-                                                  Text(
-                                                    '2',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 18,
-                                                    ),
+                                                ),
+                                                Text(
+                                                  '3',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18,
                                                   ),
-                                                  Text(
-                                                    '3',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 18,
-                                                    ),
+                                                ),
+                                                Text(
+                                                  '4',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18,
                                                   ),
-                                                  Text(
-                                                    '4',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 18,
-                                                    ),
-                                                  )
-                                                ]
-                                              ],
-                                            ),
+                                                )
+                                              ]
+                                            ],
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -144,6 +142,7 @@ class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
                                   backChild: Positioned(
                                     bottom: 48,
                                     left: featureContainerWidth,
+                                    right: 0,
                                     child: Container(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.only(
@@ -153,7 +152,7 @@ class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
                                         color: Color(0xFF152030),
                                       ),
                                       padding: const EdgeInsets.all(24),
-                                      child: Text(
+                                      child: AutoSizeText(
                                         '''
 Column(
   crossAxisAlignment: 
@@ -175,6 +174,7 @@ Column(
                                           color: Colors.white,
                                           fontSize: 20,
                                         ),
+                                        maxLines: 16,
                                       ),
                                     ),
                                   ),
