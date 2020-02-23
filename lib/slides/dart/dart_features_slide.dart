@@ -48,7 +48,7 @@ class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
               final titleFontsize =
                   calculateTitleFontsize(constraints.maxWidth);
               final contentFontsize =
-                  calculateContentFontsize(constraints.maxWidth) * 0.75;
+                  calculateContentFontsize(constraints.maxWidth);
 
               final featureContainerWidth = constraints.maxWidth / 5;
 

@@ -108,6 +108,13 @@ class _StatelessVSStafulSlideState extends SlideState<StatelessVSStafulSlide> {
 
       return true;
     } else if (action == kPreviousAction) {
+      if (showRightContent) {
+        setState(() {
+          showRightContent = false;
+        });
+        return false;
+      }
+
       if (showRightText) {
         setState(() => showRightText = false);
         return false;

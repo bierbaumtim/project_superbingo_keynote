@@ -46,6 +46,7 @@ class TreeItemWidget extends StatelessWidget {
                 content,
                 style: textStyle ?? kBasicTextStyle,
                 maxLines: 1,
+                minFontSize: 6,
               ),
             ),
             padding: EdgeInsets.all(textStyle.fontSize / 6),
