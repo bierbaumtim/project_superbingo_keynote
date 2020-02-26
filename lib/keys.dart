@@ -22,6 +22,7 @@ final kZielSlideKey = GlobalKey<SlideState>();
 final kHerausforderungenSlideKey = GlobalKey<SlideState>();
 final kSuperbingoStrukturSlideKey = GlobalKey<SlideState>();
 final kSuperbingoUISlideKey = GlobalKey<SlideState>();
+final kSuperbingoOptimierungenSlideKey = GlobalKey<SlideState>();
 
 // Ende
 final kEndSlideKey = GlobalKey<SlideState>();

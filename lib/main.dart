@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_keynote/flutter_keynote.dart';
 import 'package:project_keynote/slides/dart/dart_intro_slide.dart';
+import 'package:project_keynote/slides/superbingo/superbingo_optimierungen_slide.dart';
 import 'keys.dart';
 import 'slide.dart';
 import 'slide_interaction_service.dart';
@@ -58,6 +59,7 @@ void main() {
   interactionService.registerSlideKey(kHerausforderungenSlideKey);
   interactionService.registerSlideKey(kSuperbingoStrukturSlideKey);
   interactionService.registerSlideKey(kSuperbingoUISlideKey);
+  interactionService.registerSlideKey(kSuperbingoOptimierungenSlideKey);
   interactionService.registerSlideKey(kEndSlideKey);
 
   interactionService.startKeynote();
@@ -91,7 +93,8 @@ class MyApp extends StatelessWidget {
             EverythingIsAWidgetSlide(key: kEverythingIsAWidgetSlideKey),
             StatelessVSStafulSlide(key: kStatelessVSStatefulSlideKey),
             FlutterWidgetTreeSlide(key: kFlutterWidgetTreeSlideKey),
-            FlutterWidgetElementTreeSlide(key:kFlutterWidgetElementTreeSlideKey),
+            FlutterWidgetElementTreeSlide(
+                key: kFlutterWidgetElementTreeSlideKey),
             FlutterCrossPlatformSlide(key: kFlutterCrossPlatformSlideKey),
             FlutterCrossPlatformLayerSlide(
               key: kFlutterCrossPlatformLayerSlideKey,
@@ -103,6 +106,7 @@ class MyApp extends StatelessWidget {
             HerausforderungenSlide(key: kHerausforderungenSlideKey),
             SuperbingoStrukturSlide(key: kSuperbingoStrukturSlideKey),
             SuperBingoSlide(key: kSuperbingoUISlideKey),
+            SuperbingoOptimierungenSide(key: kSuperbingoOptimierungenSlideKey),
             EndSlide(key: kEndSlideKey),
           ],
           swipeGesture: true,

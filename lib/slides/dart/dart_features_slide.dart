@@ -15,8 +15,10 @@ class DartFeaturesSlide extends StatefulWidget {
 
 class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
   PageController pageController;
-  int firstPageLastVisiblePart, secondPageLastVisiblePart;
-  bool firstPageReverseText, secondPageReverseText;
+  int firstPageLastVisiblePart,
+      secondPageLastVisiblePart,
+      thirdPageLastVisiblePart;
+  bool firstPageReverseText, secondPageReverseText, thirdPageReverseText;
 
   @override
   void initState() {
@@ -26,6 +28,8 @@ class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
     firstPageReverseText = false;
     secondPageLastVisiblePart = -1;
     secondPageReverseText = false;
+    thirdPageLastVisiblePart = -1;
+    thirdPageReverseText = false;
   }
 
   @override
@@ -260,6 +264,18 @@ extension numX on num {
                                 ),
                               ],
                             ),
+                            RevealingText(
+                              parts: <Text>[
+                                Text('Stateful Hot Reload'),
+                                Text('Hot Restart'),
+                                Text('Dart Dev Tools'),
+                              ],
+                              lastVisiblePart: thirdPageLastVisiblePart,
+                              defaultTextStyle: kBasicTextStyle.copyWith(
+                                fontSize: contentFontsize,
+                              ),
+                              reverse: thirdPageReverseText,
+                            ),
                           ],
                         ),
                       ),
@@ -297,6 +313,20 @@ extension numX on num {
             secondPageReverseText = false;
             secondPageLastVisiblePart++;
           });
+        } else {
+          pageController.nextPage(
+            duration: const Duration(milliseconds: 550),
+            curve: Curves.easeInOut,
+          );
+        }
+        return false;
+      }
+      if (pageController.page == 2) {
+        if (thirdPageLastVisiblePart < 2) {
+          setState(() {
+            thirdPageReverseText = false;
+            thirdPageLastVisiblePart++;
+          });
           return false;
         }
       }
@@ -315,6 +345,21 @@ extension numX on num {
           setState(() {
             secondPageReverseText = true;
             secondPageLastVisiblePart--;
+          });
+          return false;
+        } else {
+          pageController.previousPage(
+            duration: const Duration(milliseconds: 550),
+            curve: Curves.easeInOut,
+          );
+          return false;
+        }
+      }
+      if (pageController.page == 2) {
+        if (thirdPageLastVisiblePart >= 0) {
+          setState(() {
+            thirdPageReverseText = true;
+            thirdPageLastVisiblePart--;
           });
           return false;
         } else {
