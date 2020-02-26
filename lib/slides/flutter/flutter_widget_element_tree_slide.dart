@@ -220,6 +220,12 @@ class _FlutterWidgetElementTreeSlideState
         positionController.forward();
       }
     } else if (action == kPreviousAction) {
+      if (counter > 0) {
+        setState(() {
+          counter--;
+        });
+        return false;
+      }
       if (showStateObjects) {
         setState(() {
           showStateObjects = false;

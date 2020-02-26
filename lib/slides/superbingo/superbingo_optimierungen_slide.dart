@@ -19,7 +19,7 @@ class _SuperbingoOptimierungenSideState
     return AnimatedTitleContentSlide(
       key: _innerTemplateKey,
       titleAlignment: CrossAxisAlignment.start,
-      title: Text('Whats next?'),
+      title: Text('What\'s next?'),
       content: <Text>[
         Text('UI verfeinern'),
         Text('UI für andere Formfaktoren erstellen'),
