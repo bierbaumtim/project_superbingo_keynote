@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slide_interaction_service.dart';
-// import 'package:window_utils/window_utils.dart';
 
 typedef OnKeyboardTap = bool Function(String action);
 
@@ -48,38 +47,13 @@ class _KeyboardHandlerState extends State<KeyboardHandler> {
       focusNode: _focusNode,
       onKey: (event) {
         if (event is RawKeyUpEvent) {
-          LogicalKeyboardKey logicalKey;
-          bool mapCharsToArrows = false;
-
-          if (event.data.runtimeType == RawKeyEventDataWeb) {
-            final data = event.data as RawKeyEventDataWeb;
-            logicalKey = data.logicalKey;
-            print('isWeb');
-          }
-          //  else if (event.data.runtimeType == RawKeyEventDataFuchsia) {
-          //   final data = event.data as RawKeyEventDataFuchsia;
-          //   logicalKey = data.logicalKey;
-          // } else if (event.data.runtimeType == RawKeyEventDataLinux) {
-          //   final data = event.data as RawKeyEventDataFuchsia;
-          //   logicalKey = data.logicalKey;
-          // }
-          else if (event.data.runtimeType == RawKeyEventDataAndroid) {
-            final data = event.data as RawKeyEventDataAndroid;
-            logicalKey = data.logicalKey;
-            mapCharsToArrows = true;
-          }
-
-          print(logicalKey);
-          if (logicalKey != null) {
-            if (logicalKey == LogicalKeyboardKey.arrowRight ||
-                (mapCharsToArrows && logicalKey == LogicalKeyboardKey.keyK)) {
-              RepositoryProvider.of<SlideInteractionService>(context)
-                  .handleAction(kNextAction);
-            } else if (logicalKey == LogicalKeyboardKey.arrowLeft ||
-                (mapCharsToArrows && logicalKey == LogicalKeyboardKey.keyI)) {
-              RepositoryProvider.of<SlideInteractionService>(context)
-                  .handleAction(kPreviousAction);
-            }
+          print(event.data.logicalKey);
+          if (event.data.logicalKey == LogicalKeyboardKey.arrowRight) {
+            RepositoryProvider.of<SlideInteractionService>(context)
+                .handleAction(kNextAction);
+          } else if (event.data.logicalKey == LogicalKeyboardKey.arrowLeft) {
+            RepositoryProvider.of<SlideInteractionService>(context)
+                .handleAction(kPreviousAction);
           }
         }
       },

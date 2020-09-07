@@ -37,6 +37,15 @@ void main() {
     }
   }
 
+  runApp(
+    RepositoryProvider<SlideInteractionService>(
+      create: (_) => _createSlideInteractionService(),
+      child: MyApp(),
+    ),
+  );
+}
+
+SlideInteractionService _createSlideInteractionService() {
   final interactionService = SlideInteractionService();
   interactionService.registerSlideKey(kIntroSlideKey);
   // Flutter
@@ -64,12 +73,7 @@ void main() {
 
   interactionService.startKeynote();
 
-  runApp(
-    RepositoryProvider<SlideInteractionService>(
-      create: (context) => interactionService,
-      child: MyApp(),
-    ),
-  );
+  return interactionService;
 }
 
 class MyApp extends StatelessWidget {
@@ -94,7 +98,8 @@ class MyApp extends StatelessWidget {
             StatelessVSStafulSlide(key: kStatelessVSStatefulSlideKey),
             FlutterWidgetTreeSlide(key: kFlutterWidgetTreeSlideKey),
             FlutterWidgetElementTreeSlide(
-                key: kFlutterWidgetElementTreeSlideKey),
+              key: kFlutterWidgetElementTreeSlideKey,
+            ),
             FlutterCrossPlatformSlide(key: kFlutterCrossPlatformSlideKey),
             FlutterCrossPlatformLayerSlide(
               key: kFlutterCrossPlatformLayerSlideKey,
@@ -120,8 +125,7 @@ class MyApp extends StatelessWidget {
             textTheme: kBasicTextTheme,
           ),
           keynoteProvider:
-              RepositoryProvider.of<SlideInteractionService>(context)
-                  .keynoteProvider,
+              context.repository<SlideInteractionService>().keynoteProvider,
         ),
       ),
     );
