@@ -101,41 +101,40 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
                       top: kToolbarHeight,
                       bottom: kToolbarHeight,
                       right: kToolbarHeight,
-                      child: ControlledAnimation<double>(
+                      child: PlayAnimation<double>(
                         tween: Tween<double>(begin: 0, end: 1),
                         duration: const Duration(milliseconds: 750),
                         delay: const Duration(milliseconds: 250),
-                        builder: (context, animation) => Opacity(
+                        builder: (context, child, animation) => Opacity(
                           opacity: animation,
-                          child: Container(
-                            width:
-                                (constraints.maxWidth - (2 * kToolbarHeight)) *
-                                    0.35,
-                            child: Center(
-                              child: RevealingText(
-                                lastVisiblePart: lastVisiblePart,
-                                reverse: reverseText,
-                                parts: <Text>[
-                                  Text(
-                                    'OpenSource Packages und Plugins',
-                                    style: kBasicTextStyle.copyWith(
-                                      fontSize: contentFontsize,
-                                    ),
+                        ),
+                        child: Container(
+                          width: (constraints.maxWidth - (2 * kToolbarHeight)) *
+                              0.35,
+                          child: Center(
+                            child: RevealingText(
+                              lastVisiblePart: lastVisiblePart,
+                              reverse: reverseText,
+                              parts: <Text>[
+                                Text(
+                                  'OpenSource Packages und Plugins',
+                                  style: kBasicTextStyle.copyWith(
+                                    fontSize: contentFontsize,
                                   ),
-                                  Text(
-                                    'Flutter Team & Community',
-                                    style: kBasicTextStyle.copyWith(
-                                      fontSize: contentFontsize,
-                                    ),
+                                ),
+                                Text(
+                                  'Flutter Team & Community',
+                                  style: kBasicTextStyle.copyWith(
+                                    fontSize: contentFontsize,
                                   ),
-                                  Text(
-                                    'Constributing',
-                                    style: kBasicTextStyle.copyWith(
-                                      fontSize: contentFontsize,
-                                    ),
+                                ),
+                                Text(
+                                  'Constributing',
+                                  style: kBasicTextStyle.copyWith(
+                                    fontSize: contentFontsize,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),

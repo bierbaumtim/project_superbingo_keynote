@@ -3,7 +3,7 @@ import 'package:project_keynote/text_styles.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 class FlutterCrossPlatformLayerSlide extends Slide {
   const FlutterCrossPlatformLayerSlide({Key key}) : super(key: key);
@@ -298,38 +298,38 @@ class _LayerContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ControlledAnimation(
+    return PlayAnimation(
       duration: const Duration(milliseconds: 550),
       tween: Tween<double>(begin: 0.0, end: 1.0),
-      builder: (context, animatedValue) => Opacity(
+      builder: (context, child, animatedValue) => Opacity(
         opacity: animatedValue,
-        child: Padding(
-          padding: padding ?? const EdgeInsets.symmetric(vertical: 8),
-          child: Container(
-            decoration: BoxDecoration(
-              color: isOutline ? Colors.transparent : background,
-              border: isOutline
-                  ? Border.all(
-                      width: height / 15,
-                      color: background,
-                    )
-                  : Border(),
-            ),
-            constraints: BoxConstraints(
-              minHeight: height,
-              maxHeight: height,
-            ),
-            padding: EdgeInsets.all(height / 10),
-            child: Center(
-              child: AutoSizeText(
-                content,
-                maxLines: 1,
-                style: kBasicTextStyle.copyWith(
-                  color: getContrastColor(
-                    isOutline ? kSlideBackground : background,
-                  ),
-                  fontSize: fontsize,
+      ),
+      child: Padding(
+        padding: padding ?? const EdgeInsets.symmetric(vertical: 8),
+        child: Container(
+          decoration: BoxDecoration(
+            color: isOutline ? Colors.transparent : background,
+            border: isOutline
+                ? Border.all(
+                    width: height / 15,
+                    color: background,
+                  )
+                : Border(),
+          ),
+          constraints: BoxConstraints(
+            minHeight: height,
+            maxHeight: height,
+          ),
+          padding: EdgeInsets.all(height / 10),
+          child: Center(
+            child: AutoSizeText(
+              content,
+              maxLines: 1,
+              style: kBasicTextStyle.copyWith(
+                color: getContrastColor(
+                  isOutline ? kSlideBackground : background,
                 ),
+                fontSize: fontsize,
               ),
             ),
           ),

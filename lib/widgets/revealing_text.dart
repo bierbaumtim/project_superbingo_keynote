@@ -109,28 +109,28 @@ class _RevealingTextState extends State<RevealingText> {
   }
 
   Widget buildAnimatedPart(Text part, TextStyle textStyle, [int layer = 0]) {
-    return ControlledAnimation<double>(
+    return PlayAnimation<double>(
       tween: Tween(begin: 0.0, end: 1.0),
       duration: const Duration(milliseconds: 550),
       delay: const Duration(milliseconds: 250),
-      builder: (context, animation) => Opacity(
+      builder: (context, child, animation) => Opacity(
         opacity: animation,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: DefaultTextStyle(
-            style: textStyle,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  '${buildLayer(layer)}• ',
-                  style: part.style,
-                ),
-                Expanded(
-                  child: part,
-                ),
-              ],
-            ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: DefaultTextStyle(
+          style: textStyle,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                '${buildLayer(layer)}• ',
+                style: part.style,
+              ),
+              Expanded(
+                child: part,
+              ),
+            ],
           ),
         ),
       ),

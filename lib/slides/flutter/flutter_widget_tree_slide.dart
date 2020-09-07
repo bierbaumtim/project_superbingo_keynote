@@ -190,87 +190,87 @@ Scaffold(
                               right: 1.5 * kToolbarHeight,
                               bottom: 1.5 * kToolbarHeight,
                               top: kToolbarHeight,
-                              child: ControlledAnimation<double>(
+                              child: PlayAnimation<double>(
                                 tween: Tween<double>(begin: 0, end: 1),
                                 duration: const Duration(milliseconds: 750),
                                 delay: const Duration(milliseconds: 250),
-                                builder: (context, animation) => Opacity(
+                                builder: (context, child, animation) => Opacity(
                                   opacity: animation,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: TreeItemWidget(
-                                          content: 'Scaffold',
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
-                                          visible: lastVisiblePart >= 0,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: TreeItemWidget(
+                                        content: 'Scaffold',
+                                        textStyle: kBasicTextStyle.copyWith(
+                                          fontSize: contentFontsize,
                                         ),
+                                        visible: lastVisiblePart >= 0,
                                       ),
-                                      Expanded(
-                                        child: TreeItemWidget(
-                                          content: '...',
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
-                                          layer: 1,
-                                          visible: lastVisiblePart >= 1,
+                                    ),
+                                    Expanded(
+                                      child: TreeItemWidget(
+                                        content: '...',
+                                        textStyle: kBasicTextStyle.copyWith(
+                                          fontSize: contentFontsize,
                                         ),
+                                        layer: 1,
+                                        visible: lastVisiblePart >= 1,
                                       ),
-                                      Expanded(
-                                        child: TreeItemWidget(
-                                          content: 'Center',
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
-                                          layer: 1,
-                                          visible: lastVisiblePart >= 2,
+                                    ),
+                                    Expanded(
+                                      child: TreeItemWidget(
+                                        content: 'Center',
+                                        textStyle: kBasicTextStyle.copyWith(
+                                          fontSize: contentFontsize,
                                         ),
+                                        layer: 1,
+                                        visible: lastVisiblePart >= 2,
                                       ),
-                                      Expanded(
-                                        child: TreeItemWidget(
-                                          content: 'Column',
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
-                                          layer: 1,
-                                          visible: lastVisiblePart >= 3,
+                                    ),
+                                    Expanded(
+                                      child: TreeItemWidget(
+                                        content: 'Column',
+                                        textStyle: kBasicTextStyle.copyWith(
+                                          fontSize: contentFontsize,
                                         ),
+                                        layer: 1,
+                                        visible: lastVisiblePart >= 3,
                                       ),
-                                      Expanded(
-                                        child: TreeItemWidget(
-                                          content: 'FlutterLogo',
-                                          layer: 2,
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
-                                          visible: lastVisiblePart >= 4,
+                                    ),
+                                    Expanded(
+                                      child: TreeItemWidget(
+                                        content: 'FlutterLogo',
+                                        layer: 2,
+                                        textStyle: kBasicTextStyle.copyWith(
+                                          fontSize: contentFontsize,
                                         ),
+                                        visible: lastVisiblePart >= 4,
                                       ),
-                                      Expanded(
-                                        child: TreeItemWidget(
-                                          content: 'SizedBox',
-                                          layer: 2,
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
-                                          visible: lastVisiblePart >= 5,
+                                    ),
+                                    Expanded(
+                                      child: TreeItemWidget(
+                                        content: 'SizedBox',
+                                        layer: 2,
+                                        textStyle: kBasicTextStyle.copyWith(
+                                          fontSize: contentFontsize,
                                         ),
+                                        visible: lastVisiblePart >= 5,
                                       ),
-                                      Expanded(
-                                        child: TreeItemWidget(
-                                          content: 'Text',
-                                          layer: 2,
-                                          textStyle: kBasicTextStyle.copyWith(
-                                            fontSize: contentFontsize,
-                                          ),
-                                          visible: lastVisiblePart >= 6,
+                                    ),
+                                    Expanded(
+                                      child: TreeItemWidget(
+                                        content: 'Text',
+                                        layer: 2,
+                                        textStyle: kBasicTextStyle.copyWith(
+                                          fontSize: contentFontsize,
                                         ),
+                                        visible: lastVisiblePart >= 6,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

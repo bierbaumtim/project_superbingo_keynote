@@ -6,7 +6,7 @@ import 'package:project_keynote/constants.dart';
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
-import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 const kDBOrange = Color.fromARGB(255, 255, 192, 0);
 
@@ -70,23 +70,24 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                       child: Row(
                         children: <Widget>[
                           if (lastVisiblePart >= 0)
-                            ControlledAnimation<double>(
+                            PlayAnimation<double>(
                               tween: Tween(begin: 0.0, end: 1.0),
                               duration: kFadeInDuration,
-                              builder: (buildContext, animatedValue) => Opacity(
+                              builder: (buildContext, child, animatedValue) =>
+                                  Opacity(
                                 opacity: animatedValue,
-                                child: CustomPaint(
-                                  painter: _DBPainter(),
-                                  child: Container(
-                                    height: dbHeight,
-                                    width: dbHeight * 2.3,
-                                    child: Center(
-                                      child: AutoSizeText(
-                                        'Firestore',
-                                        maxLines: 1,
-                                        style: kBasicTextStyle.copyWith(
-                                          fontSize: contentFontsize,
-                                        ),
+                              ),
+                              child: CustomPaint(
+                                painter: _DBPainter(),
+                                child: Container(
+                                  height: dbHeight,
+                                  width: dbHeight * 2.3,
+                                  child: Center(
+                                    child: AutoSizeText(
+                                      'Firestore',
+                                      maxLines: 1,
+                                      style: kBasicTextStyle.copyWith(
+                                        fontSize: contentFontsize,
                                       ),
                                     ),
                                   ),
@@ -118,27 +119,28 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                           else
                             Spacer(),
                           if (lastVisiblePart >= 2)
-                            ControlledAnimation<double>(
+                            PlayAnimation<double>(
                               tween: Tween(begin: 0.0, end: 1.0),
                               duration: kFadeInDuration,
-                              builder: (buildContext, animatedValue) => Opacity(
+                              builder: (buildContext, child, animatedValue) =>
+                                  Opacity(
                                 opacity: animatedValue,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: backBlue,
-                                    border: Border.all(
-                                      color: borderBlue,
-                                      width: 2,
-                                    ),
+                              ),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: backBlue,
+                                  border: Border.all(
+                                    color: borderBlue,
+                                    width: 2,
                                   ),
-                                  child: AutoSizeText(
-                                    '\n   NetworkService   \n',
-                                    style: kBasicTextStyle.copyWith(
-                                      fontSize: contentFontsize,
-                                      color: getContrastColor(backBlue),
-                                    ),
-                                    maxLines: 3,
+                                ),
+                                child: AutoSizeText(
+                                  '\n   NetworkService   \n',
+                                  style: kBasicTextStyle.copyWith(
+                                    fontSize: contentFontsize,
+                                    color: getContrastColor(backBlue),
                                   ),
+                                  maxLines: 3,
                                 ),
                               ),
                             )
@@ -213,39 +215,42 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
-                                ControlledAnimation<double>(
+                                PlayAnimation<double>(
                                   tween: Tween(begin: 0.0, end: 1.0),
                                   duration: kFadeInDuration,
-                                  builder: (buildContext, animatedValue) =>
-                                      Opacity(
+                                  builder:
+                                      (buildContext, child, animatedValue) =>
+                                          Opacity(
                                     opacity: animatedValue,
-                                    child: _BlocContainer(
-                                      contentFontsize: contentFontsize,
-                                    ),
+                                  ),
+                                  child: _BlocContainer(
+                                    contentFontsize: contentFontsize,
                                   ),
                                 ),
-                                ControlledAnimation<double>(
+                                PlayAnimation<double>(
                                   tween: Tween(begin: 0.0, end: 1.0),
                                   duration: kFadeInDuration,
                                   delay: const Duration(milliseconds: 550),
-                                  builder: (buildContext, animatedValue) =>
-                                      Opacity(
+                                  builder:
+                                      (buildContext, child, animatedValue) =>
+                                          Opacity(
                                     opacity: animatedValue,
-                                    child: _BlocContainer(
-                                      contentFontsize: contentFontsize,
-                                    ),
+                                  ),
+                                  child: _BlocContainer(
+                                    contentFontsize: contentFontsize,
                                   ),
                                 ),
-                                ControlledAnimation<double>(
+                                PlayAnimation<double>(
                                   tween: Tween(begin: 0.0, end: 1.0),
                                   duration: kFadeInDuration,
                                   delay: const Duration(milliseconds: 1100),
-                                  builder: (buildContext, animatedValue) =>
-                                      Opacity(
+                                  builder:
+                                      (buildContext, child, animatedValue) =>
+                                          Opacity(
                                     opacity: animatedValue,
-                                    child: _BlocContainer(
-                                      contentFontsize: contentFontsize,
-                                    ),
+                                  ),
+                                  child: _BlocContainer(
+                                    contentFontsize: contentFontsize,
                                   ),
                                 ),
                               ],
