@@ -24,7 +24,7 @@ class RevealingText extends StatefulWidget {
   });
 
   @override
-  _RevealingTextState createState() => _RevealingTextState();
+  State<RevealingText> createState() => _RevealingTextState();
 }
 
 class _RevealingTextState extends State<RevealingText> {

@@ -13,7 +13,7 @@ class SuperBingoSlide extends StatefulWidget {
   const SuperBingoSlide({super.key});
 
   @override
-  _SuperBingoSlideState createState() => _SuperBingoSlideState();
+  SlideState<SuperBingoSlide> createState() => _SuperBingoSlideState();
 }
 
 class _SuperBingoSlideState extends SlideState<SuperBingoSlide> {
@@ -49,9 +49,9 @@ class _SuperBingoSlideState extends SlideState<SuperBingoSlide> {
                       style: kBasicTextStyle.copyWith(
                         fontSize: titleFontsize,
                       ),
-                      child: Text('UI'),
+                      child: const Text('UI'),
                     ),
-                    SizedBox(height: kToolbarHeight),
+                    const SizedBox(height: kToolbarHeight),
                     Expanded(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

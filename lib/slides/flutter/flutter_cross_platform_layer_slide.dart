@@ -9,7 +9,7 @@ class FlutterCrossPlatformLayerSlide extends Slide {
   const FlutterCrossPlatformLayerSlide({required Key key}) : super(key: key);
 
   @override
-  _FlutterCrossPlatformLayerSlideState createState() =>
+  SlideState<FlutterCrossPlatformLayerSlide> createState() =>
       _FlutterCrossPlatformLayerSlideState();
 }
 
@@ -65,7 +65,7 @@ class _FlutterCrossPlatformLayerSlideState
                     if (showLayer1)
                       _LayerContainer(
                         content: 'Your code',
-                        background: Color.fromARGB(255, 180, 199, 231),
+                        background: const Color.fromARGB(255, 180, 199, 231),
                         height: smallLayerHeight,
                         padding: const EdgeInsets.only(bottom: 8),
                         fontsize: smallFontsize,
@@ -73,7 +73,7 @@ class _FlutterCrossPlatformLayerSlideState
                     if (showLayer2)
                       _LayerContainer(
                         content: 'Flutter Framework',
-                        background: Color.fromARGB(255, 68, 114, 196),
+                        background: const Color.fromARGB(255, 68, 114, 196),
                         height: 2 * smallLayerHeight,
                         fontsize: largeFontsize,
                       ),
@@ -81,24 +81,26 @@ class _FlutterCrossPlatformLayerSlideState
                       Row(
                         children: <Widget>[
                           Expanded(
+                            flex: 2,
                             child: Visibility(
                               visible: showLayer3_1,
                               child: _LayerContainer(
                                 content: 'C++ Flutter engine',
-                                background: Color.fromARGB(255, 0, 176, 80),
+                                background:
+                                    const Color.fromARGB(255, 0, 176, 80),
                                 height: 2 * smallLayerHeight,
                                 fontsize: largeFontsize,
                               ),
                             ),
-                            flex: 2,
                           ),
-                          SizedBox(width: 16),
+                          const SizedBox(width: 16),
                           Expanded(
                             child: Visibility(
                               visible: showLayer3_2,
                               child: _LayerContainer(
                                 content: 'Flutter web engine',
-                                background: Color.fromARGB(255, 0, 176, 80),
+                                background:
+                                    const Color.fromARGB(255, 0, 176, 80),
                                 height: 2 * smallLayerHeight,
                                 fontsize: largeFontsize,
                               ),
@@ -110,46 +112,47 @@ class _FlutterCrossPlatformLayerSlideState
                       Row(
                         children: <Widget>[
                           Expanded(
+                            flex: 2,
                             child: Row(
                               children: <Widget>[
                                 Expanded(
+                                  flex: 2,
                                   child: Visibility(
                                     visible: showLayer4_1,
                                     child: _LayerContainer(
                                       content: 'iOS/Android runner',
-                                      background:
-                                          Color.fromARGB(255, 255, 192, 0),
+                                      background: const Color.fromARGB(
+                                          255, 255, 192, 0),
                                       height: smallLayerHeight,
                                       fontsize: smallFontsize,
                                     ),
                                   ),
-                                  flex: 2,
                                 ),
-                                SizedBox(width: 16),
+                                const SizedBox(width: 16),
                                 Expanded(
+                                  flex: 3,
                                   child: Visibility(
                                     visible: showLayer4_2,
                                     child: _LayerContainer(
                                       content: 'Platform-specific embedder',
-                                      background:
-                                          Color.fromARGB(255, 255, 192, 0),
+                                      background: const Color.fromARGB(
+                                          255, 255, 192, 0),
                                       height: smallLayerHeight,
                                       fontsize: smallFontsize,
                                     ),
                                   ),
-                                  flex: 3,
                                 ),
                               ],
                             ),
-                            flex: 2,
                           ),
-                          SizedBox(width: 16),
+                          const SizedBox(width: 16),
                           Expanded(
                             child: Visibility(
                               visible: showLayer4_3,
                               child: _LayerContainer(
                                 content: 'Dart2js compiler',
-                                background: Color.fromARGB(255, 0, 176, 80),
+                                background:
+                                    const Color.fromARGB(255, 0, 176, 80),
                                 height: smallLayerHeight,
                                 fontsize: smallFontsize,
                                 isOutline: true,
@@ -161,14 +164,13 @@ class _FlutterCrossPlatformLayerSlideState
                     if (showLayer5)
                       Row(
                         children: <Widget>[
-                          Spacer(
-                            flex: 2,
-                          ),
-                          SizedBox(width: 16),
+                          const Spacer(flex: 2),
+                          const SizedBox(width: 16),
                           Expanded(
                             child: _LayerContainer(
                               content: 'Browser',
-                              background: Color.fromARGB(255, 255, 192, 0),
+                              background:
+                                  const Color.fromARGB(255, 255, 192, 0),
                               height: smallLayerHeight,
                               isOutline: true,
                               fontsize: smallFontsize,
@@ -179,7 +181,7 @@ class _FlutterCrossPlatformLayerSlideState
                     if (showLayer6)
                       _LayerContainer(
                         content: 'Hardware',
-                        background: Color.fromARGB(255, 255, 0, 0),
+                        background: const Color.fromARGB(255, 255, 0, 0),
                         height: 2 * smallLayerHeight,
                         padding: const EdgeInsets.only(top: 8),
                         fontsize: largeFontsize,
@@ -311,7 +313,7 @@ class _LayerContainer extends StatelessWidget {
                     width: height / 15,
                     color: background,
                   )
-                : Border(),
+                : const Border(),
           ),
           constraints: BoxConstraints(
             minHeight: height,

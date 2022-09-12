@@ -15,7 +15,7 @@ class ImageView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           boxShadow: <BoxShadow>[
             BoxShadow(
               color: Colors.grey,

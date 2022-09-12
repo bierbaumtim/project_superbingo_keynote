@@ -7,7 +7,8 @@ class HerausforderungenSlide extends Slide {
   const HerausforderungenSlide({required Key key}) : super(key: key);
 
   @override
-  _HerausforderungenSlideState createState() => _HerausforderungenSlideState();
+  SlideState<HerausforderungenSlide> createState() =>
+      _HerausforderungenSlideState();
 }
 
 class _HerausforderungenSlideState extends SlideState<HerausforderungenSlide> {
@@ -38,16 +39,16 @@ class _HerausforderungenSlideState extends SlideState<HerausforderungenSlide> {
     return KeyboardHandler(
       onKeyboardTap: handleTap,
       child: SimpleComparisonSlide(
-        title: Text('Herausforderungen'),
+        title: const Text('Herausforderungen'),
         titleAlignment: CrossAxisAlignment.start,
-        leftComparableTitle: Text('UX/UI'),
-        rightComparableTitle: Text('Data - Business Logic'),
+        leftComparableTitle: const Text('UX/UI'),
+        rightComparableTitle: const Text('Data - Business Logic'),
         leftComparableContent: Align(
           alignment: Alignment.topLeft,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, kToolbarHeight, 0, 0),
             child: RevealingText(
-              parts: <Text>[
+              parts: const <Text>[
                 Text('Spielkarte'),
                 Text('Kartenhand'),
                 Text('Kartenstapel'),
@@ -64,7 +65,7 @@ class _HerausforderungenSlideState extends SlideState<HerausforderungenSlide> {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, kToolbarHeight, 0, 0),
             child: RevealingText(
-              parts: <Text>[
+              parts: const <Text>[
                 Text('Was passiert Serverseitig?'),
                 Text('Was passiert Clientseitig?'),
                 Text('Wie verhindere ich inkonsistente Daten?'),

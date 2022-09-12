@@ -23,7 +23,7 @@ class MobileContainer extends StatelessWidget {
           alignment: alignment,
           child: Container(
             decoration: BoxDecoration(
-              color: Color(0xFF223044),
+              color: const Color(0xFF223044),
               borderRadius: BorderRadius.circular(40),
               boxShadow: <BoxShadow>[
                 BoxShadow(
@@ -33,6 +33,7 @@ class MobileContainer extends StatelessWidget {
               ],
             ),
             constraints: topChildConstraints,
+            margin: const EdgeInsets.all(10),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(40),
               child: AspectRatio(
@@ -40,7 +41,6 @@ class MobileContainer extends StatelessWidget {
                 child: topChild,
               ),
             ),
-            margin: const EdgeInsets.all(10),
           ),
         ),
       ],

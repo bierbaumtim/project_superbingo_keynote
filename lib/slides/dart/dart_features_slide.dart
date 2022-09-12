@@ -10,7 +10,7 @@ class DartFeaturesSlide extends StatefulWidget {
   const DartFeaturesSlide({super.key});
 
   @override
-  _DartFeaturesSlideState createState() => _DartFeaturesSlideState();
+  SlideState<DartFeaturesSlide> createState() => _DartFeaturesSlideState();
 }
 
 class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
@@ -65,9 +65,9 @@ class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
                       style: kBasicTextStyle.copyWith(
                         fontSize: titleFontsize,
                       ),
-                      child: Text('Dart Features'),
+                      child: const Text('Dart Features'),
                     ),
-                    SizedBox(height: kToolbarHeight),
+                    const SizedBox(height: kToolbarHeight),
                     Expanded(
                       child: LayoutBuilder(
                         builder: (context, innerConstraints) => PageView(
@@ -101,7 +101,8 @@ class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
                                                   margin:
                                                       const EdgeInsets.all(4),
                                                   height: 30,
-                                                  color: Color(0xFF5989F1),
+                                                  color:
+                                                      const Color(0xFF5989F1),
                                                 ),
                                                 for (var i = 0; i <= 4; i++)
                                                   Container(
@@ -109,9 +110,10 @@ class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
                                                         const EdgeInsets.all(4),
                                                     height: 10.0 * i,
                                                     width: 90.0 * i,
-                                                    color: Color(0xFF5989F1),
+                                                    color:
+                                                        const Color(0xFF5989F1),
                                                   ),
-                                                ...[
+                                                ...const [
                                                   Text(
                                                     '1',
                                                     style: TextStyle(
@@ -157,7 +159,7 @@ class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
                                       right: 0,
                                       top: innerConstraints.maxHeight / 2.5,
                                       child: Container(
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           borderRadius: BorderRadius.only(
                                             topRight: Radius.circular(20),
                                             bottomRight: Radius.circular(20),
@@ -197,10 +199,10 @@ Column(
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: kToolbarHeight),
+                                const SizedBox(width: kToolbarHeight),
                                 Expanded(
                                   child: RevealingText(
-                                    parts: <Text>[
+                                    parts: const <Text>[
                                       Text('spread operator'),
                                       Text('collection if'),
                                       Text('collection for'),
@@ -222,7 +224,7 @@ Column(
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      color: Color(0xFF152030),
+                                      color: const Color(0xFF152030),
                                     ),
                                     padding: const EdgeInsets.all(24),
                                     child: AutoSizeText(
@@ -247,10 +249,10 @@ extension numX on num {
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: kToolbarHeight),
+                                const SizedBox(width: kToolbarHeight),
                                 Expanded(
                                   child: RevealingText(
-                                    parts: <Text>[
+                                    parts: const <Text>[
                                       Text('statische Erweiterungen'),
                                       Text('generische Erweiterungen'),
                                       Text('getter, setter und operatoren'),
@@ -265,7 +267,7 @@ extension numX on num {
                               ],
                             ),
                             RevealingText(
-                              parts: <Text>[
+                              parts: const <Text>[
                                 Text('Stateful Hot Reload'),
                                 Text('Hot Restart'),
                                 Text('Dart Dev Tools'),

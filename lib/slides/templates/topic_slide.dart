@@ -12,7 +12,7 @@ class TopicSlide extends StatefulWidget {
   });
 
   @override
-  _TopicSlideState createState() => _TopicSlideState();
+  State<TopicSlide> createState() => _TopicSlideState();
 }
 
 class _TopicSlideState extends State<TopicSlide> {

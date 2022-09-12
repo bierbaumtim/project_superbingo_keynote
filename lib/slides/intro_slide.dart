@@ -8,7 +8,7 @@ class IntroSlide extends Slide {
   const IntroSlide({super.key});
 
   @override
-  _IntroSlideState createState() => _IntroSlideState();
+  SlideState<IntroSlide> createState() => _IntroSlideState();
 }
 
 class _IntroSlideState extends SlideState<IntroSlide> {
@@ -17,13 +17,13 @@ class _IntroSlideState extends SlideState<IntroSlide> {
     return KeyboardHandler(
       onKeyboardTap: handleTap,
       child: TopicSlide(
-        title: Text('Superbingo'),
+        title: const Text('Superbingo'),
         subtitle: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text('Built with '),
+            const Text('Built with '),
             Row(
-              children: <Widget>[
+              children: const <Widget>[
                 Hero(
                   tag: kFlutterLogoHeroTag,
                   child: FlutterLogo(),

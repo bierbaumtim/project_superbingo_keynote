@@ -10,7 +10,7 @@ class PackagesSlide extends Slide {
   const PackagesSlide({required Key key}) : super(key: key);
 
   @override
-  _PackagesSlideState createState() => _PackagesSlideState();
+  SlideState<PackagesSlide> createState() => _PackagesSlideState();
 }
 
 class _PackagesSlideState extends SlideState<PackagesSlide>
@@ -59,7 +59,7 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
     );
     mockAligment = Tween<Alignment>(
       begin: Alignment.center,
-      end: Alignment(-0.8, 0),
+      end: const Alignment(-0.8, 0),
     ).animate(
       positionController,
     );
@@ -91,10 +91,10 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
                   Align(
                     alignment: mockAligment.value,
                     child: ChromeMockupContainer(
-                      child: const SizedBox(),
                       // child: WebViewContainer(),
                       sizeFactor: sizeFactor.value,
                       imageAssetsUrl: 'assets/chrome_mockup_dark.png',
+                      child: const SizedBox(),
                     ),
                   ),
                   if (showText)
@@ -110,7 +110,7 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
                           opacity: animation,
                           child: child,
                         ),
-                        child: Container(
+                        child: SizedBox(
                           width: (constraints.maxWidth - (2 * kToolbarHeight)) *
                               0.35,
                           child: Center(

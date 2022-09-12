@@ -6,7 +6,8 @@ class StatelessVSStafulSlide extends Slide {
   const StatelessVSStafulSlide({required Key key}) : super(key: key);
 
   @override
-  _StatelessVSStafulSlideState createState() => _StatelessVSStafulSlideState();
+  SlideState<StatelessVSStafulSlide> createState() =>
+      _StatelessVSStafulSlideState();
 }
 
 class _StatelessVSStafulSlideState extends SlideState<StatelessVSStafulSlide> {
@@ -24,11 +25,11 @@ class _StatelessVSStafulSlideState extends SlideState<StatelessVSStafulSlide> {
   @override
   Widget build(BuildContext context) {
     return SimpleComparisonSlide(
-      title: Text('Stateless vs. Stateful'),
+      title: const Text('Stateless vs. Stateful'),
       titleAlignment: CrossAxisAlignment.start,
-      leftComparableTitle: Text('Text'),
-      rightComparableTitle: Text('CupertinoSwitch'),
-      leftComparableContent: Align(
+      leftComparableTitle: const Text('Text'),
+      rightComparableTitle: const Text('CupertinoSwitch'),
+      leftComparableContent: const Align(
         alignment: Alignment(-.25, 0),
         child: Text.rich(
           TextSpan(
@@ -54,7 +55,7 @@ class _StatelessVSStafulSlideState extends SlideState<StatelessVSStafulSlide> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(width: 48),
+            const SizedBox(width: 48),
             Transform.scale(
               scale: 2,
               child: CupertinoSwitch(
@@ -62,7 +63,7 @@ class _StatelessVSStafulSlideState extends SlideState<StatelessVSStafulSlide> {
                 onChanged: (_) {},
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Transform.scale(
               scale: 2,
               child: CupertinoSwitch(
@@ -70,7 +71,7 @@ class _StatelessVSStafulSlideState extends SlideState<StatelessVSStafulSlide> {
                 onChanged: (_) {},
               ),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ),

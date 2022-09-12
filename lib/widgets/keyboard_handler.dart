@@ -19,7 +19,7 @@ class KeyboardHandler extends StatefulWidget {
   });
 
   @override
-  _KeyboardHandlerState createState() => _KeyboardHandlerState();
+  State<KeyboardHandler> createState() => _KeyboardHandlerState();
 }
 
 class _KeyboardHandlerState extends State<KeyboardHandler> {
@@ -31,7 +31,7 @@ class _KeyboardHandlerState extends State<KeyboardHandler> {
   void initState() {
     super.initState();
     isFullscreen = false;
-    windowSize = Size(0, 0);
+    windowSize = Size.zero;
   }
 
   @override

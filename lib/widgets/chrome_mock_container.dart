@@ -17,7 +17,7 @@ class ChromeMockupContainer extends StatelessWidget {
     return FractionallySizedBox(
       heightFactor: sizeFactor,
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           boxShadow: <BoxShadow>[
             BoxShadow(
               color: Colors.grey,
@@ -44,7 +44,7 @@ class ChromeMockupContainer extends StatelessWidget {
               right: 0,
               top: 90,
               child: ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(4),
                   bottomRight: Radius.circular(4),
                 ),

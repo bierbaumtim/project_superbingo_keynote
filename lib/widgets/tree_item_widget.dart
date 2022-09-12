@@ -35,21 +35,13 @@ class TreeItemWidget extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(
               width: effectiveTextStyle.fontSize! / 10,
-              color: Color.fromARGB(
+              color: const Color.fromARGB(
                 255,
                 47,
                 82,
                 143,
               ),
               // color: Color(0xFF223044),
-            ),
-          ),
-          child: Center(
-            child: AutoSizeText(
-              content,
-              style: effectiveTextStyle,
-              maxLines: 1,
-              minFontSize: 6,
             ),
           ),
           padding: EdgeInsets.all(effectiveTextStyle.fontSize! / 6),
@@ -63,6 +55,14 @@ class TreeItemWidget extends StatelessWidget {
             minWidth: 300,
             minHeight:
                 effectiveTextStyle.fontSize! * effectiveTextStyle.height!,
+          ),
+          child: Center(
+            child: AutoSizeText(
+              content,
+              style: effectiveTextStyle,
+              maxLines: 1,
+              minFontSize: 6,
+            ),
           ),
         ),
       );

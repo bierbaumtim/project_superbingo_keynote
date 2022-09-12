@@ -5,18 +5,18 @@ class SuperbingoOptimierungenSide extends Slide {
   const SuperbingoOptimierungenSide({required Key key}) : super(key: key);
 
   @override
-  _SuperbingoOptimierungenSideState createState() =>
+  SlideState<SuperbingoOptimierungenSide> createState() =>
       _SuperbingoOptimierungenSideState();
 }
 
 class _SuperbingoOptimierungenSideState
     extends SlideState<SuperbingoOptimierungenSide> {
-  final _innerTemplateKey =
+  static const _innerTemplateKey =
       GlobalObjectKey<SlideState>('superbingo_optimierungen_innertemplate');
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedTitleContentSlide(
+    return const AnimatedTitleContentSlide(
       key: _innerTemplateKey,
       titleAlignment: CrossAxisAlignment.start,
       title: Text('What\'s next?'),

@@ -11,7 +11,7 @@ class FlutterWidgetElementTreeSlide extends Slide {
   const FlutterWidgetElementTreeSlide({required Key key}) : super(key: key);
 
   @override
-  _FlutterWidgetElementTreeSlideState createState() =>
+  SlideState<FlutterWidgetElementTreeSlide> createState() =>
       _FlutterWidgetElementTreeSlideState();
 }
 
@@ -50,7 +50,7 @@ class _FlutterWidgetElementTreeSlideState
     });
     mockAlignment = Tween<Alignment>(
       begin: Alignment.center,
-      end: Alignment(-1, 0),
+      end: Alignment.centerLeft,
     ).animate(
       positionController,
     );
@@ -92,10 +92,10 @@ class _FlutterWidgetElementTreeSlideState
                         style: kBasicTextStyle.copyWith(
                           fontSize: titleFontsize,
                         ),
-                        child: Text('Widget und Element Tree'),
+                        child: const Text('Widget und Element Tree'),
                       ),
                     ),
-                    SizedBox(height: kToolbarHeight),
+                    const SizedBox(height: kToolbarHeight),
                     Expanded(
                       child: IndexedStack(
                         index: stackIndex,
@@ -113,7 +113,7 @@ class _FlutterWidgetElementTreeSlideState
                                 featureContainerWidth: featureContainerWidth,
                                 floatingHeroTag: '',
                               ),
-                              SizedBox(width: kToolbarHeight),
+                              const SizedBox(width: kToolbarHeight),
                               Expanded(
                                 child: Padding(
                                   padding:
@@ -291,7 +291,7 @@ class TreesRow extends StatelessWidget {
             ),
           ),
         if (showElement) ...[
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Transform.rotate(
             angle: pi,
             child: CustomPaint(
@@ -302,7 +302,7 @@ class TreesRow extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Expanded(
             child: TreeItemWidget(
               content: elementName,
@@ -314,9 +314,9 @@ class TreesRow extends StatelessWidget {
             ),
           ),
         ] else
-          Spacer(),
+          const Spacer(),
         if (showStateObject) ...[
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Transform.rotate(
             angle: pi,
             child: CustomPaint(
@@ -327,16 +327,16 @@ class TreesRow extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(40),
               border: Border.all(
-                color: Color.fromARGB(255, 47, 82, 143),
+                color: const Color.fromARGB(255, 47, 82, 143),
                 width: contentFontsize / 14,
               ),
             ),
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               maxWidth: 100,
               maxHeight: 100,
             ),
@@ -380,14 +380,14 @@ class _Sample extends StatelessWidget {
       alignment: alignment,
       topChild: Theme(
         data: ThemeData.light().copyWith(
-          scaffoldBackgroundColor: Color(0xFF223044),
-          appBarTheme: AppBarTheme(
+          scaffoldBackgroundColor: const Color(0xFF223044),
+          appBarTheme: const AppBarTheme(
             color: Color(0xFF152030),
           ),
         ),
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Widget Tree'),
+            title: const Text('Widget Tree'),
           ),
           body: Center(
             child: Padding(
@@ -404,8 +404,8 @@ class _Sample extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
-            child: Icon(Icons.add),
             heroTag: null,
+            child: const Icon(Icons.add),
           ),
         ),
       ),
@@ -416,7 +416,7 @@ class _Sample extends StatelessWidget {
 class _ArrowPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final gradientPaint = Paint()..color = Color(0xFF223044);
+    final gradientPaint = Paint()..color = const Color(0xFF223044);
 
     final arrowPath = Path();
 

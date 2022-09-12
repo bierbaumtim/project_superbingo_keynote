@@ -9,6 +9,7 @@ class BlurTransition extends AnimatedWidget {
   final Color? backgroundColor;
 
   const BlurTransition({
+    super.key,
     required this.blurAnimation,
     required this.child,
     this.backgroundColorAnimation,

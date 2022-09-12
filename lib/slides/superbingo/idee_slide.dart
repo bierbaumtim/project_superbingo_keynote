@@ -7,7 +7,7 @@ class IdeeSlide extends Slide {
   const IdeeSlide({required Key key}) : super(key: key);
 
   @override
-  _IdeeSlideState createState() => _IdeeSlideState();
+  SlideState<IdeeSlide> createState() => _IdeeSlideState();
 }
 
 class _IdeeSlideState extends SlideState<IdeeSlide> {
@@ -38,16 +38,16 @@ class _IdeeSlideState extends SlideState<IdeeSlide> {
     return KeyboardHandler(
       onKeyboardTap: handleTap,
       child: SimpleComparisonSlide(
-        title: Text('Idee'),
+        title: const Text('Idee'),
         titleAlignment: CrossAxisAlignment.start,
-        leftComparableTitle: Text('Spiel'),
-        rightComparableTitle: Text('Projekt'),
+        leftComparableTitle: const Text('Spiel'),
+        rightComparableTitle: const Text('Projekt'),
         leftComparableContent: Align(
           alignment: Alignment.topLeft,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, kToolbarHeight, 0, 0),
             child: RevealingText(
-              parts: <Text>[
+              parts: const <Text>[
                 Text('Kartenspiel mit MauMau Karten'),
                 Text('MauMau und Uno Regeln'),
               ],
@@ -62,9 +62,9 @@ class _IdeeSlideState extends SlideState<IdeeSlide> {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, kToolbarHeight, 0, 0),
             child: RevealingText(
-              parts: <Text>[
+              parts: const <Text>[
                 Text(
-                  'Als Spaß gemeinte Frage: \n“Kannst du das Spiel nicht als App bauen ?\“',
+                  'Als Spaß gemeinte Frage: \n“Kannst du das Spiel nicht als App bauen ?“',
                 ),
               ],
               lastVisiblePart: lastVisibleProjektPart,

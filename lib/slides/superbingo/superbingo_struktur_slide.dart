@@ -20,7 +20,7 @@ class SuperbingoStrukturSlide extends Slide {
   const SuperbingoStrukturSlide({required Key key}) : super(key: key);
 
   @override
-  _SuperbingoStrukturSlideState createState() =>
+  SlideState<SuperbingoStrukturSlide> createState() =>
       _SuperbingoStrukturSlideState();
 }
 
@@ -64,7 +64,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                       style: kBasicTextStyle.copyWith(
                         fontSize: titleFontsize,
                       ),
-                      child: Text('Struktur'),
+                      child: const Text('Struktur'),
                     ),
                     Expanded(
                       child: Row(
@@ -79,7 +79,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                               ),
                               child: CustomPaint(
                                 painter: _DBPainter(),
-                                child: Container(
+                                child: SizedBox(
                                   height: dbHeight,
                                   width: dbHeight * 2.3,
                                   child: Center(
@@ -108,7 +108,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                                         backBlue,
                                       ],
                                     ),
-                                    child: SizedBox(
+                                    child: const SizedBox(
                                       height: 50,
                                       width: double.infinity,
                                     ),
@@ -117,7 +117,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                               ),
                             )
                           else
-                            Spacer(),
+                            const Spacer(),
                           if (lastVisiblePart >= 2)
                             PlayAnimationBuilder<double>(
                               tween: Tween(begin: 0.0, end: 1.0),
@@ -145,7 +145,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                               ),
                             )
                           else
-                            Spacer(),
+                            const Spacer(),
                           if (lastVisiblePart >= 3)
                             Expanded(
                               child: Padding(
@@ -165,7 +165,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                                               backGreen,
                                             ],
                                           ),
-                                          child: SizedBox(
+                                          child: const SizedBox(
                                             height: 50,
                                             width: double.infinity,
                                           ),
@@ -181,7 +181,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                                             backGreen,
                                           ],
                                         ),
-                                        child: SizedBox(
+                                        child: const SizedBox(
                                           height: 50,
                                           width: double.infinity,
                                         ),
@@ -198,7 +198,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                                               backGreen,
                                             ],
                                           ),
-                                          child: SizedBox(
+                                          child: const SizedBox(
                                             height: 50,
                                             width: double.infinity,
                                           ),
@@ -210,7 +210,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                               ),
                             )
                           else
-                            Spacer(),
+                            const Spacer(),
                           if (lastVisiblePart >= 4)
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -253,7 +253,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                               ],
                             )
                           else
-                            Spacer(),
+                            const Spacer(),
                         ],
                       ),
                     ),
@@ -326,7 +326,7 @@ class _DBPainter extends CustomPainter {
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
     final litePaint = Paint()
-      ..color = Color.fromARGB(255, 255, 217, 102)
+      ..color = const Color.fromARGB(255, 255, 217, 102)
       ..isAntiAlias = true;
 
     final height = 2 * size.height;

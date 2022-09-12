@@ -6,7 +6,7 @@ class DartIntroSlide extends StatefulWidget {
   const DartIntroSlide({super.key});
 
   @override
-  _DartIntroSldieState createState() => _DartIntroSldieState();
+  SlideState<DartIntroSlide> createState() => _DartIntroSldieState();
 }
 
 class _DartIntroSldieState extends SlideState<DartIntroSlide> {
@@ -25,7 +25,7 @@ class _DartIntroSldieState extends SlideState<DartIntroSlide> {
                 height: titleFontsize * kBasicTextStyle.height!,
                 child: Image.asset('assets/dart_logo.png'),
               ),
-              Text(' Dart'),
+              const Text(' Dart'),
             ],
           ),
         );

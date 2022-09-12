@@ -30,7 +30,7 @@ class SimpleComparisonSlide extends StatefulWidget {
   });
 
   @override
-  _SimpleComparisonSlideState createState() => _SimpleComparisonSlideState();
+  State<SimpleComparisonSlide> createState() => _SimpleComparisonSlideState();
 }
 
 class _SimpleComparisonSlideState extends State<SimpleComparisonSlide> {
@@ -54,7 +54,7 @@ class _SimpleComparisonSlideState extends State<SimpleComparisonSlide> {
                     children: <Widget>[
                       if (widget.titleAlignment == CrossAxisAlignment.center ||
                           widget.titleAlignment == CrossAxisAlignment.end)
-                        Spacer(),
+                        const Spacer(),
                       DefaultTextStyle(
                         style: kBasicTextStyle.copyWith(
                           fontSize: titleFontsize,
@@ -63,10 +63,10 @@ class _SimpleComparisonSlideState extends State<SimpleComparisonSlide> {
                       ),
                       if (widget.titleAlignment == CrossAxisAlignment.center ||
                           widget.titleAlignment == CrossAxisAlignment.start)
-                        Spacer(),
+                        const Spacer(),
                     ],
                   ),
-                  SizedBox(height: 1.5 * kToolbarHeight),
+                  const SizedBox(height: 1.5 * kToolbarHeight),
                   Expanded(
                     child: Row(
                       children: <Widget>[
@@ -117,7 +117,7 @@ class _SimpleComparisonSlideState extends State<SimpleComparisonSlide> {
                             ],
                           ),
                         ),
-                        SizedBox(width: kToolbarHeight),
+                        const SizedBox(width: kToolbarHeight),
                         Expanded(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,

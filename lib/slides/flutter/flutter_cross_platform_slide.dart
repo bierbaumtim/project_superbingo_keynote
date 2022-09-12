@@ -5,13 +5,13 @@ class FlutterCrossPlatformSlide extends Slide {
   const FlutterCrossPlatformSlide({required Key key}) : super(key: key);
 
   @override
-  _FlutterCrossPlatformSlideState createState() =>
+  SlideState<FlutterCrossPlatformSlide> createState() =>
       _FlutterCrossPlatformSlideState();
 }
 
 class _FlutterCrossPlatformSlideState
     extends SlideState<FlutterCrossPlatformSlide> {
-  final _innerTemplateKey =
+  static const _innerTemplateKey =
       GlobalObjectKey<SlideState>('flutter_cross_platform__innerTemplate');
 
   @override
@@ -35,7 +35,7 @@ class _FlutterCrossPlatformSlideState
       // ),
       title: Row(
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
+        children: const <Widget>[
           Text('Flutter '),
           Icon(
             Icons.favorite_border,
@@ -45,7 +45,7 @@ class _FlutterCrossPlatformSlideState
           Text(' Cross Platform'),
         ],
       ),
-      content: <Text>[
+      content: const <Text>[
         Text('Mobile - iOS und Android'),
         Text('Web - Beta'),
         Text('Desktop - Alpha und WIP'),

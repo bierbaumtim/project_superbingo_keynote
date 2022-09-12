@@ -21,7 +21,7 @@ class TitleContentSlide extends Slide {
   });
 
   @override
-  _TitleContentSlideState createState() => _TitleContentSlideState();
+  SlideState<TitleContentSlide> createState() => _TitleContentSlideState();
 }
 
 class _TitleContentSlideState extends SlideState<TitleContentSlide> {
@@ -51,7 +51,7 @@ class _TitleContentSlideState extends SlideState<TitleContentSlide> {
                     children: <Widget>[
                       if (widget.titleAlignment == CrossAxisAlignment.center ||
                           widget.titleAlignment == CrossAxisAlignment.end)
-                        Spacer(),
+                        const Spacer(),
                       DefaultTextStyle(
                         style: kBasicTextStyle.copyWith(
                           fontSize: titleFontsize,
@@ -60,10 +60,10 @@ class _TitleContentSlideState extends SlideState<TitleContentSlide> {
                       ),
                       if (widget.titleAlignment == CrossAxisAlignment.center ||
                           widget.titleAlignment == CrossAxisAlignment.start)
-                        Spacer(),
+                        const Spacer(),
                     ],
                   ),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
                   Expanded(
                     child: RevealingText(
                       parts: widget.content,

@@ -39,7 +39,7 @@ void main() {
   runApp(
     RepositoryProvider<SlideInteractionService>(
       create: (_) => _createSlideInteractionService(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -76,64 +76,65 @@ SlideInteractionService _createSlideInteractionService() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: kSlideBackground,
-      constraints: BoxConstraints(
-        maxHeight: 1080,
-        maxWidth: 1920,
-      ),
+      // constraints: const BoxConstraints(
+      //   maxHeight: 1080,
+      //   maxWidth: 1920,
+      // ),
       alignment: Alignment.center,
-      child: AspectRatio(
-        aspectRatio: 16.0 / 9.0,
-        child: KeynoteApp(
-          slides: <Widget>[
-            IntroSlide(key: kIntroSlideKey),
-            FlutterIntroSlide(key: kFlutterIntroSlideKey),
-            DartIntroSlide(key: kDartIntroKey),
-            DartFeaturesSlide(key: kDartFeaturesKey),
-            EverythingIsAWidgetSlide(key: kEverythingIsAWidgetSlideKey),
-            StatelessVSStafulSlide(key: kStatelessVSStatefulSlideKey),
-            FlutterWidgetTreeSlide(key: kFlutterWidgetTreeSlideKey),
-            FlutterWidgetElementTreeSlide(
-              key: kFlutterWidgetElementTreeSlideKey,
-            ),
-            FlutterCrossPlatformSlide(key: kFlutterCrossPlatformSlideKey),
-            FlutterCrossPlatformLayerSlide(
-              key: kFlutterCrossPlatformLayerSlideKey,
-            ),
-            PackagesSlide(key: kPubDevSlideKey),
-            SuperbingoIntroSlide(key: kFSuperbingoIntroSlideKey),
-            IdeeSlide(key: kIdeeSlideKey),
-            ZielSlide(key: kZielSlideKey),
-            HerausforderungenSlide(key: kHerausforderungenSlideKey),
-            SuperbingoStrukturSlide(key: kSuperbingoStrukturSlideKey),
-            SuperBingoSlide(key: kSuperbingoUISlideKey),
-            SuperbingoOptimierungenSide(key: kSuperbingoOptimierungenSlideKey),
-            EndSlide(key: kEndSlideKey),
-          ],
-          swipeGesture: true,
-          handleKeyboardInputs: false,
-          transition: KeynoteTransition.fade,
-          theme: ThemeData.dark().copyWith(
-            textTheme: kBasicTextTheme,
+      child: KeynoteApp(
+        slides: <Widget>[
+          IntroSlide(key: kIntroSlideKey),
+          FlutterIntroSlide(key: kFlutterIntroSlideKey),
+          DartIntroSlide(key: kDartIntroKey),
+          DartFeaturesSlide(key: kDartFeaturesKey),
+          EverythingIsAWidgetSlide(key: kEverythingIsAWidgetSlideKey),
+          StatelessVSStafulSlide(key: kStatelessVSStatefulSlideKey),
+          FlutterWidgetTreeSlide(key: kFlutterWidgetTreeSlideKey),
+          FlutterWidgetElementTreeSlide(
+            key: kFlutterWidgetElementTreeSlideKey,
           ),
-          title: 'Flutter',
-          darkTheme: ThemeData.dark().copyWith(
-            textTheme: kBasicTextTheme,
+          FlutterCrossPlatformSlide(key: kFlutterCrossPlatformSlideKey),
+          FlutterCrossPlatformLayerSlide(
+            key: kFlutterCrossPlatformLayerSlideKey,
           ),
-          keynoteProvider:
-              context.read<SlideInteractionService>().keynoteProvider,
+          PackagesSlide(key: kPubDevSlideKey),
+          SuperbingoIntroSlide(key: kFSuperbingoIntroSlideKey),
+          IdeeSlide(key: kIdeeSlideKey),
+          ZielSlide(key: kZielSlideKey),
+          HerausforderungenSlide(key: kHerausforderungenSlideKey),
+          SuperbingoStrukturSlide(key: kSuperbingoStrukturSlideKey),
+          SuperBingoSlide(key: kSuperbingoUISlideKey),
+          SuperbingoOptimierungenSide(key: kSuperbingoOptimierungenSlideKey),
+          EndSlide(key: kEndSlideKey),
+        ],
+        swipeGesture: true,
+        handleKeyboardInputs: false,
+        transition: KeynoteTransition.fade,
+        theme: ThemeData.dark().copyWith(
+          textTheme: kBasicTextTheme,
         ),
+        title: 'Flutter',
+        darkTheme: ThemeData.dark().copyWith(
+          textTheme: kBasicTextTheme,
+        ),
+        keynoteProvider:
+            context.read<SlideInteractionService>().keynoteProvider,
       ),
     );
   }
 }
 
 class WebViewContainer extends StatefulWidget {
+  const WebViewContainer({super.key});
+
   @override
-  _WebViewContainerState createState() => _WebViewContainerState();
+  State<WebViewContainer> createState() => _WebViewContainerState();
 }
 
 class _WebViewContainerState extends State<WebViewContainer> {

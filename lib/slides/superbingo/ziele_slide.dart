@@ -6,16 +6,16 @@ class ZielSlide extends Slide {
   const ZielSlide({GlobalKey<SlideState>? key}) : super(key: key);
 
   @override
-  _ZielSlideState createState() => _ZielSlideState();
+  SlideState<ZielSlide> createState() => _ZielSlideState();
 }
 
 class _ZielSlideState extends SlideState<ZielSlide> {
-  final GlobalObjectKey<SlideState> _innerTemplateKey =
+  static const GlobalObjectKey<SlideState> _innerTemplateKey =
       GlobalObjectKey<SlideState>('innerTemplateKey');
 
   @override
   Widget build(BuildContext context) {
-    return TitleContentSlide(
+    return const TitleContentSlide(
       key: _innerTemplateKey,
       title: Text('Ziel'),
       content: <Text>[

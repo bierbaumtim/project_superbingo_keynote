@@ -6,7 +6,7 @@ class FlutterIntroSlide extends Slide {
   const FlutterIntroSlide({required Key key}) : super(key: key);
 
   @override
-  _FlutterIntroSlideState createState() => _FlutterIntroSlideState();
+  SlideState<FlutterIntroSlide> createState() => _FlutterIntroSlideState();
 }
 
 class _FlutterIntroSlideState extends SlideState<FlutterIntroSlide> {
@@ -15,7 +15,7 @@ class _FlutterIntroSlideState extends SlideState<FlutterIntroSlide> {
     return TopicSlide(
       title: Row(
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
+        children: const <Widget>[
           Hero(
             tag: kFlutterLogoHeroTag,
             child: FlutterLogo(

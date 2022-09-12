@@ -5,13 +5,14 @@ class SuperbingoIntroSlide extends Slide {
   const SuperbingoIntroSlide({super.key});
 
   @override
-  _SuperbingoIntroSlideState createState() => _SuperbingoIntroSlideState();
+  SlideState<SuperbingoIntroSlide> createState() =>
+      _SuperbingoIntroSlideState();
 }
 
 class _SuperbingoIntroSlideState extends SlideState<SuperbingoIntroSlide> {
   @override
   Widget build(BuildContext context) {
-    return TopicSlide(
+    return const TopicSlide(
       title: Text('Superbingo'),
     );
   }

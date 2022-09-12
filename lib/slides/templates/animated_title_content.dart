@@ -22,7 +22,8 @@ class AnimatedTitleContentSlide extends Slide {
   });
 
   @override
-  _TitleContentSlideState createState() => _TitleContentSlideState();
+  SlideState<AnimatedTitleContentSlide> createState() =>
+      _TitleContentSlideState();
 }
 
 class _TitleContentSlideState extends SlideState<AnimatedTitleContentSlide>
@@ -52,7 +53,7 @@ class _TitleContentSlideState extends SlideState<AnimatedTitleContentSlide>
       setState(() {});
     });
     titleAlignTween = Tween<Alignment>(
-      begin: Alignment(0, 0),
+      begin: Alignment.center,
       end: titleEndAligment,
     );
     currentTitleAligment = titleAlignTween.animate(titlePositionController);
@@ -118,7 +119,7 @@ class _TitleContentSlideState extends SlideState<AnimatedTitleContentSlide>
                             if (widget.titleAlignment ==
                                     CrossAxisAlignment.center ||
                                 widget.titleAlignment == CrossAxisAlignment.end)
-                              Spacer(),
+                              const Spacer(),
                             DefaultTextStyle(
                               style: kBasicTextStyle.copyWith(
                                 fontSize: titleFontsize,
@@ -129,10 +130,10 @@ class _TitleContentSlideState extends SlideState<AnimatedTitleContentSlide>
                                     CrossAxisAlignment.center ||
                                 widget.titleAlignment ==
                                     CrossAxisAlignment.start)
-                              Spacer(),
+                              const Spacer(),
                           ],
                         ),
-                        SizedBox(height: 32),
+                        const SizedBox(height: 32),
                         Expanded(
                           child: RevealingText(
                             parts: widget.content,

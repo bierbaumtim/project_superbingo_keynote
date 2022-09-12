@@ -11,7 +11,8 @@ class FlutterWidgetTreeSlide extends Slide {
   const FlutterWidgetTreeSlide({required Key key}) : super(key: key);
 
   @override
-  _FlutterWidgetTreeSlideState createState() => _FlutterWidgetTreeSlideState();
+  SlideState<FlutterWidgetTreeSlide> createState() =>
+      _FlutterWidgetTreeSlideState();
 }
 
 class _FlutterWidgetTreeSlideState extends SlideState<FlutterWidgetTreeSlide>
@@ -43,7 +44,7 @@ class _FlutterWidgetTreeSlideState extends SlideState<FlutterWidgetTreeSlide>
     });
     mockAlignment = Tween<Alignment>(
       begin: Alignment.center,
-      end: Alignment(-1, 0),
+      end: Alignment.centerLeft,
     ).animate(
       positionController,
     );
@@ -85,10 +86,10 @@ class _FlutterWidgetTreeSlideState extends SlideState<FlutterWidgetTreeSlide>
                         style: kBasicTextStyle.copyWith(
                           fontSize: titleFontsize,
                         ),
-                        child: Text('Widget Tree'),
+                        child: const Text('Widget Tree'),
                       ),
                     ),
-                    SizedBox(height: kToolbarHeight),
+                    const SizedBox(height: kToolbarHeight),
                     Expanded(
                       child: Stack(
                         children: <Widget>[
@@ -105,14 +106,15 @@ class _FlutterWidgetTreeSlideState extends SlideState<FlutterWidgetTreeSlide>
                                 ),
                                 topChild: Theme(
                                   data: ThemeData.light().copyWith(
-                                    scaffoldBackgroundColor: Color(0xFF223044),
-                                    appBarTheme: AppBarTheme(
+                                    scaffoldBackgroundColor:
+                                        const Color(0xFF223044),
+                                    appBarTheme: const AppBarTheme(
                                       color: Color(0xFF152030),
                                     ),
                                   ),
                                   child: Scaffold(
                                     appBar: AppBar(
-                                      title: Text('Widget Tree'),
+                                      title: const Text('Widget Tree'),
                                     ),
                                     body: Center(
                                       child: Column(
@@ -124,7 +126,7 @@ class _FlutterWidgetTreeSlideState extends SlideState<FlutterWidgetTreeSlide>
                                           FlutterLogo(
                                             size: contentFontsize,
                                           ),
-                                          SizedBox(height: 12),
+                                          const SizedBox(height: 12),
                                           Text(
                                             'Flutter',
                                             style: kBasicTextStyle.copyWith(
@@ -141,7 +143,7 @@ class _FlutterWidgetTreeSlideState extends SlideState<FlutterWidgetTreeSlide>
                                   left: featureContainerWidth,
                                   right: 0,
                                   child: Container(
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(20),
                                         bottomRight: Radius.circular(20),

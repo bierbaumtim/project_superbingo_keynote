@@ -5,18 +5,18 @@ class EverythingIsAWidgetSlide extends Slide {
   const EverythingIsAWidgetSlide({super.key});
 
   @override
-  _EverythingIsAWidgetSlieState createState() =>
+  SlideState<EverythingIsAWidgetSlide> createState() =>
       _EverythingIsAWidgetSlieState();
 }
 
 class _EverythingIsAWidgetSlieState
     extends SlideState<EverythingIsAWidgetSlide> {
-  final _innerTemplateKey =
+  static const _innerTemplateKey =
       GlobalObjectKey<SlideState>('everything_is_a_widget__inerTemplate');
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedTitleContentSlide(
+    return const AnimatedTitleContentSlide(
       key: _innerTemplateKey,
       title: Text('Everything is a Widget'),
       content: <Text>[

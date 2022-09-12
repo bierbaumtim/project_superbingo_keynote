@@ -5,13 +5,13 @@ class EndSlide extends StatefulWidget {
   const EndSlide({super.key});
 
   @override
-  _EndSlideState createState() => _EndSlideState();
+  SlideState<EndSlide> createState() => _EndSlideState();
 }
 
 class _EndSlideState extends SlideState<EndSlide> {
   @override
   Widget build(BuildContext context) {
-    return TopicSlide(
+    return const TopicSlide(
       title: Text(
         'Vielen Dank für eure Aufmerksamkeit',
         textAlign: TextAlign.center,
