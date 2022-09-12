@@ -1,5 +1,4 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+
 import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,10 +13,10 @@ class KeyboardHandler extends StatefulWidget {
   final OnKeyboardTap onKeyboardTap;
 
   const KeyboardHandler({
-    Key key,
-    @required this.child,
-    @required this.onKeyboardTap,
-  }) : super(key: key);
+    super.key,
+    required this.child,
+    required this.onKeyboardTap,
+  });
 
   @override
   _KeyboardHandlerState createState() => _KeyboardHandlerState();
@@ -25,8 +24,8 @@ class KeyboardHandler extends StatefulWidget {
 
 class _KeyboardHandlerState extends State<KeyboardHandler> {
   final _focusNode = FocusNode();
-  Size windowSize;
-  bool isFullscreen;
+  late Size windowSize;
+  late bool isFullscreen;
 
   @override
   void initState() {

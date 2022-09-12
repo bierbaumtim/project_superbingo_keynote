@@ -8,7 +8,7 @@ import 'package:project_keynote/widgets/mobil_container.dart';
 import 'package:project_keynote/widgets/tree_item_widget.dart';
 
 class FlutterWidgetElementTreeSlide extends Slide {
-  const FlutterWidgetElementTreeSlide({Key key}) : super(key: key);
+  const FlutterWidgetElementTreeSlide({required Key key}) : super(key: key);
 
   @override
   _FlutterWidgetElementTreeSlideState createState() =>
@@ -18,10 +18,10 @@ class FlutterWidgetElementTreeSlide extends Slide {
 class _FlutterWidgetElementTreeSlideState
     extends SlideState<FlutterWidgetElementTreeSlide>
     with TickerProviderStateMixin {
-  AnimationController positionController;
-  Animation<Alignment> mockAlignment;
-  bool showWidgetTree, showElementTree, showStateObjects;
-  int counter, stackIndex;
+  late AnimationController positionController;
+  late Animation<Alignment> mockAlignment;
+  late bool showWidgetTree, showElementTree, showStateObjects;
+  late int counter, stackIndex;
 
   @override
   void initState() {
@@ -103,15 +103,15 @@ class _FlutterWidgetElementTreeSlideState
                           _Sample(
                             counter: counter,
                             featureContainerWidth: featureContainerWidth,
-                            floatingHeroTag: null,
                             alignment: mockAlignment.value,
+                            floatingHeroTag: '',
                           ),
                           Row(
                             children: <Widget>[
                               _Sample(
                                 counter: counter,
                                 featureContainerWidth: featureContainerWidth,
-                                floatingHeroTag: null,
+                                floatingHeroTag: '',
                               ),
                               SizedBox(width: kToolbarHeight),
                               Expanded(
@@ -258,15 +258,15 @@ class _FlutterWidgetElementTreeSlideState
 
 class TreesRow extends StatelessWidget {
   const TreesRow({
-    Key key,
-    @required this.contentFontsize,
-    @required this.elementName,
-    @required this.widgetName,
+    super.key,
+    required this.contentFontsize,
+    required this.elementName,
+    required this.widgetName,
     this.showWidget = false,
     this.showElement = false,
     this.layer = 0,
     this.showStateObject = false,
-  }) : super(key: key);
+  });
 
   final double contentFontsize;
   final String widgetName;
@@ -358,11 +358,11 @@ class TreesRow extends StatelessWidget {
 
 class _Sample extends StatelessWidget {
   const _Sample({
-    Key key,
-    @required this.featureContainerWidth,
-    @required this.counter,
-    @required this.floatingHeroTag,
-    this.alignment,
+    Key? key,
+    required this.featureContainerWidth,
+    required this.counter,
+    required this.floatingHeroTag,
+    this.alignment = Alignment.center,
   }) : super(key: key);
 
   final double featureContainerWidth;

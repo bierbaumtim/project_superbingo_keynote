@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:project_keynote/constants.dart';
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slides/templates/topic_slide.dart';
 
 class FlutterIntroSlide extends Slide {
-  const FlutterIntroSlide({Key key}) : super(key: key);
+  const FlutterIntroSlide({required Key key}) : super(key: key);
 
   @override
   _FlutterIntroSlideState createState() => _FlutterIntroSlideState();

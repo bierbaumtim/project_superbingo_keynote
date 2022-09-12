@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
-import 'package:project_keynote/widgets/overlay_route.dart' as ov;
 
 const kPublicGamesHeroTag = 'publicgamestag';
 const kGameHeroTag = 'gametag';
@@ -11,15 +10,15 @@ const kPlayerHeroTag = 'playertag';
 const kGameConfigHeroTag = 'gameconfigtag';
 
 class SuperBingoSlide extends StatefulWidget {
-  const SuperBingoSlide({Key key}) : super(key: key);
+  const SuperBingoSlide({super.key});
 
   @override
   _SuperBingoSlideState createState() => _SuperBingoSlideState();
 }
 
 class _SuperBingoSlideState extends SlideState<SuperBingoSlide> {
-  bool isOverlayActive;
-  int currentImageIndex;
+  late bool isOverlayActive;
+  late int currentImageIndex;
 
   @override
   void initState() {
@@ -135,7 +134,7 @@ class _SuperBingoSlideState extends SlideState<SuperBingoSlide> {
     return true;
   }
 
-  Object indexToHeroTag(int index) {
+  Object? indexToHeroTag(int index) {
     switch (index) {
       case 0:
         return kPlayerHeroTag;
@@ -150,7 +149,7 @@ class _SuperBingoSlideState extends SlideState<SuperBingoSlide> {
     }
   }
 
-  String indexToAssetUrl(int index) {
+  String? indexToAssetUrl(int index) {
     switch (index) {
       case 0:
         return 'assets/iphone_x_player_page.png';
@@ -170,7 +169,11 @@ class _ImageOverlay extends StatefulWidget {
   final Object tag;
   final String assetUrl;
 
-  const _ImageOverlay({Key key, this.tag, this.assetUrl}) : super(key: key);
+  const _ImageOverlay({
+    Key? key,
+    required this.tag,
+    required this.assetUrl,
+  }) : super(key: key);
 
   @override
   __ImageOverlayState createState() => __ImageOverlayState();

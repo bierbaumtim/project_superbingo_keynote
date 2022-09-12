@@ -5,11 +5,10 @@ class ImageView extends StatelessWidget {
   final String imageAssetsUrl;
 
   const ImageView({
-    Key key,
+    super.key,
     this.sizeFactor = 0.8,
-    @required this.imageAssetsUrl,
-  })  : assert(imageAssetsUrl != null),
-        super(key: key);
+    required this.imageAssetsUrl,
+  });
 
   @override
   Widget build(BuildContext context) {

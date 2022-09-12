@@ -8,31 +8,33 @@ import 'package:project_keynote/text_styles.dart';
 class TreeItemWidget extends StatelessWidget {
   final String content;
   final int layer;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
   final bool visible;
 
   const TreeItemWidget({
-    Key key,
-    @required this.content,
+    super.key,
+    required this.content,
     this.layer = 0,
     this.textStyle,
     this.visible = false,
-  })  : assert(content != null),
-        super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
+    final effectiveTextStyle = textStyle ?? kBasicTextStyle;
+
     if (visible) {
-      return PlayAnimation(
+      return PlayAnimationBuilder(
         duration: const Duration(milliseconds: 550),
         tween: Tween<double>(begin: 0, end: 1),
-        builder: (context, child, animtedValue) => Opacity(
+        builder: (context, animtedValue, child) => Opacity(
           opacity: animtedValue,
+          child: child!,
         ),
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
-              width: textStyle.fontSize / 10,
+              width: effectiveTextStyle.fontSize! / 10,
               color: Color.fromARGB(
                 255,
                 47,
@@ -45,22 +47,22 @@ class TreeItemWidget extends StatelessWidget {
           child: Center(
             child: AutoSizeText(
               content,
-              style: textStyle ?? kBasicTextStyle,
+              style: effectiveTextStyle,
               maxLines: 1,
               minFontSize: 6,
             ),
           ),
-          padding: EdgeInsets.all(textStyle.fontSize / 6),
+          padding: EdgeInsets.all(effectiveTextStyle.fontSize! / 6),
           margin: EdgeInsets.fromLTRB(
             layer * 20.0,
-            textStyle.fontSize / 5,
+            effectiveTextStyle.fontSize! / 5,
             0,
-            textStyle.fontSize / 5,
+            effectiveTextStyle.fontSize! / 5,
           ),
           constraints: BoxConstraints(
             minWidth: 300,
-            minHeight: (textStyle ?? kBasicTextStyle).fontSize *
-                (textStyle ?? kBasicTextStyle).height,
+            minHeight:
+                effectiveTextStyle.fontSize! * effectiveTextStyle.height!,
           ),
         ),
       );

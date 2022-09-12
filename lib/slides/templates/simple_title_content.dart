@@ -11,22 +11,22 @@ class TitleContentSlide extends Slide {
   final Map<int, int> partsLayer;
 
   const TitleContentSlide({
-    Key key,
-    this.title,
-    this.content,
+    super.key,
+    required this.title,
+    required this.content,
     this.contentMainAxisAligment = MainAxisAlignment.center,
     this.contentCrossAxisAlignment = CrossAxisAlignment.stretch,
     this.titleAlignment = CrossAxisAlignment.center,
     this.partsLayer = const <int, int>{},
-  }) : super(key: key);
+  });
 
   @override
   _TitleContentSlideState createState() => _TitleContentSlideState();
 }
 
 class _TitleContentSlideState extends SlideState<TitleContentSlide> {
-  int lastVisiblePart;
-  bool reverseContent;
+  late int lastVisiblePart;
+  late bool reverseContent;
 
   @override
   void initState() {

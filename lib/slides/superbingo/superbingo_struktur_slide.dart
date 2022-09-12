@@ -17,7 +17,7 @@ const backBlue = Color.fromARGB(255, 68, 114, 196);
 const borderBlue = Color.fromARGB(255, 47, 82, 143);
 
 class SuperbingoStrukturSlide extends Slide {
-  const SuperbingoStrukturSlide({Key key}) : super(key: key);
+  const SuperbingoStrukturSlide({required Key key}) : super(key: key);
 
   @override
   _SuperbingoStrukturSlideState createState() =>
@@ -26,7 +26,7 @@ class SuperbingoStrukturSlide extends Slide {
 
 class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
     with TickerProviderStateMixin {
-  int lastVisiblePart;
+  late int lastVisiblePart;
 
   @override
   void initState() {
@@ -53,7 +53,7 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
               final dbHeight =
                   (constraints.maxHeight - (2 * kToolbarHeight)) / 9;
 
-              final arrowPadding = contentFontsize * kBasicTextStyle.height;
+              final arrowPadding = contentFontsize * kBasicTextStyle.height!;
 
               return Padding(
                 padding: const EdgeInsets.all(1.5 * kToolbarHeight),
@@ -70,12 +70,12 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                       child: Row(
                         children: <Widget>[
                           if (lastVisiblePart >= 0)
-                            PlayAnimation<double>(
+                            PlayAnimationBuilder<double>(
                               tween: Tween(begin: 0.0, end: 1.0),
                               duration: kFadeInDuration,
-                              builder: (buildContext, child, animatedValue) =>
-                                  Opacity(
+                              builder: (_, animatedValue, child) => Opacity(
                                 opacity: animatedValue,
+                                child: child,
                               ),
                               child: CustomPaint(
                                 painter: _DBPainter(),
@@ -119,12 +119,12 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                           else
                             Spacer(),
                           if (lastVisiblePart >= 2)
-                            PlayAnimation<double>(
+                            PlayAnimationBuilder<double>(
                               tween: Tween(begin: 0.0, end: 1.0),
                               duration: kFadeInDuration,
-                              builder: (buildContext, child, animatedValue) =>
-                                  Opacity(
+                              builder: (_, animatedValue, child) => Opacity(
                                 opacity: animatedValue,
+                                child: child,
                               ),
                               child: Container(
                                 decoration: BoxDecoration(
@@ -215,39 +215,36 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
-                                PlayAnimation<double>(
+                                PlayAnimationBuilder<double>(
                                   tween: Tween(begin: 0.0, end: 1.0),
                                   duration: kFadeInDuration,
-                                  builder:
-                                      (buildContext, child, animatedValue) =>
-                                          Opacity(
+                                  builder: (_, animatedValue, child) => Opacity(
                                     opacity: animatedValue,
+                                    child: child,
                                   ),
                                   child: _BlocContainer(
                                     contentFontsize: contentFontsize,
                                   ),
                                 ),
-                                PlayAnimation<double>(
+                                PlayAnimationBuilder<double>(
                                   tween: Tween(begin: 0.0, end: 1.0),
                                   duration: kFadeInDuration,
                                   delay: const Duration(milliseconds: 550),
-                                  builder:
-                                      (buildContext, child, animatedValue) =>
-                                          Opacity(
+                                  builder: (_, animatedValue, child) => Opacity(
                                     opacity: animatedValue,
+                                    child: child,
                                   ),
                                   child: _BlocContainer(
                                     contentFontsize: contentFontsize,
                                   ),
                                 ),
-                                PlayAnimation<double>(
+                                PlayAnimationBuilder<double>(
                                   tween: Tween(begin: 0.0, end: 1.0),
                                   duration: kFadeInDuration,
                                   delay: const Duration(milliseconds: 1100),
-                                  builder:
-                                      (buildContext, child, animatedValue) =>
-                                          Opacity(
+                                  builder: (_, animatedValue, child) => Opacity(
                                     opacity: animatedValue,
+                                    child: child,
                                   ),
                                   child: _BlocContainer(
                                     contentFontsize: contentFontsize,
@@ -289,8 +286,8 @@ class _SuperbingoStrukturSlideState extends SlideState<SuperbingoStrukturSlide>
 
 class _BlocContainer extends StatelessWidget {
   const _BlocContainer({
-    Key key,
-    @required this.contentFontsize,
+    Key? key,
+    required this.contentFontsize,
   }) : super(key: key);
 
   final double contentFontsize;

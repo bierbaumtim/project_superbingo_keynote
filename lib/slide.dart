@@ -9,7 +9,7 @@ abstract class ISlide {
 }
 
 abstract class Slide extends StatefulWidget {
-  const Slide({Key key}) : super(key: key);
+  const Slide({super.key});
 }
 
 abstract class SlideState<T extends StatefulWidget> extends State<T>

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:project_keynote/slide.dart';
 
 abstract class ISlideInteractionService {
@@ -6,5 +5,5 @@ abstract class ISlideInteractionService {
   void setupDatabaseListener();
   void dispose();
   void startKeynote();
-  GlobalKey<SlideState> currentSlideKey;
+  late GlobalKey<SlideState> currentSlideKey;
 }

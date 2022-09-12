@@ -1,7 +1,7 @@
 import 'dart:async';
 
 // import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_keynote/flutter_keynote.dart';
 
 import 'package:project_keynote/slide.dart';
@@ -10,18 +10,18 @@ import 'package:project_keynote/slide_interaction_service_interface.dart';
 const kDBKeynoteDocumentPath = 'flutter-superbingo';
 
 class SlideInteractionService implements ISlideInteractionService {
-  List<GlobalKey<SlideState>> _slides;
-  StreamSubscription _dbSub;
-  KeynoteProvider _keynoteProvider;
+  late List<GlobalKey<SlideState>> _slides;
+  StreamSubscription? _dbSub;
+  late KeynoteProvider _keynoteProvider;
 
   KeynoteProvider get keynoteProvider => _keynoteProvider;
 
   SlideInteractionService() {
-    _slides = List<GlobalKey<SlideState>>();
+    _slides = <GlobalKey<SlideState>>[];
   }
 
   @override
-  GlobalKey<SlideState> currentSlideKey;
+  late GlobalKey<SlideState> currentSlideKey;
 
   @override
   void registerSlideKey(GlobalKey<SlideState> slideKey) {
@@ -52,12 +52,9 @@ class SlideInteractionService implements ISlideInteractionService {
   //   }
   // }
 
-  void handleAction(String action, [GlobalKey<SlideState> slideKey]) {
+  void handleAction(String action, [GlobalKey<SlideState>? slideKey]) {
     final key = slideKey ?? _slides.elementAt(_keynoteProvider.getPageIndex());
-    if (key == null) {
-      print('Key Error');
-      return;
-    }
+
     print('CurrentState: ${key.currentState}');
     final result = key.currentState?.handleTap(action) ?? false;
     if (result) {
@@ -94,6 +91,6 @@ class SlideInteractionService implements ISlideInteractionService {
 
   @override
   void dispose() {
-    _dbSub.cancel();
+    _dbSub?.cancel();
   }
 }

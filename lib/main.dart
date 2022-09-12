@@ -1,7 +1,6 @@
 import 'dart:io' as io;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -125,7 +124,7 @@ class MyApp extends StatelessWidget {
             textTheme: kBasicTextTheme,
           ),
           keynoteProvider:
-              context.repository<SlideInteractionService>().keynoteProvider,
+              context.read<SlideInteractionService>().keynoteProvider,
         ),
       ),
     );
@@ -151,5 +150,6 @@ class _WebViewContainerState extends State<WebViewContainer> {
   @override
   Widget build(BuildContext context) {
     // return HtmlElementView(viewType: 'webview');
+    return const SizedBox();
   }
 }

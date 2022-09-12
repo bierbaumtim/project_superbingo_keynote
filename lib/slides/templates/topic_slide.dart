@@ -3,13 +3,13 @@ import 'package:project_keynote/text_styles.dart';
 
 class TopicSlide extends StatefulWidget {
   final Widget title;
-  final Widget subtitle;
+  final Widget? subtitle;
 
   const TopicSlide({
-    Key key,
-    @required this.title,
+    super.key,
+    required this.title,
     this.subtitle,
-  }) : super(key: key);
+  });
 
   @override
   _TopicSlideState createState() => _TopicSlideState();
@@ -44,7 +44,7 @@ class _TopicSlideState extends State<TopicSlide> {
                   ),
                   child: IconTheme(
                     data: IconThemeData(size: subtitleFontsize),
-                    child: widget.subtitle,
+                    child: widget.subtitle!,
                   ),
                 ),
             ],

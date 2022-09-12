@@ -2,7 +2,7 @@ import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slides/templates/animated_title_content.dart';
 
 class FlutterCrossPlatformSlide extends Slide {
-  const FlutterCrossPlatformSlide({Key key}) : super(key: key);
+  const FlutterCrossPlatformSlide({required Key key}) : super(key: key);
 
   @override
   _FlutterCrossPlatformSlideState createState() =>
@@ -56,5 +56,5 @@ class _FlutterCrossPlatformSlideState
 
   @override
   bool handleTap(String action) =>
-      _innerTemplateKey.currentState.handleTap(action);
+      _innerTemplateKey.currentState?.handleTap(action) ?? false;
 }

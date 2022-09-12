@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class SimpleComparisonSlide extends StatefulWidget {
   final Widget title;
-  final Widget leftComparableTitle;
-  final Widget leftComparableContent;
-  final Widget rightComparableTitle;
-  final Widget rightComparableContent;
+  final Widget? leftComparableTitle;
+  final Widget? leftComparableContent;
+  final Widget? rightComparableTitle;
+  final Widget? rightComparableContent;
   final CrossAxisAlignment titleAlignment;
 
   final bool showLeftComparableTitle;
@@ -17,8 +16,8 @@ class SimpleComparisonSlide extends StatefulWidget {
   final bool showRightComparableContent;
 
   const SimpleComparisonSlide({
-    Key key,
-    @required this.title,
+    super.key,
+    required this.title,
     this.titleAlignment = CrossAxisAlignment.center,
     this.leftComparableTitle,
     this.leftComparableContent,
@@ -28,7 +27,7 @@ class SimpleComparisonSlide extends StatefulWidget {
     this.showRightComparableTitle = true,
     this.showLeftComparableContent = true,
     this.showRightComparableContent = true,
-  }) : super(key: key);
+  });
 
   @override
   _SimpleComparisonSlideState createState() => _SimpleComparisonSlideState();
@@ -83,14 +82,14 @@ class _SimpleComparisonSlideState extends State<SimpleComparisonSlide> {
                                     fontSize: subtitleFontsize,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                  child: PlayAnimation(
+                                  child: PlayAnimationBuilder(
                                     tween: Tween(begin: 0.0, end: 1.0),
                                     duration: const Duration(milliseconds: 550),
                                     delay: const Duration(milliseconds: 250),
-                                    builder:
-                                        (buildContext, child, animatedValue) =>
-                                            Opacity(
+                                    builder: (_, animatedValue, child) =>
+                                        Opacity(
                                       opacity: animatedValue,
+                                      child: child,
                                     ),
                                     child: widget.leftComparableTitle,
                                   ),
@@ -98,20 +97,20 @@ class _SimpleComparisonSlideState extends State<SimpleComparisonSlide> {
                               if (widget.leftComparableContent != null &&
                                   widget.showLeftComparableContent)
                                 Expanded(
-                                  child: PlayAnimation(
+                                  child: PlayAnimationBuilder(
                                     tween: Tween(begin: 0.0, end: 1.0),
                                     duration: const Duration(milliseconds: 550),
                                     delay: const Duration(milliseconds: 250),
-                                    builder:
-                                        (buildContext, child, animatedValue) =>
-                                            Opacity(
+                                    builder: (_, animatedValue, child) =>
+                                        Opacity(
                                       opacity: animatedValue,
+                                      child: child,
                                     ),
                                     child: DefaultTextStyle(
                                       style: kBasicTextStyle.copyWith(
                                         fontSize: contentFontsize,
                                       ),
-                                      child: widget.leftComparableContent,
+                                      child: widget.leftComparableContent!,
                                     ),
                                   ),
                                 ),
@@ -131,14 +130,14 @@ class _SimpleComparisonSlideState extends State<SimpleComparisonSlide> {
                                     fontSize: subtitleFontsize,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                  child: PlayAnimation(
+                                  child: PlayAnimationBuilder(
                                     tween: Tween(begin: 0.0, end: 1.0),
                                     duration: const Duration(milliseconds: 550),
                                     delay: const Duration(milliseconds: 250),
-                                    builder:
-                                        (buildContext, child, animatedValue) =>
-                                            Opacity(
+                                    builder: (_, animatedValue, child) =>
+                                        Opacity(
                                       opacity: animatedValue,
+                                      child: child,
                                     ),
                                     child: widget.rightComparableTitle,
                                   ),
@@ -146,20 +145,20 @@ class _SimpleComparisonSlideState extends State<SimpleComparisonSlide> {
                               if (widget.rightComparableContent != null &&
                                   widget.showRightComparableContent)
                                 Expanded(
-                                  child: PlayAnimation(
+                                  child: PlayAnimationBuilder(
                                     tween: Tween(begin: 0.0, end: 1.0),
                                     duration: const Duration(milliseconds: 550),
                                     delay: const Duration(milliseconds: 250),
-                                    builder:
-                                        (buildContext, child, animatedValue) =>
-                                            Opacity(
+                                    builder: (_, animatedValue, child) =>
+                                        Opacity(
                                       opacity: animatedValue,
+                                      child: child,
                                     ),
                                     child: DefaultTextStyle(
                                       style: kBasicTextStyle.copyWith(
                                         fontSize: contentFontsize,
                                       ),
-                                      child: widget.rightComparableContent,
+                                      child: widget.rightComparableContent!,
                                     ),
                                   ),
                                 ),

@@ -6,7 +6,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class FlutterCrossPlatformLayerSlide extends Slide {
-  const FlutterCrossPlatformLayerSlide({Key key}) : super(key: key);
+  const FlutterCrossPlatformLayerSlide({required Key key}) : super(key: key);
 
   @override
   _FlutterCrossPlatformLayerSlideState createState() =>
@@ -16,7 +16,7 @@ class FlutterCrossPlatformLayerSlide extends Slide {
 class _FlutterCrossPlatformLayerSlideState
     extends SlideState<FlutterCrossPlatformLayerSlide>
     with TickerProviderStateMixin {
-  bool showLayer1,
+  late bool showLayer1,
       showLayer2,
       showLayer3_1,
       showLayer3_2,
@@ -279,30 +279,27 @@ class _LayerContainer extends StatelessWidget {
   final String content;
   final Color background;
   final double height, fontsize;
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? padding;
   final bool isOutline;
 
   const _LayerContainer({
-    Key key,
-    @required this.content,
-    @required this.background,
-    @required this.height,
+    Key? key,
+    required this.content,
+    required this.background,
+    required this.height,
     this.padding,
     this.isOutline = false,
     this.fontsize = 35,
-  })  : assert(content != null),
-        assert(background != null),
-        assert(height != null),
-        assert(isOutline != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return PlayAnimation(
+    return PlayAnimationBuilder(
       duration: const Duration(milliseconds: 550),
       tween: Tween<double>(begin: 0.0, end: 1.0),
-      builder: (context, child, animatedValue) => Opacity(
+      builder: (context, animatedValue, child) => Opacity(
         opacity: animatedValue,
+        child: child,
       ),
       child: Padding(
         padding: padding ?? const EdgeInsets.symmetric(vertical: 8),

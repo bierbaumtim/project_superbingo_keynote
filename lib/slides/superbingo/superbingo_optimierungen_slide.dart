@@ -2,7 +2,7 @@ import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slides/templates/animated_title_content.dart';
 
 class SuperbingoOptimierungenSide extends Slide {
-  const SuperbingoOptimierungenSide({Key key}) : super(key: key);
+  const SuperbingoOptimierungenSide({required Key key}) : super(key: key);
 
   @override
   _SuperbingoOptimierungenSideState createState() =>
@@ -31,5 +31,5 @@ class _SuperbingoOptimierungenSideState
 
   @override
   bool handleTap(String action) =>
-      _innerTemplateKey.currentState.handleTap(action);
+      _innerTemplateKey.currentState?.handleTap(action) ?? false;
 }

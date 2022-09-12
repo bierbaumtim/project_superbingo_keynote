@@ -1,6 +1,5 @@
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/text_styles.dart';
-import 'package:project_keynote/widgets/image_view.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -9,7 +8,7 @@ import 'package:project_keynote/widgets/tree_item_widget.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class FlutterWidgetTreeSlide extends Slide {
-  const FlutterWidgetTreeSlide({Key key}) : super(key: key);
+  const FlutterWidgetTreeSlide({required Key key}) : super(key: key);
 
   @override
   _FlutterWidgetTreeSlideState createState() => _FlutterWidgetTreeSlideState();
@@ -17,10 +16,10 @@ class FlutterWidgetTreeSlide extends Slide {
 
 class _FlutterWidgetTreeSlideState extends SlideState<FlutterWidgetTreeSlide>
     with TickerProviderStateMixin {
-  AnimationController positionController;
-  Animation<Alignment> mockAlignment;
-  bool showText, reverseText;
-  int lastVisiblePart;
+  late AnimationController positionController;
+  late Animation<Alignment> mockAlignment;
+  late bool showText, reverseText;
+  late int lastVisiblePart;
 
   @override
   void initState() {
@@ -190,12 +189,13 @@ Scaffold(
                               right: 1.5 * kToolbarHeight,
                               bottom: 1.5 * kToolbarHeight,
                               top: kToolbarHeight,
-                              child: PlayAnimation<double>(
+                              child: PlayAnimationBuilder<double>(
                                 tween: Tween<double>(begin: 0, end: 1),
                                 duration: const Duration(milliseconds: 750),
                                 delay: const Duration(milliseconds: 250),
-                                builder: (context, child, animation) => Opacity(
+                                builder: (_, animation, child) => Opacity(
                                   opacity: animation,
+                                  child: child,
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,

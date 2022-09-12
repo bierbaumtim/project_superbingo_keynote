@@ -3,7 +3,7 @@ import 'package:project_keynote/slides/templates/topic_slide.dart';
 import 'package:project_keynote/text_styles.dart';
 
 class DartIntroSlide extends StatefulWidget {
-  const DartIntroSlide({Key key}) : super(key: key);
+  const DartIntroSlide({super.key});
 
   @override
   _DartIntroSldieState createState() => _DartIntroSldieState();
@@ -21,8 +21,8 @@ class _DartIntroSldieState extends SlideState<DartIntroSlide> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               SizedBox(
-                width: titleFontsize * kBasicTextStyle.height,
-                height: titleFontsize * kBasicTextStyle.height,
+                width: titleFontsize * kBasicTextStyle.height!,
+                height: titleFontsize * kBasicTextStyle.height!,
                 child: Image.asset('assets/dart_logo.png'),
               ),
               Text(' Dart'),

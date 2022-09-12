@@ -6,12 +6,11 @@ class ChromeMockupContainer extends StatelessWidget {
   final String imageAssetsUrl;
 
   const ChromeMockupContainer({
-    Key key,
-    this.child,
+    super.key,
+    required this.child,
+    required this.imageAssetsUrl,
     this.sizeFactor = 0.8,
-    @required this.imageAssetsUrl,
-  })  : assert(imageAssetsUrl != null),
-        super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

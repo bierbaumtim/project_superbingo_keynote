@@ -3,14 +3,14 @@ import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slides/templates/simple_comparison.dart';
 
 class StatelessVSStafulSlide extends Slide {
-  const StatelessVSStafulSlide({Key key}) : super(key: key);
+  const StatelessVSStafulSlide({required Key key}) : super(key: key);
 
   @override
   _StatelessVSStafulSlideState createState() => _StatelessVSStafulSlideState();
 }
 
 class _StatelessVSStafulSlideState extends SlideState<StatelessVSStafulSlide> {
-  bool showLeftText, showLeftContent, showRightText, showRightContent;
+  late bool showLeftText, showLeftContent, showRightText, showRightContent;
 
   @override
   void initState() {

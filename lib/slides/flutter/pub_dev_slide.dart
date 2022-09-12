@@ -7,7 +7,7 @@ import 'package:project_keynote/widgets/revealing_text.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class PackagesSlide extends Slide {
-  const PackagesSlide({Key key}) : super(key: key);
+  const PackagesSlide({required Key key}) : super(key: key);
 
   @override
   _PackagesSlideState createState() => _PackagesSlideState();
@@ -15,11 +15,11 @@ class PackagesSlide extends Slide {
 
 class _PackagesSlideState extends SlideState<PackagesSlide>
     with TickerProviderStateMixin {
-  AnimationController sizeController, positionController;
-  Animation<double> sizeFactor;
-  Animation<Alignment> mockAligment;
-  bool showText, reverseText;
-  int lastVisiblePart;
+  late AnimationController sizeController, positionController;
+  late Animation<double> sizeFactor;
+  late Animation<Alignment> mockAligment;
+  late bool showText, reverseText;
+  late int lastVisiblePart;
 
   @override
   void initState() {
@@ -91,8 +91,9 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
                   Align(
                     alignment: mockAligment.value,
                     child: ChromeMockupContainer(
+                      child: const SizedBox(),
                       // child: WebViewContainer(),
-                      sizeFactor: sizeFactor?.value ?? 0.8,
+                      sizeFactor: sizeFactor.value,
                       imageAssetsUrl: 'assets/chrome_mockup_dark.png',
                     ),
                   ),
@@ -101,12 +102,13 @@ class _PackagesSlideState extends SlideState<PackagesSlide>
                       top: kToolbarHeight,
                       bottom: kToolbarHeight,
                       right: kToolbarHeight,
-                      child: PlayAnimation<double>(
+                      child: PlayAnimationBuilder<double>(
                         tween: Tween<double>(begin: 0, end: 1),
                         duration: const Duration(milliseconds: 750),
                         delay: const Duration(milliseconds: 250),
-                        builder: (context, child, animation) => Opacity(
+                        builder: (context, animation, child) => Opacity(
                           opacity: animation,
+                          child: child,
                         ),
                         child: Container(
                           width: (constraints.maxWidth - (2 * kToolbarHeight)) *

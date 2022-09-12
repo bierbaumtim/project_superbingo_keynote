@@ -7,18 +7,18 @@ import 'package:project_keynote/widgets/mobil_container.dart';
 import 'package:project_keynote/widgets/revealing_text.dart';
 
 class DartFeaturesSlide extends StatefulWidget {
-  const DartFeaturesSlide({Key key}) : super(key: key);
+  const DartFeaturesSlide({super.key});
 
   @override
   _DartFeaturesSlideState createState() => _DartFeaturesSlideState();
 }
 
 class _DartFeaturesSlideState extends SlideState<DartFeaturesSlide> {
-  PageController pageController;
-  int firstPageLastVisiblePart,
+  late PageController pageController;
+  late int firstPageLastVisiblePart,
       secondPageLastVisiblePart,
       thirdPageLastVisiblePart;
-  bool firstPageReverseText, secondPageReverseText, thirdPageReverseText;
+  late bool firstPageReverseText, secondPageReverseText, thirdPageReverseText;
 
   @override
   void initState() {

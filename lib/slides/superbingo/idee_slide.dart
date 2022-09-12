@@ -1,26 +1,24 @@
-import 'package:flutter/material.dart';
-
 import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slides/templates/simple_comparison.dart';
 import 'package:project_keynote/widgets/keyboard_handler.dart';
 import 'package:project_keynote/widgets/revealing_text.dart';
 
 class IdeeSlide extends Slide {
-  const IdeeSlide({Key key}) : super(key: key);
+  const IdeeSlide({required Key key}) : super(key: key);
 
   @override
   _IdeeSlideState createState() => _IdeeSlideState();
 }
 
 class _IdeeSlideState extends SlideState<IdeeSlide> {
-  bool showSpielText,
+  late bool showSpielText,
       showSpielParts,
       showProjektText,
       showProjektParts,
       reverseSpielParts,
       reverseProjektParts;
 
-  int lastVisibleSpielPart, lastVisibleProjektPart;
+  late int lastVisibleSpielPart, lastVisibleProjektPart;
 
   @override
   void initState() {

@@ -2,7 +2,7 @@ import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slides/templates/animated_title_content.dart';
 
 class EverythingIsAWidgetSlide extends Slide {
-  const EverythingIsAWidgetSlide({Key key}) : super(key: key);
+  const EverythingIsAWidgetSlide({super.key});
 
   @override
   _EverythingIsAWidgetSlieState createState() =>
@@ -37,5 +37,5 @@ class _EverythingIsAWidgetSlieState
 
   @override
   bool handleTap(String action) =>
-      _innerTemplateKey.currentState.handleTap(action);
+      _innerTemplateKey.currentState?.handleTap(action) ?? false;
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_keynote/text_styles.dart';
 
 import 'package:simple_animations/simple_animations.dart';
 
@@ -9,10 +10,10 @@ class RevealingText extends StatefulWidget {
   final MainAxisAlignment mainAxisAligment;
   final bool reverse;
   final Map<int, int> partsLayer;
-  final TextStyle defaultTextStyle;
+  final TextStyle? defaultTextStyle;
 
   const RevealingText({
-    Key key,
+    super.key,
     this.parts = const <Text>[],
     this.lastVisiblePart = -1,
     this.crossAxisAlignment = CrossAxisAlignment.stretch,
@@ -20,7 +21,7 @@ class RevealingText extends StatefulWidget {
     this.reverse = false,
     this.partsLayer = const <int, int>{},
     this.defaultTextStyle,
-  }) : super(key: key);
+  });
 
   @override
   _RevealingTextState createState() => _RevealingTextState();
@@ -29,9 +30,7 @@ class RevealingText extends StatefulWidget {
 class _RevealingTextState extends State<RevealingText> {
   @override
   Widget build(BuildContext context) {
-    final textStyle = widget.defaultTextStyle ??
-        DefaultTextStyle.of(context).style ??
-        Theme.of(context).textTheme.bodyText2;
+    final textStyle = widget.defaultTextStyle ?? kBasicTextStyle;
 
     return Column(
       crossAxisAlignment: widget.crossAxisAlignment,
@@ -42,7 +41,7 @@ class _RevealingTextState extends State<RevealingText> {
           return Container();
         } else {
           final layer = widget.partsLayer.containsKey(index)
-              ? widget.partsLayer[index]
+              ? widget.partsLayer[index] ?? 0
               : 0;
 
           if (widget.reverse) {
@@ -70,7 +69,7 @@ class _RevealingTextState extends State<RevealingText> {
           }
           return Container(
             height: (part.style?.height ?? textStyle.height ?? 1.0) *
-                    (part.style?.fontSize ?? textStyle.fontSize) +
+                    (part.style?.fontSize ?? textStyle.fontSize!) +
                 32,
           );
         }
@@ -109,12 +108,13 @@ class _RevealingTextState extends State<RevealingText> {
   }
 
   Widget buildAnimatedPart(Text part, TextStyle textStyle, [int layer = 0]) {
-    return PlayAnimation<double>(
+    return PlayAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 1.0),
       duration: const Duration(milliseconds: 550),
       delay: const Duration(milliseconds: 250),
-      builder: (context, child, animation) => Opacity(
+      builder: (context, animation, child) => Opacity(
         opacity: animation,
+        child: child,
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),

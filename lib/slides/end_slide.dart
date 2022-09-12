@@ -2,7 +2,7 @@ import 'package:project_keynote/slide.dart';
 import 'package:project_keynote/slides/templates/topic_slide.dart';
 
 class EndSlide extends StatefulWidget {
-  const EndSlide({Key key}) : super(key: key);
+  const EndSlide({super.key});
 
   @override
   _EndSlideState createState() => _EndSlideState();

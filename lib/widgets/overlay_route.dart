@@ -4,18 +4,13 @@ import 'blur_transition.dart';
 
 class OverlayRoute<T> extends PageRoute<T> {
   OverlayRoute({
-    @required this.builder,
-    this.barrierLabel,
+    required this.builder,
+    this.barrierLabel = '',
     this.backgroundColor = const Color(0xFF000000),
     this.backgroundOpacity = 0.25,
     this.blur = 4.5,
-    RouteSettings settings,
-  })  : assert(blur != null),
-        assert(backgroundOpacity != null),
-        assert(backgroundColor != null),
-        super(
-          settings: settings,
-        );
+    RouteSettings? settings,
+  }) : super(settings: settings);
 
   @override
   Color get barrierColor => const Color(0x00000001);
@@ -46,22 +41,9 @@ class OverlayRoute<T> extends PageRoute<T> {
     Animation<double> animation,
     Animation<double> secondaryAnimation,
   ) {
-    final child = builder(context);
-
-    assert(() {
-      if (child == null) {
-        throw FlutterError.fromParts(<DiagnosticsNode>[
-          ErrorSummary(
-              'The builder for route "${settings.name}" returned null.'),
-          ErrorDescription('Route builders must never return null.')
-        ]);
-      }
-      return true;
-    }());
-
     return FadeTransition(
       opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
-      child: child,
+      child: builder(context),
     );
   }
 
