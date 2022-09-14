@@ -61,7 +61,7 @@ class SlideInteractionService implements ISlideInteractionService {
       final index = _slides.indexOf(key);
       if (action == kNextAction) {
         if (index + 1 <= _slides.length - 1) {
-          keynoteProvider.nextPage(key.currentContext);
+          keynoteProvider.nextPage(key.currentContext!);
           // final cKey = _slides.elementAt(index);
 
           // Firestore.instance.document(kDBKeynoteDocumentPath).updateData(
@@ -74,7 +74,7 @@ class SlideInteractionService implements ISlideInteractionService {
         }
       } else if (action == kPreviousAction) {
         if (index - 1 >= 0) {
-          keynoteProvider.previousPage(key.currentContext);
+          keynoteProvider.previousPage(key.currentContext!);
           // final cKey = _slides.elementAt(index);
 
           // Firestore.instance.document(kDBKeynoteDocumentPath).updateData(
